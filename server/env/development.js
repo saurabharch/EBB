@@ -19,5 +19,8 @@ module.exports = {
   "OPENTOK": {
     "apiKey": "45582862",
     "apiSecret": "baa95265a5ff92bbd038ea0f4687cc24b226bf4b"
+  },
+  "GLOT": {
+    "apiToken": "b3f02620-4d71-4d90-9f69-7721382e0f76"
   }
 };

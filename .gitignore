@@ -6,3 +6,5 @@ public
 coverage
 key.pem
 cert.pem
+.eslintrc.json
+.editorconfig
