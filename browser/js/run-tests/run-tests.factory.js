@@ -7,7 +7,7 @@ app.factory('RunTests', ($http) => {
     const getData = (res) => res.data;
 
     Obj.submitCode = (codeObj) => {
-        return $http.post('/api/runcode', codeObj)
+        return $http.post(testUrl, codeObj)
         .then(getData);
     };
 
