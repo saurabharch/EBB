@@ -5,6 +5,7 @@ var passport = require('passport');
 var path = require('path');
 var mongoose = require('mongoose');
 var UserModel = mongoose.model('User');
+var loggedInUsers = require('./logged-in-users.js');
 
 var ENABLED_AUTH_STRATEGIES = [
     'local',
@@ -54,6 +55,11 @@ module.exports = function (app) {
 
     // Simple /logout route.
     app.get('/logout', function (req, res) {
+        var io = require('../../../io')();
+
+        delete loggedInUsers[req.user.username];
+        io.sockets.emit('updateLoggedInUsers', loggedInUsers);
+
         req.logout();
         res.status(200).end();
     });

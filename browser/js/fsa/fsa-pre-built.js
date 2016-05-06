@@ -1,5 +1,4 @@
 (function () {
-
     'use strict';
 
     // Hope you didn't forget Angular! Duh-doy.
@@ -9,6 +8,7 @@
 
     app.factory('Socket', function () {
         if (!window.io) throw new Error('socket.io not found!');
+
         return window.io(window.location.origin);
     });
 

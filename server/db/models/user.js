@@ -4,6 +4,10 @@ var mongoose = require('mongoose');
 var _ = require('lodash');
 
 var schema = new mongoose.Schema({
+    username: {
+        type: String,
+        required: true
+    },
     email: {
         type: String
     },

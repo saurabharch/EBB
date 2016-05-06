@@ -1,4 +1,4 @@
-app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) {
+app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, LoggedInUsersFactory) {
 
     return {
         restrict: 'E',
@@ -10,7 +10,8 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) 
                 { label: 'Home', state: 'home' },
                 { label: 'About', state: 'about' },
                 { label: 'Documentation', state: 'docs' },
-                { label: 'Members Only', state: 'membersOnly', auth: true }
+                { label: 'Members Only', state: 'membersOnly', auth: true },
+                { label: 'Video Example', state: 'videoexample'}
             ];
 
             scope.user = null;

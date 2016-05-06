@@ -3,6 +3,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
+var loggedInUsers = require('./logged-in-users.js');
 
 module.exports = function (app) {
 
@@ -26,7 +27,6 @@ module.exports = function (app) {
 
     // A POST /login route is created to handle login.
     app.post('/login', function (req, res, next) {
-
         var authCb = function (err, user) {
 
             if (err) return next(err);
@@ -40,6 +40,13 @@ module.exports = function (app) {
             // req.logIn will establish our session.
             req.logIn(user, function (loginErr) {
                 if (loginErr) return next(loginErr);
+
+                var io = require('../../../io')();
+
+                loggedInUsers[req.user.username] = req.user.toObject();
+                loggedInUsers[req.user.username].socketId = req.body.socketId;
+                io.sockets.emit('updateLoggedInUsers', loggedInUsers);
+
                 // We respond with a response object that has user with _id and email.
                 res.status(200).send({
                     user: user.sanitize()
