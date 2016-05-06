@@ -1,0 +1,7 @@
+{application,quickrand,
+             [{description,"Quick Random Number Generation"},
+              {vsn,"1.4.0"},
+              {modules,[quickrand,random_wh06_int]},
+              {registered,[]},
+              {applications,[crypto,kernel,stdlib]},
+              {start_phases,[]}]}.

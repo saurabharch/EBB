@@ -1,0 +1,6 @@
+{application,uuid,
+             [{description,"Native UUID Generation"},
+              {vsn,"1.4.0"},
+              {modules,[uuid]},
+              {registered,[]},
+              {applications,[kernel,quickrand,stdlib]}]}.
