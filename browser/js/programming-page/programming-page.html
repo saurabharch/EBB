@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6" ui-ace="{
+            useWrapMode : true,
+            showGutter: true,
+            theme:'monokai',
+            mode: 'xml',
+            firstLineNumber: 1,
+            onLoad: aceLoaded,
+            onChange: aceChanged
+        }" ng-model="theCode">Your code here</div>
+
+        <div class="col-md-6" id="subscriber"></div>
+        <div ng-hide="true" id="publisher"></div>
+
+    </div>
+
+    <div>
+        <button class="btn btn-primary" ng-click="disconnect()">Disconnect</button>
+    </div>
+</div>
+
+
