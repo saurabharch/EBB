@@ -15,6 +15,10 @@ module.exports = function (server) {
         socket.on('acceptOffer', function(initiatingUser) {
             io.to('/#' + initiatingUser.socketId).emit('offerAccepted', initiatingUser.tokens);
         });
+
+        socket.on('madeEdit', function(targetUser, newCode) {
+            io.to('/#' + targetUser.socketId).emit('receivedEdit', newCode);
+        });
     });
 
     return io;
