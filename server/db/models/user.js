@@ -5,8 +5,7 @@ var _ = require('lodash');
 
 var schema = new mongoose.Schema({
     username: {
-        type: String,
-        required: true
+        type: String // username and password required in the route
     },
     email: {
         type: String
@@ -16,15 +15,6 @@ var schema = new mongoose.Schema({
     },
     salt: {
         type: String
-    },
-    twitter: {
-        id: String,
-        username: String,
-        token: String,
-        tokenSecret: String
-    },
-    facebook: {
-        id: String
     },
     google: {
         id: String
