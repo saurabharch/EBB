@@ -1,0 +1,13 @@
+<div ng-repeat="problem in problems">
+  <div class="panel panel-default">
+    <div class="panel-heading"><h2>{{problem.title}}</h2></div>
+    <div class="panel-body">
+      <p>{{problem.description}}</p>
+      <p>Difficulty: {{problem.difficulty}}/5</p>
+        <button id="matching-selector" ui-sref-active="active" ng-click="workWithFriend(problem)" class="btn btn-primary btn-md">Work with a friend</button>
+        <button id="matching-selector" ui-sref-active="active" ng-click="randomlyPair(problem)" class="btn btn-primary btn-md">Randomly Pair</button>
+    </div>
+  </div>
+</div>
+<br>
+<button ui-sref="createProblem">Submit a new problem</button>
