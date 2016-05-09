@@ -78,10 +78,14 @@ app.controller('ProgrammingPageCtrl', function($scope, ProgrammingPageFactory, L
         session.disconnect();
     };
 
-
     $scope.aceChanged = function(e) {
-        console.log('hello');
+        Socket.emit('madeEdit', partnerUser, $scope.theCode);
     };
+
+    Socket.on('receivedEdit', function(updatedCode) {
+        $scope.theCode = updatedCode;
+        $scope.$evalAsync();
+    });
 
 });
 
