@@ -15,21 +15,21 @@ app.factory('RunTests', ($http) => {
     // so we can send the code straight to Docker from the client:
     // const glotRoute = 'https://run.glot.io/languages/javascript/latest';
 
-    // Obj.submitCode = (code) => {
+    // Obj.submitCode = (scopeObj) => {
     //     return $http.post(glotRoute, {
     //         "files": [
     //             {
     //                 "name": "main.js",
-    //                 "content": JSON.stringify(code)
+    //                 "content": JSON.stringify(scopeObj.code)
     //             }
     //         ]
     //     }, {
     //         headers: {
-    //             "Authorization": "Token " + tbd,
+    //             "Authorization": "Token ",
     //             "Content-Type": "applications/json"
     //         }
     //     })
-    //     .then((results) => results.data);
+    //     .then(getData);
     // };
 
     return Obj;
