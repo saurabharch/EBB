@@ -1,0 +1,12 @@
+<div class="col-md-6" ui-ace="{
+    useWrapMode : true,
+    showGutter: true,
+    theme:'monokai',
+    mode: 'xml',
+    firstLineNumber: 1,
+    onLoad: aceLoaded,
+    onChange: aceChanged
+}" ng-model="theCode" id="ace-workspace">Your code here</div>
+
+<button>Execute code</button>
+<div class="panel panel-default">STDOUT here</div>
