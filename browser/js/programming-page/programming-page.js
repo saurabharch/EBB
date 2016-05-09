@@ -75,9 +75,8 @@ app.controller('ProgrammingPageCtrl', function($scope, ProgrammingPageFactory, L
     });
 
     $scope.submit = () => {
-        console.log(`This is what the code looks like: ${ $scope.theCode }`);
-        RunTests.submitCode({ code: 'function bryan (input) { return input * 2 }; console.log(bryan(55));' })
-        .then((returnedValue) => console.dir(returnedValue))
+        RunTests.submitCode({ code: $scope.theCode })
+        .then((returnedValue) => console.log(returnedValue))
         .catch($log.error);
     };
 
