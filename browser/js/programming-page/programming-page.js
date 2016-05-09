@@ -16,7 +16,7 @@ app.config(function($stateProvider) {
     });
 });
 
-app.controller('ProgrammingPageCtrl', function($scope, ProgrammingPageFactory, LoggedInUsersFactory, currentUser, Socket, $log, $stateParams) {
+app.controller('ProgrammingPageCtrl', function($scope, ProgrammingPageFactory, LoggedInUsersFactory, RunTests, currentUser, Socket, $log, $stateParams) {
     let partnerUser = $stateParams.partnerUser;
     let session;
     let sessionToken;
@@ -73,6 +73,13 @@ app.controller('ProgrammingPageCtrl', function($scope, ProgrammingPageFactory, L
     Socket.on('offerAccepted', function(tokens) {
         initializeSession(tokens.apiKey, tokens.sessionId, sessionToken);
     });
+
+    $scope.submit = () => {
+        console.log(`This is what the code looks like: ${ $scope.theCode }`);
+        RunTests.submitCode({ code: 'function bryan (input) { return input * 2 }; console.log(bryan(55));' })
+        .then((returnedValue) => console.dir(returnedValue))
+        .catch($log.error);
+    };
 
     $scope.disconnect = function() {
         session.disconnect();
