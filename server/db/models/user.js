@@ -13,6 +13,10 @@ var schema = new mongoose.Schema({
     password: {
         type: String
     },
+    friends: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    }],
     salt: {
         type: String
     },
