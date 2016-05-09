@@ -1,0 +1,25 @@
+<div class="col-md-6" ui-ace="{
+    useWrapMode : true,
+    showGutter: true,
+    theme:'monokai',
+    mode: 'xml',
+    firstLineNumber: 1,
+    onLoad: aceLoaded,
+    onChange: aceChanged
+}" ng-model="theCode">Your code here</div>
+
+<div ng-hide="openFeed" class="col-md-6" id="subscriber"></div>
+<div ng-hide="openFeed" id="publisher"></div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2>{{problemToSolve.title}}</h2>
+  </div>
+  <div class="panel-body">
+    <h3>{{problemToSolve.description}}</h3>
+  </div>
+</div>
+
+
+<div class="panel panel-default">Tests go here</div>
+<!-- <div class="panel panel-default" ng-repeat="test in problemToSolve.tests">Tests go here</div> -->
