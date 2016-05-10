@@ -5,7 +5,7 @@ app.config(function($stateProvider){
     controller: ($scope, $log, RunTests) => {
         $scope.submit = () => {
             RunTests.submitCode({ code: $scope.theCode })
-            .then((returnedValue) => console.log(returnedValue))
+            .then((returnedValue) => $scope.returnVal = returnedValue)
             .catch($log.error);
         };
     }
