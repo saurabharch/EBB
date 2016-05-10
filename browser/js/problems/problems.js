@@ -1,4 +1,4 @@
-app.controller('ProblemsController', function($scope, ProblemsFactory, $stateParams, $state){
+app.controller('ProblemsController', function($scope, ProblemsFactory, $stateParams, $state, AuthService){
   ProblemsFactory.getAllProblems().then(function(problems){
     $scope.problems = problems.data;
   });
