@@ -1,4 +1,4 @@
-app.directive('navbar', function($rootScope, AuthService, AUTH_EVENTS, $state) {
+app.directive('navbar', function($rootScope, AuthService, AUTH_EVENTS, $state, $mdSidenav, $timeout) {
 
     return {
         restrict: 'E',
@@ -10,7 +10,8 @@ app.directive('navbar', function($rootScope, AuthService, AUTH_EVENTS, $state) {
                 { label: 'Ebb', state: 'home', icon: 'home' },
                 { label: 'About', state: 'about', icon: 'pets' },
                 { label: 'Problems', state: 'problems', icon: 'work', auth: true },
-                { label: 'Workspace', state: 'workspace', icon: 'video_label', auth: true }
+                { label: 'Workspace', state: 'workspace', icon: 'video_label', auth: true },
+                { label: 'Interview', state: 'interview', icon: 'people_outline', auth: true }
             ];
 
             scope.user = null;
@@ -41,9 +42,11 @@ app.directive('navbar', function($rootScope, AuthService, AUTH_EVENTS, $state) {
             $rootScope.$on(AUTH_EVENTS.logoutSuccess, removeUser);
             $rootScope.$on(AUTH_EVENTS.sessionTimeout, removeUser);
 
+            // *** For logged in users ***
             scope.openMenu = function($mdOpenMenu, ev) {
                 $mdOpenMenu(ev);
             };
+
 
         }
 
