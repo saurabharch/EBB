@@ -2,14 +2,26 @@
 
 app.controller('SignupCtrl', function ($scope, AuthService, $state, SignupFactory) {
 
-  $scope.incongruentPasswords = false;
+  $scope.error = null;
 
   $scope.createUser = function(signupInfo) {
+    console.log('signing up')
+    $scope.error = null;
+
     if(signupInfo.passwordA !== signupInfo.passwordB){
-      $scope.incongruentPasswords = true;
+      $scope.error = 'Your passwords are different!';
     } else {
-      SignupFactory.createNewUser({email: signupInfo.email, password: signupInfo.passwordA, username: signupInfo.username, firstName: signupInfo.firstName, lastName: signupInfo.lastName, isAdmin: false});
-      $state.go('login');
+      SignupFactory.createNewUser({
+        email: signupInfo.email,
+        password: signupInfo.passwordA,
+        username: signupInfo.username
+      })
+      .then(function() {
+        $state.go('login');
+      })
+      .catch(function() {
+        $scope.error = 'Invalid signup credentials.';
+      });
     }
   };
 

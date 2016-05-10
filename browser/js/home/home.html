@@ -1,4 +1,21 @@
 <section id="home">
-    <fullstack-logo></fullstack-logo>
-    <h1>Ebb: Live Programming Workspace</h1>
+    <div class="container">
+        <h1>Ebb: Live Programming Workspace</h1>
+
+        <carousel interval="myInterval">
+            <slide ng-repeat="slide in slides" active="slide.active">
+                <h2>{{slide.heading}}</h2>
+                <div layout="row">
+                    <img flex="50" ng-src="{{slide.image}}">
+                    <div flex="50" layout="column" class="description">
+                        <h3>{{slide.subheading}}</h3>
+                        <ul ng-repeat="text in slide.text">
+                            <li>{{text}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </slide>
+        </carousel>
+    </div>
 </section>
+

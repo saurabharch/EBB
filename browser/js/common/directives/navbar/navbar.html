@@ -1,18 +1,44 @@
-<nav class="navbar navbar-static-top">
-    <div class="container">
-        <div class="navbar-header">
-            <fullstack-logo></fullstack-logo>
-        </div>
-        <ul class="nav navbar-nav">
-            <li ng-repeat="item in items" ng-show="!item.auth || isLoggedIn()">
-                <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
-            </li>
-        </ul>
-        <button ng-show="!user" ui-sref="login" class="btn login-button">Login</button>
-        <button ng-show="!user" ui-sref="signup" class="btn login-button">Sign Up</button>
-        <div ng-show="user" class="welcome">
-            <span>Welcome, {{ user.email }}!</span>
-            <a ng-click="logout()">Logout</a>
-        </div>
-    </div>
-</nav>
+<div ng-cloak>
+    <md-content>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <md-button ng-repeat="item in items" ng-show="!item.auth || isLoggedIn()" aria-label="{{item.label}}" ui-sref-active="active" ui-sref="{{ item.state }}">
+                    <i class="material-icons">{{item.icon}}</i>
+                    {{ item.label }}
+                </md-button>
+
+                <span flex></span>
+
+                <md-button aria-label="Signup" ng-show="!user" ui-sref="signup">
+                    Signup
+                </md-button>
+                <md-button aria-label="Login" ng-show="!user" ui-sref="login">
+                    Login
+                </md-button>
+
+                <md-menu ng-show="user">
+                    <md-button aria-label="Open user interactions menu" ng-click="openMenu($mdOpenMenu, $event)">
+                        <i class="material-icons" >account_box</i>
+                        {{user.username}}
+                    </md-button>
+                    <md-menu-content width="4">
+                        <md-menu-item>
+                            <md-button>
+                                <i class="material-icons">account_circle</i>
+                                Profile page
+                            </md-button>
+                        </md-menu-item>
+                        <md-menu-divider></md-menu-divider>
+                        <md-menu-item>
+                            <md-button ng-click="logout()">
+                                <i class="material-icons">close</i>
+                                Logout
+                            </md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+            </div>
+        </md-toolbar>
+    </md-content>
+</div>
+
