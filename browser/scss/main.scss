@@ -14,13 +14,21 @@ body {
   }
 }
 
+#main-body {
+  display: flex;
+  align-items: center;
+}
+
 #matching-selector {
   background-color: #555555;
 }
 
 #main {
   padding-top: 60px;
+  display: flex;
   margin: 0 auto;
+  margin-right: 350px;
+  flex-direction: column;
 }
 
 @import 'directives/main';

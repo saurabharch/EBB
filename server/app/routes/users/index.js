@@ -11,7 +11,6 @@ router.get('/', function(req, res, next) {
         .catch(next);
 });
 
-
 router.get('/:userId/', function(req, res, next){
   User.findById(req.params.userId)
   .then(function(user){
@@ -26,6 +25,19 @@ router.get('/:userId/friends', function(req, res, next){
     console.log('looking for friends, found user: ', user);
     res.json(user.friends);
   });
+});
+
+router.post('/addFriend/:friendId', function(req, res, next){
+  if(req.params.friendId !== req.user._id){ // also should account for if they're already friends
+    User.findById(req.user.id)
+    .then(function(user){
+      user.friends.push(req.params.friendId);
+      user.save();
+      res.sendStatus(201);
+    });
+  } else {
+    res.sendStatus(401);
+  }
 });
 
 router.post('/', function(req, res, next) {

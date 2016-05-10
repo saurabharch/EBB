@@ -7,10 +7,12 @@ app.directive('navbar', function($rootScope, AuthService, AUTH_EVENTS, $state) {
         link: function(scope) {
 
             scope.items = [
-                { label: 'Ebb', state: 'home', icon: 'home' },
-                { label: 'About', state: 'about', icon: 'pets' },
-                { label: 'Problems', state: 'problems', icon: 'work', auth: true },
-                { label: 'Workspace', state: 'workspace', icon: 'video_label', auth: true }
+                { label: 'Dashboard', state: 'dashboard', icon: 'code', auth: true },
+                // { label: 'Ebb', state: 'home', icon: 'home' },
+                // { label: 'About', state: 'about', icon: 'pets' },
+                // { label: 'Problems', state: 'problems', icon: 'work', auth: true },
+                // { label: 'Workspace', state: 'workspace', icon: 'video_label', auth: true },
+                { label: 'Users', state: 'userList', auth: true }
             ];
 
             scope.user = null;
