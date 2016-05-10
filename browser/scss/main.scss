@@ -3,7 +3,7 @@
 }
 
 body {
-  background: #fdfdfd;
+  background: #80d8ff;
 }
 
 @mixin clearfix {
@@ -24,8 +24,8 @@ body {
 }
 
 #main {
-  padding-top: 60px;
   display: flex;
+  padding-top: 20px;
   margin: 0 auto;
   margin-right: 350px;
   flex-direction: column;
@@ -36,5 +36,6 @@ body {
 @import 'about/main';
 @import 'tutorial/main';
 @import 'login/main';
+@import 'signup/main';
 @import 'ui-ace/main';
 @import 'icons/main';

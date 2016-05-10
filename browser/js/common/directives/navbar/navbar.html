@@ -2,15 +2,8 @@
     <md-content>
         <md-toolbar>
             <div class="md-toolbar-tools">
-                <md-button ui-sref="home" ng-show="!isLoggedIn()">
-                  <i class="material-icons">home</i>
-                  Ebb
-                </md-button>
-                <md-button ui-sref="about" ng-show="!isLoggedIn()">
-                  <i class="material-icons">pets</i>
-                  About
-                </md-button>
-                <md-button ng-repeat="item in items" ng-show="!item.auth || isLoggedIn()" ui-sref-active="active" ui-sref="{{ item.state }}">
+
+                <md-button ng-repeat="item in items" ng-show="!item.auth || isLoggedIn()" aria-label="{{item.label}}" ui-sref-active="active" ui-sref="{{ item.state }}">
                     <i class="material-icons">{{item.icon}}</i>
                     {{ item.label }}
                 </md-button>
@@ -45,7 +38,6 @@
                         </md-menu-item>
                     </md-menu-content>
                 </md-menu>
-
             </div>
         </md-toolbar>
     </md-content>
