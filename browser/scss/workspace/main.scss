@@ -1,0 +1,37 @@
+#workspace {
+    #addWorkspace {
+        background-color: #42bd41;
+        padding: 10px;
+        margin: 10px;
+    }
+
+    #existingWorkspaces {
+        background-color: #ffffff;
+        border-radius: 10px;
+        .createdByUser {
+            color: #259b24;
+        }
+        .createdByAnother {
+            color: #01579b;
+        }
+        .dates {
+            color: #aaaaaa;
+            font-style: italic;
+        }
+        .collaborator {
+            color: #aaaaaa;
+            font-style: italic;
+        }
+        p {
+            height: 18px;
+        }
+    }
+
+
+    md-dialog {
+        md-input-container {
+            width: 100%;
+        }
+    }
+}
+

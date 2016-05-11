@@ -32,6 +32,7 @@ app.factory('NotificationsFactory', function($http){
 
   let acceptInterviewOffer = function(notification){
     // state.go to interviewee
+    //
     // the acceptor will always be the interviewee
   };
 

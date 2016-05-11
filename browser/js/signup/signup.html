@@ -1,5 +1,5 @@
-<div class="container" layout="column" layout-padding ng-cloak>
-    <form id="signup-form" name="signupForm" ng-submit="signupForm.$valid && createUser(signup)">
+<div layout="row" layout-align="center center" layout-padding ng-cloak>
+    <form flex-gt-sm="60" flex="100" id="signup-form" name="signupForm" ng-submit="signupForm.$valid && createUser(signup)">
         <alert type="danger" ng-show="error">
             {{ error }}
         </alert>
