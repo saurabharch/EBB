@@ -1,4 +1,4 @@
-app.factory('NotificationsFactory', function($http){
+app.factory('NotificationsFactory', function($http, $state){
   let NotificationsFactory = {};
 
   NotificationsFactory.sendNotification = function(toUser, type){
@@ -11,7 +11,7 @@ app.factory('NotificationsFactory', function($http){
   };
 
   NotificationsFactory.acceptNotification = function(notification){
-    // console.log('accepting notification', notification)
+    console.log('accepting notification', notification)
     if(notification.type === "Friend"){
       acceptFriendRequest(notification);
     } else if(notification.type === "Interviewee"){ // the offeror will always be the interviewer first
@@ -31,6 +31,7 @@ app.factory('NotificationsFactory', function($http){
   };
 
   let acceptInterviewOffer = function(notification){
+    $state.go('programming-page', {offeror: notification.to, partnerUser: notification.from});
     // state.go to interviewee
     //
     // the acceptor will always be the interviewee

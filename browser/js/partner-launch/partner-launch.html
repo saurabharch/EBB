@@ -7,7 +7,6 @@ Type: {{type}}
         <tr ng-repeat="user in friends">
             <td>{{user.username}}</td>
             <td><button class="btn btn-primary" ng-click="makeOffer(user, type)">Make offer</button></td>
-            <!-- <td><button class="btn btn-primary" ng-click="acceptOffer(user, type)" ng-if="user.tokens">Accept offer</button></td> -->
         </tr>
     </table>
 </div>

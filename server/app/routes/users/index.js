@@ -38,8 +38,7 @@ router.get('/:userId/notifications', function(req, res, next){
 });
 
 router.post('/addFriend/:friendId', function(req, res, next){
-  console.log('adding friend. req.user: ', req.user.friends.indexOf('your mom'));
-  if(req.params.friendId !== req.user._id && req.user.friends.indexOf(req.params.friendId) === -1){ // also should account for if they're already friends
+  if(req.params.friendId != req.user._id && req.user.friends.indexOf(req.params.friendId) === -1){ // also should account for if they're already friends
     Notification.create({type: 'Friend', from: req.user._id, to: req.params.friendId})
     .then(function(notification){
       notification.save();

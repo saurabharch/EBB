@@ -61,7 +61,8 @@ app.config(function($stateProvider) {
 });
 
 app.controller('ProgrammingPageCtrl', function($scope, ProgrammingPageFactory, LoggedInUsersFactory, RunTests, currentUser, Socket, $log, $stateParams) {
-    let partnerUser = $stateParams.partnerUser;
+  console.log('holy roller', $stateParams)
+    let partnerUser = $stateParams.offeror || $stateParams.partnerUser;
     let session;
     let sessionToken;
 
@@ -69,6 +70,7 @@ app.controller('ProgrammingPageCtrl', function($scope, ProgrammingPageFactory, L
     if ($stateParams.offeror) {
         ProgrammingPageFactory.getOpenTokCreds()
             .then(function(res) {
+              console.log('ProgrammingPageCtrl res', res)
                 const sessionApiKey = res.apiKey;
                 const sessionSessionId = res.sessionId;
                 sessionToken = res.token;

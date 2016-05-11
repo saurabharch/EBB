@@ -1,4 +1,5 @@
 app.controller('NotificationsCtrl', function($scope, NotificationsFactory, AuthService){
+  console.log($scope)
   AuthService.getLoggedInUser()
   .then(function(currentUser){
     NotificationsFactory.getNotifications(currentUser._id)

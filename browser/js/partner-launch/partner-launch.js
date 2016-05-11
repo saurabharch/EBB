@@ -33,11 +33,18 @@ app.controller('PartnerLaunchCtrl', function($scope, LoggedInUsersFactory, curre
 
     $scope.makeOffer = function (targetUser, type) {
       NotificationsFactory.sendNotification(targetUser, type);
-      console.log('you made an offer');
+      console.log('you made an offer', $scope.loggedInUsers);
+      targetUser = $scope.loggedInUsers[targetUser.username];
+
+      console.log('targetUser in partnerLaunch', targetUser)
         if(type === "Interviewee"){
-          $state.go('interviewee-page', {offeror: true, partnerUser: targetUser});
+          // $state.go('interviewee-page', {offeror: true, partnerUser: targetUser});
+          $state.go('programming-page', {offeror: true, partnerUser: targetUser});
+
         } else if(type === "Solve"){
-          $state.go('solve-page', {offeror: true, partnerUser: targetUser});
+          // $state.go('solve-page', {offeror: true, partnerUser: targetUser});
+          $state.go('programming-page', {offeror: true, partnerUser: targetUser});
+
         } else if(type === "Workspace"){
           $state.go('programming-page', {offeror: true, partnerUser: targetUser});
         }
@@ -45,9 +52,11 @@ app.controller('PartnerLaunchCtrl', function($scope, LoggedInUsersFactory, curre
 
     $scope.acceptOffer = function (initiatingUser, notification) {
       if(type === "Interviewer"){
-        $state.go('interviewer-page', {offeror: false, partnerUser: initiatingUser});
+        // $state.go('interviewer-page', {offeror: false, partnerUser: initiatingUser});
+        $state.go('programming-page', {offeror: false, partnerUser: initiatingUser});
       } else if(type === "Solve"){
-        $state.go('solve-page', {offeror: false, partnerUser: initiatingUser});
+        // $state.go('solve-page', {offeror: false, partnerUser: initiatingUser});
+        $state.go('programming-page', {offeror: false, partnerUser: initiatingUser});
       } else if(type === "Workspace"){
         $state.go('programming-page', {offeror: false, partnerUser: initiatingUser});
       }
