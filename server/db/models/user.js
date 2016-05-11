@@ -17,6 +17,10 @@ var schema = new mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User'
     }],
+    friendsToBe: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    }],
     salt: {
         type: String
     },

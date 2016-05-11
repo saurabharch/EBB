@@ -7,6 +7,27 @@
                     <i class="material-icons">{{item.icon}}</i>
                     {{ item.label }}
                 </md-button>
+                <md-menu md-offset>
+                    <md-button ng-click="openMenu($mdOpenMenu, $event)">
+                        <i class="material-icons">people_outline</i>
+                        Interview
+                    </md-button>
+                    <md-menu-content width="6">
+                        <md-menu-item>
+                            <md-button ui-sref="invite({type: 'Interviewee'})">
+                                <i class="material-icons">contacts</i>
+                                Interview with a friend
+                            </md-button>
+                        </md-menu-item>
+                        <md-menu-divider></md-menu-divider>
+                        <md-menu-item>
+                            <md-button ui-sref="randomPair({type: 'Interviewee'})">
+                                <i class="material-icons">search</i>
+                                Interview with a random user
+                            </md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
 
                 <span flex></span>
 
@@ -17,6 +38,10 @@
                     Login
                 </md-button>
 
+                  <md-button ng-show="user" ui-sref="notifications">
+                      <i class="material-icons">priority_high</i>
+                    {{notifications.data.length}}
+                  </md-button>
                 <md-menu ng-show="user">
                     <md-button aria-label="Open user interactions menu" ng-click="openMenu($mdOpenMenu, $event)">
                         <i class="material-icons" >account_box</i>
