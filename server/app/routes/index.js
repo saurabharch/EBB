@@ -6,6 +6,7 @@ router.use('/members', require('./members'));
 router.use('/runcode', require('./run-code'));
 router.use('/users', require('./users'));
 router.use('/problems', require('./problems'));
+router.use('/workspace', require('./workspace'));
 
 // Make sure this is after all of
 // the registered routes!

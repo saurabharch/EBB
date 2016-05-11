@@ -27,7 +27,6 @@ body {
   display: flex;
   padding-top: 20px;
   margin: 0 auto;
-  margin-right: 350px;
   flex-direction: column;
 }
 
@@ -39,3 +38,5 @@ body {
 @import 'signup/main';
 @import 'ui-ace/main';
 @import 'icons/main';
+@import 'workspace/main';
+@import 'workspace-main/main';

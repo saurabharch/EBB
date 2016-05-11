@@ -1,0 +1,62 @@
+<section id="workspaceMain">
+    <div layout="column" layout-padding ng-cloak>
+        <div flex>
+            <md-content>
+                <md-toolbar id="workspaceToolbar">
+                    <div class="md-toolbar-tools">
+                        <h2>
+                            <span>{{workspace.name}}</span>
+                        </h2>
+                        <span flex></span>
+                        <md-button id="saveBtn" class="md-raised" aria-label="Save" ng-click="saveWorkspace()">
+                            <i class="material-icons">save</i>
+                            Save
+                        </md-button>
+                        <md-button id="infoBtn" class="md-raised" aria-label="Info">
+                            <i class="material-icons">info</i>
+                        </md-button>
+                        <md-button id="deleteBtn" class="md-raised" aria-label="Delete">
+                            <i class="material-icons">delete</i>
+                        </md-button>
+                    </div>
+                </md-toolbar>
+            </md-content>
+        </div>
+        <div flex layout="row" layout-xs="column" ng-cloak>
+            <div id="textEditorSection" flex="100" flex-gt-sm="50">
+                <div id="textEditor" ui-ace="{
+                    useWrapMode : true,
+                    showGutter: true,
+                    theme:'monokai',
+                    mode: 'javascript',
+                    firstLineNumber: 1,
+                    onLoad: aceLoaded,
+                    onChange: aceChanged
+                    }" ng-model="workspace.text">
+                </div>
+            </div>
+            <div flex="100" flex-gt-sm="50" layout="column">
+                <md-button id="runCode" class="md-raised md-primary">
+                    <i class="material-icons">play_arrow</i>
+                    Run code
+                </md-button>
+                <div id="codeResult" flex>
+                    <h4>Result</h4>
+                </div>
+                <div id="collaborationSection" flex>
+                    <h4>Collaborator: [No collaborator]</h4>
+                    <md-button id="inviteFriend" class="md-raised md-primary">
+                        <i class="material-icons">person_pin</i>
+                        Invite a friend
+                    </md-button>
+                    <md-button id="requestHelp" class="md-raised md-primary">
+                        <i class="material-icons">live_help</i>
+                        Random assistance
+                    </md-button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- <button ng-click="submit()">Execute code</button>
+<div class="panel panel-default">STDOUT here</div> -->
