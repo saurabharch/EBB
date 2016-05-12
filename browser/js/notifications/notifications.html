@@ -1,0 +1,7 @@
+<h1>Notifications</h1>
+<h3 ng-show="!notifications">Nothing here!</h3>
+<div ng-repeat="notification in notifications" ng-show="notifications">
+  {{notification.type}} request from {{notification.from.username}}
+  <md-button ng-click="acceptNotification(notification)">Accept</md-button>
+  <md-button ng-click="denyNotification(notification)">Deny</md-button>
+</div>
