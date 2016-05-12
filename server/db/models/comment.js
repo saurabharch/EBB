@@ -2,7 +2,7 @@
 
 import mongoose, { Schema } from 'mongoose';
 
-const commentSchema = new mongoose.Schema({
+const commentSchema = new Schema({
     problem: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Problem',

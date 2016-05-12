@@ -27,6 +27,4 @@ const userStatsSchema = new Schema({
     }
 });
 
-// const handleError = console.error.bind(console);
-
 mongoose.model('UserStats', userStatsSchema);

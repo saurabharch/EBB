@@ -9,12 +9,14 @@ module.exports = router
 
 .get('/problem/:problemId', ({ params }, res, next) => {
     Comment.find({ problem: params.problemId })
+    .populate('user')
     .then((commentsByProblem) => res.json(commentsByProblem))
     .catch(next);
 })
 
 .get('/user/:userId', ({ params }, res, next) => {
     Comment.find({ user: params.userId })
+    .populate('problem')
     .then((commentsByUser) => res.json(commentsByUser))
     .catch(next);
 })
@@ -30,6 +32,8 @@ module.exports = router
     .then((comment) => req.comment = comment)
     .then(() => next(), next);
 })
+
+.get('/:id', ({ comment }, res) => res.json(comment))
 
 .put('/:id', ({ body, comment, user }, res, next) => {
     if (user._id !== comment.user) return next();
