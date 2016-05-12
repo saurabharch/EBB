@@ -1,0 +1,18 @@
+<md-menu>
+  <md-button id="matching-selector" ui-sref-active="active" ng-click="openMenu($mdOpenMenu, $event)" class="btn btn-primary btn-md" aria-label="Open user interactions menu">
+    {{ intOrSolve }}
+  </md-button>
+  <md-menu-content width="4">
+    <md-menu-item>
+      <md-button ng-click="friend()">
+        <i class="material-icons">contacts</i> {{ intOrSolve | capitalize }} with a friend
+      </md-button>
+    </md-menu-item>
+    <md-menu-divider></md-menu-divider>
+    <md-menu-item>
+      <md-button ng-click="random()">
+        <i class="material-icons">search</i> {{ intOrSolve | capitalize }} with a random user
+      </md-button>
+    </md-menu-item>
+  </md-menu-content>
+</md-menu>
