@@ -32,7 +32,7 @@ app.directive('navbar', function($rootScope, AuthService, AUTH_EVENTS, $state, $
                     scope.user = user;
                 })
                 .then(function(){
-                  NotificationsFactory.getNotifications(scope.user._id)
+                  NotificationsFactory.getNotifications(AuthService.getLoggedInUser()._id)
                   .then(function(notifications){
                     scope.notifications = notifications;
                   });

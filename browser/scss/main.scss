@@ -6,16 +6,6 @@ body {
   background: #80d8ff;
 }
 
-#ace-interviewer {
-  width: 50%;
-  height: 50%;
-}
-
-#ace-interviewee {
-  width: 50%;
-  height: 50%;
-}
-
 @mixin clearfix {
   &:after {
     content: "";
@@ -24,22 +14,9 @@ body {
   }
 }
 
-#main-body {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-}
-
-#matching-selector {
-  background-color: #555555;
-}
-
 #main {
-  display: flex;
-  padding-top: 20px;
+  padding-top: 5px;
   margin: 0 auto;
-  flex-direction: column;
 }
 
 @import 'directives/main';
@@ -53,3 +30,4 @@ body {
 @import 'interview/main';
 @import 'workspace/main';
 @import 'workspace-main/main';
+@import 'invite-friend/main';

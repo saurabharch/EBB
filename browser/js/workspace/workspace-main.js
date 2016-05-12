@@ -46,6 +46,10 @@ app.controller('WorkspaceMainCtrl', ($scope, $log, RunTests, user, workspace, Wo
     $scope.workspace = workspace;
     $scope.isCreator = user._id === workspace.creator._id;
 
+    $scope.inviteFriend = function() {
+        $state.go('inviteFriend', {scenarioType: 'workspace', scenarioId: $scope.workspace._id});
+    }
+
     $scope.saveWorkspace = function() {
         WorkspaceFactory.saveWorkspace($scope.workspace)
             .then(function(savedWorkspace) {
@@ -58,7 +62,7 @@ app.controller('WorkspaceMainCtrl', ($scope, $log, RunTests, user, workspace, Wo
     $scope.showInfo = function(ev) {
         let htmlToDisplay = `<p>Creator: ${$scope.workspace.creator.username}</p>
                             <p>Created: ${$scope.workspace.dateCreated}</p>
-                            <p>Modified: ${$scope.workspace.dateLastModified}</p>`
+                            <p>Modified: ${$scope.workspace.dateLastModified}</p>`;
         $mdDialog.show(
             $mdDialog.alert()
             .parent(angular.element(document.querySelector('#popupContainer')))
