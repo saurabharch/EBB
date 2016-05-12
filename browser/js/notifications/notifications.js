@@ -11,7 +11,10 @@ app.controller('NotificationsCtrl', function($scope, NotificationsFactory, AuthS
 
   $scope.acceptNotification = NotificationsFactory.acceptNotification;
 
-  $scope.denyNotification = NotificationsFactory.denyNotification;
+  $scope.denyNotification = function(notification){
+    NotificationsFactory.denyNotification(notification);
+    $scope.$digest();
+  }
 });
 
 app.config(function($stateProvider){
