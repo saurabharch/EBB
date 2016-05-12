@@ -3,3 +3,7 @@
 // anywhere the User model needs to be used.
 require('./user');
 require('./problem');
+require('./userStats');
+require('./comment');
+require('./notification');
+require('./workspace');

@@ -1,10 +1,15 @@
+Type: {{type}}
+
 <div>
-    <h3>List of logged in users</h3>
+  Type: {{type}}
+    <h3>List of friends</h3>
     <table class="table">
-        <tr ng-repeat="user in loggedInUsers" ng-if="user._id !== currentUser._id">
+        <tr ng-repeat="user in friends">
             <td>{{user.username}}</td>
-            <td><button class="btn btn-primary" ng-click="makeOffer(user)">Make offer</button></td>
-            <td><button class="btn btn-primary" ng-click="acceptOffer(user)" ng-if="user.tokens">Accept offer</button></td>
+            <td><button class="btn btn-primary" ng-click="makeOffer(user, type)">Make offer</button></td>
         </tr>
     </table>
 </div>
+
+<md-button ui-sref="interviewer">This button takes you to blank interviewER workspace</md-button>
+<md-button ui-sref="interviewee">This button takes you to blank interviewEE workspace</md-button>

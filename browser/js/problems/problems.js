@@ -9,6 +9,10 @@ app.controller('ProblemsController', function($scope, ProblemsFactory, $statePar
 
   $scope.openFeed = false;
 
+  $scope.openMenu = ($mdOpenMenu, ev) => {
+    $mdOpenMenu(ev);
+  };
+
   $scope.randomlyPair = function(){
     console.log('randomly pair hit')
     $state.go('programming-page');

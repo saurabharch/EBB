@@ -8,3 +8,4 @@ key.pem
 cert.pem
 .eslintrc.json
 .editorconfig
+.jshintrc
