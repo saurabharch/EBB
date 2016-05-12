@@ -4,36 +4,44 @@ import mongoose from 'mongoose';
 import express from 'express';
 const router = express.Router();
 const Comment = mongoose.model('Comment');
-module.exports = router;
 
-router.get('/problem/:problemId', ({ params }, res, next) => {
+module.exports = router
+
+.get('/problem/:problemId', ({ params }, res, next) => {
     Comment.find({ problem: params.problemId })
     .then((commentsByProblem) => res.json(commentsByProblem))
     .catch(next);
-});
+})
 
-router.get('/user/:userId', ({ params }, res, next) => {
+.get('/user/:userId', ({ params }, res, next) => {
     Comment.find({ user: params.userId })
     .then((commentsByUser) => res.json(commentsByUser))
     .catch(next);
-});
+})
 
-router.post('/', ({ body }, res, next) => {
+.post('/', ({ body }, res, next) => {
     Comment.create(body)
     .then((newComment) => res.json(newComment))
     .catch(next);
-});
+})
 
-router.put('/:id', ({ body, params }, res, next) => {
-    Comment.find({ _id: params.id })
-    .then((comment) => comment.set(body))
-    .then((editedComment) => editedComment.save())
-    .then((savedComment) => res.json(savedComment))
+.param('id', (req, res, next, id) => {
+    Comment.findById(id)
+    .then((comment) => req.comment = comment)
+    .then(() => next(), next);
+})
+
+.put('/:id', ({ body, comment, user }, res, next) => {
+    if (user._id !== comment.user) return next();
+    comment.set(body);
+    comment.save()
+    .then((editedComment) => res.json(editedComment))
     .catch(next);
-});
+})
 
-router.delete('/:id', ({ params }, res, next) => {
-    Comment.remove({ _id: params.id })
+.delete('/:id', ({ comment, user }, res, next) => {
+    if (user._id !== comment.user) return next();
+    Comment.remove(comment)
     .then(() => res.sendStatus(204))
     .catch(next);
 });
