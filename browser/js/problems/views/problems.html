@@ -4,8 +4,8 @@
     <div class="panel-body">
       <p>{{problem.description}}</p>
       <p>Difficulty: {{problem.difficulty}}/5</p>
-        <button id="matching-selector" ui-sref-active="active" ng-click="workWithFriend(problem)" class="btn btn-primary btn-md">Work with a friend</button>
-        <button id="matching-selector" ui-sref-active="active" ng-click="randomlyPair(problem)" class="btn btn-primary btn-md">Randomly Pair</button>
+        <friend-or-random int-or-solve="interview"></friend-or-random>
+        <friend-or-random int-or-solve="solve"></friend-or-random>
     </div>
   </div>
 </div>
