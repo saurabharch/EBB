@@ -8,6 +8,7 @@ router.use('/users', require('./users'));
 router.use('/problems', require('./problems'));
 router.use('/comments', require('./comments'));
 // router.use('/userstats', require('./userStats'));
+router.use('/workspace', require('./workspace'));
 
 // Make sure this is after all of
 // the registered routes!

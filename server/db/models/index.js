@@ -5,3 +5,5 @@ require('./user');
 require('./problem');
 require('./userStats');
 require('./comment');
+require('./notification');
+require('./workspace');

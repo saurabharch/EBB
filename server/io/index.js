@@ -17,6 +17,7 @@ module.exports = function (server) {
         });
 
         socket.on('madeEdit', function(targetUser, newCode) {
+          console.log('target User in madeEdit', targetUser)
             io.to('/#' + targetUser.socketId).emit('receivedEdit', newCode);
         });
     });
