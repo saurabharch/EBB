@@ -1,22 +1,15 @@
 'use strict';
 
-app.directive('friendOrRandom', ($state) => {
+app.directive('friendOrRandom', () => {
 
     return {
         restrict: 'E',
         templateUrl: 'js/problems/views/friendOrRandom.html',
         scope: {
-            intOrSolve: '@'
+            intOrSolve: '@',
+            problemId: '@'
         },
         controller: ($scope) => {
-            $scope.friend = () => {
-                $state.go('TBD');
-            };
-
-            $scope.random = () => {
-                $state.go('TBD');
-            };
-
             $scope.openMenu = ($mdOpenMenu, ev) => {
                 $mdOpenMenu(ev);
             };

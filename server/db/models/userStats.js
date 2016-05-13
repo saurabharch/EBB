@@ -1,15 +1,15 @@
 'use strict';
 
-import mongoose, { Schema } from 'mongoose';
+const mongoose = require('mongoose');
 
-const userStatsSchema = new Schema({
+const userStatsSchema = new mongoose.Schema({
     user: {
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true
     },
     problems: {
-        type: [Schema.Types.ObjectId],
+        type: [mongoose.Schema.Types.ObjectId],
         ref: 'Problem',
         progress: {
             type: String,
@@ -26,7 +26,5 @@ const userStatsSchema = new Schema({
         default: Date.now
     }
 });
-
-// const handleError = console.error.bind(console);
 
 mongoose.model('UserStats', userStatsSchema);
