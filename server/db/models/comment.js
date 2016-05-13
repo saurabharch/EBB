@@ -1,6 +1,7 @@
 'use strict';
 
-import mongoose, { Schema } from 'mongoose';
+// import mongoose, { Schema } from 'mongoose';
+let mongoose = require('mongoose');
 
 const commentSchema = new mongoose.Schema({
     problem: {

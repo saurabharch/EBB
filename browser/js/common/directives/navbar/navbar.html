@@ -8,13 +8,13 @@
                     {{ item.label }}
                 </md-button>
                 <md-menu md-offset>
-                    <md-button ng-click="openMenu($mdOpenMenu, $event)">
+                    <md-button ng-click="openMenu($mdOpenMenu, $event)" ng-show="isLoggedIn()">
                         <i class="material-icons">people_outline</i>
                         Interview
                     </md-button>
                     <md-menu-content width="6">
                         <md-menu-item>
-                            <md-button ui-sref="invite({type: 'Interviewee'})">
+                            <md-button ui-sref="inviteFriend({scenarioType: 'Interviewee'})">
                                 <i class="material-icons">contacts</i>
                                 Interview with a friend
                             </md-button>

@@ -1,3 +1,5 @@
+'use strict';
+
 const mongoose = require('mongoose');
 const Promise = require('bluebird');
 const chalk = require('chalk');
@@ -73,9 +75,9 @@ const seedDB = () => {
             return Promise.map(users, (user) => {
                 let potentialFriends = usersList.filter((member) => user._id !== member._id);
                 let randomUser = randomizeSelector(potentialFriends)._id;
-                let randomUser2 = potentialFriends[potentialFriends.findIndex((aFriend)=> aFriend._id === randomUser) % potentialFriends.length + 1]._id;
+                // let randomUser2 = potentialFriends[potentialFriends.findIndex((aFriend)=> aFriend._id === randomUser) % potentialFriends.length + 1]._id;
                 user.friends.push(randomUser);
-                user.friends.push(randomUser2);
+                // user.friends.push(randomUser2);
                 return user.save();
             });
         })
