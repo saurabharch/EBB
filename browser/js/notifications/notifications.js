@@ -15,6 +15,10 @@ app.config(function($stateProvider) {
 app.controller('NotificationsCtrl', function($scope, notifications, NotificationsFactory, $mdDialog, $log) {
     $scope.notifications = notifications;
 
+  $scope.denyNotification = function(notification){
+    NotificationsFactory.denyNotification(notification);
+  };
+
     $scope.deleteNotification = (ev, notification) => {
         let confirm = $mdDialog.confirm()
             .title('Confirm deletion of invitation')
@@ -27,9 +31,4 @@ app.controller('NotificationsCtrl', function($scope, notifications, Notification
             .catch($log.error);
         });
     };
-
-
-    // $scope.acceptNotification = NotificationsFactory.acceptNotification;
-
-    // $scope.denyNotification = NotificationsFactory.denyNotification;
 });

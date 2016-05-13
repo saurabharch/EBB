@@ -61,24 +61,25 @@ app.config(function($stateProvider) {
 });
 
 app.controller('ProgrammingPageCtrl', function($scope, ProgrammingPageFactory, LoggedInUsersFactory, RunTests, currentUser, Socket, $log, $stateParams) {
-  console.log('holy roller', $stateParams)
-    let partnerUser = $stateParams.offeror || $stateParams.partnerUser;
+    let partnerUser = $stateParams.partnerUser;
     let session;
     let sessionToken;
 
     // Depending on whether the client made the offer to pair, either make the offer or accept the offer for OpenTok
     if ($stateParams.offeror) {
+      console.log('offeror is true')
         ProgrammingPageFactory.getOpenTokCreds()
             .then(function(res) {
               console.log('ProgrammingPageCtrl res', res)
                 const sessionApiKey = res.apiKey;
                 const sessionSessionId = res.sessionId;
                 sessionToken = res.token;
-
+                console.log('about to sendOffer, partner and current user', partnerUser, currentUser)
                 Socket.emit('sendOffer', sessionApiKey, sessionSessionId, partnerUser, LoggedInUsersFactory.getLoggedInUsers()[currentUser.username]);
             })
             .catch($log.error);
     } else {
+      console.log('offeror is false, partnerUser', partnerUser)
         initializeSession(partnerUser.tokens.apiKey, partnerUser.tokens.sessionId, partnerUser.tokens.token);
         Socket.emit('acceptOffer', partnerUser);
     }
@@ -105,8 +106,8 @@ app.controller('ProgrammingPageCtrl', function($scope, ProgrammingPageFactory, L
             if (!error) {
                 let publisher = OT.initPublisher('publisher', {
                     insertMode: 'append',
-                    width: '100%',
-                    height: '100%'
+                    width: '0%',
+                    height: '0%'
                 });
 
                 session.publish(publisher);
@@ -131,6 +132,7 @@ app.controller('ProgrammingPageCtrl', function($scope, ProgrammingPageFactory, L
     };
 
     $scope.aceChanged = function(e) {
+      console.log('aceChanged, currentUser', currentUser)
         Socket.emit('madeEdit', partnerUser, $scope.theCode);
     };
 

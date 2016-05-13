@@ -33,6 +33,7 @@ router.get('/:userId/notifications', function(req, res, next){
   Notification.find({to: req.params.userId})
   .populate('from')
   .then(function(notifications){
+    console.log('notifications in the route, populated -from-', notifications);
     res.json(notifications);
   });
 });
@@ -81,6 +82,7 @@ router.post('/', function(req, res, next) {
 });
 
 router.post('/notification', function(req, res, next){
+  req.body.from = req.user._id;
   Notification.create(req.body)
   .then(function(notification){
     console.log('notification created in routes', notification)
