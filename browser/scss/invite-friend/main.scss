@@ -1,0 +1,33 @@
+#inviteFriend {
+    #goBackToScenario {
+        background-color: #01579b;
+        padding: 10px;
+        margin: 10px;
+    }
+
+    #friendsList {
+        background-color: #ffffff;
+        border-radius: 10px;
+
+        .onlineFriend {
+            color: #259b24;
+        }
+
+        .offlineFriend {
+            color: #aaaaaa;
+        }
+
+        .waiting {
+            color: #aaaaaa;
+            font-style: italic;
+            vertical-align: middle;
+        }
+    }
+
+    md-dialog {
+        md-input-container {
+            width: 100%;
+        }
+    }
+}
+

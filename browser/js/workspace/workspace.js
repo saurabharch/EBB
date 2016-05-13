@@ -28,7 +28,7 @@ app.controller('WorkspaceCtrl', function($scope, user, $mdDialog, WorkspaceFacto
                 .highlightAction(true)
             )
             .then(function(response) {
-                if (response == 'ok') {
+                if (response === 'ok') {
                     $scope.createWorkspace(ev);
                 }
             });

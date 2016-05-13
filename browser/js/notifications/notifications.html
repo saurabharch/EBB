@@ -1,5 +1,4 @@
-<!-- <h1>Notifications</h1> -->
-<h3 ng-show="!notifications">Nothing here!</h3>
+<!-- <h3 ng-show="!notifications">Nothing here!</h3>
 <md-toolbar class="md-theme-light">
   <h2 class="md-toolbar-tools">
     <span>Notifications</span>
@@ -15,24 +14,30 @@
       <md-divider ng-if="!$last"></md-divider>
     </md-list-item>
   </md-list>
-</md-content>
-<!--
-<div ng-repeat="notification in notifications" ng-show="notifications">
-  <div flex-xs flex-gt-xs="50" layout="column">
-    <md-card>
-      <md-card-title>
-        <md-card-title-text>
-          <span class="md-headline">{{notification.type}} request</span>
-          <span class="md-subhead">from {{notification.from.username}}</span>
-        </md-card-title-text>
-        <md-card-title-media>
-          <div class="md-media-sm card-media"></div>
-        </md-card-title-media>
-      </md-card-title>
-      <md-card-actions layout="row" layout-align="end center">
-        <md-button>Accept</md-button>
-        <md-button>Deny</md-button>
-      </md-card-actions>
-    </md-card>
-  </div>
-</div> -->
+</md-content> -->
+<section id="notificationsPage">
+    <div layout="row" layout-align="center center" layout-padding ng-cloak>
+        <div id="notificationsList" flex-gt-sm="60" flex="100">
+            <h2 ng-if="!notifications.length">You have no notifications</h2>
+            <md-list ng-cloak ng-if="notifications.length">
+                <h2>Notifications</h2>
+                <md-list-item ng-repeat="notification in notifications">
+                    <md-divider></md-divider>
+                    <i class="material-icons notificationIcon" ng-if="notification.scenarioType === 'solve'">work</i>
+                    <i class="material-icons notificationIcon" ng-if="notification.scenarioType === 'workspace'">video_label</i>
+                    <i class="material-icons notificationIcon" ng-if="notification.scenarioType === 'interview'">people_outline</i>
+                    <span flex="5"></span>
+                    <p class="md-subhead">{{ notification.scenarioType[0] | uppercase }}{{notification.scenarioType.slice(1)}} request from {{ notification.fromUser.username }}</p>
+                    <span flex></span>
+                    <md-button id="acceptBtn" class="md-raised" aria-label="Accept notification" ng-click="acceptInvitation(notification)">
+                        <i class="material-icons">done</i>
+                        Accept
+                    </md-button>
+                    <md-button id="deleteBtn" class="md-raised" aria-label="Delete notification" ng-click="deleteNotification($event, notification)">
+                        <i class="material-icons">delete</i>
+                    </md-button>
+                </md-list-item>
+            </md-list>
+        </div>
+    </div>
+</section>

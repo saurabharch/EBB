@@ -9,6 +9,7 @@ router.use('/problems', require('./problems'));
 router.use('/comments', require('./comments'));
 // router.use('/userstats', require('./userStats'));
 router.use('/workspace', require('./workspace'));
+router.use('/notifications', require('./notifications'));
 
 // Make sure this is after all of
 // the registered routes!

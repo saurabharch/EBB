@@ -2,22 +2,21 @@
 var mongoose = require('mongoose');
 
 var schema = new mongoose.Schema({
-    type: {
+    toUser: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    },
+    fromUser: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    },
+    scenarioType: {
         type: String,
-        enum: ['Interviewee', 'Interviewer', 'Solve', 'Workspace', 'Friend'],
-        required: true
+        enum: ['workspace'] //TODO: add , 'solve', 'interview'
     },
-    problemId: {
+    workspaceId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Problem'
-    },
-    from: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User'
-    },
-    to: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User'
+      ref: 'Workspace'
     }
 });
 
