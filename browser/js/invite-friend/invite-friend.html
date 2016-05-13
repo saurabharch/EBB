@@ -1,0 +1,30 @@
+<section id="inviteFriend">
+    <div layout="row" layout-align="center end" layout-padding ng-cloak>
+
+        <div flex-gt-sm="60" flex="100">
+            <md-button id="goBackToScenario" class="md-raised md-primary pull-left" ng-click="goBackToScenario()">
+                <i class="material-icons">undo</i>
+                <span>Back to workspace</span>
+            </md-button>
+        </div>
+    </div>
+
+    <div layout="row" layout-align="center center" layout-padding ng-cloak>
+        <div id="friendsList" flex-gt-sm="60" flex="100">
+            <h2 ng-if="!friends.length">You have no friends :(</h2>
+            <md-list ng-cloak ng-if="friends.length">
+                <h2>Invite a friend</h2>
+                <md-list-item ng-repeat="friend in friends" ng-click="selectFriend($event, friend)" ng-disabled="friend.disable">
+                    <md-divider></md-divider>
+                    <i class="material-icons" ng-class="{'onlineFriend': friend.online, 'offlineFriend': !friend.online}">account_circle</i>
+                    <span flex="5"></span>
+                    <p class="md-subhead">{{ friend.username }}</p>
+                    <span flex></span>
+                    <md-progress-circular md-mode="indeterminate" ng-if="friend.invited"></md-progress-circular>
+                    <p class="waiting" ng-if="friend.invited">Waiting to be accepted</p>
+                </md-list-item>
+            </md-list>
+        </div>
+    </div>
+</section>
+

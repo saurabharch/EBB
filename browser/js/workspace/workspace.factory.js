@@ -37,7 +37,14 @@ app.factory('WorkspaceFactory', function($http) {
             });
     }
 
-    return WorkspaceFactory;
 
+    WorkspaceFactory.deleteWorkspace = function (workspaceId) {
+        return $http.delete('/api/workspace/' + workspaceId)
+            .then(function(res) {
+                return res.status;
+            });
+    }
+
+    return WorkspaceFactory;
 
 });

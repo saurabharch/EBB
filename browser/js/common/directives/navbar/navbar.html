@@ -38,9 +38,9 @@
                     Login
                 </md-button>
 
-                  <md-button ng-show="user" ui-sref="notifications">
+                  <md-button ng-show="user" ui-sref="notifications" ng-show="notifications.length">
                       <i class="material-icons">priority_high</i>
-                    {{notifications.data.length}}
+                    {{notifications.length}}
                   </md-button>
                 <md-menu ng-show="user">
                     <md-button aria-label="Open user interactions menu" ng-click="openMenu($mdOpenMenu, $event)">

@@ -1,0 +1,31 @@
+#notificationsPage {
+    #notificationsList {
+        background-color: #ffffff;
+        border-radius: 10px;
+
+        .notificationIcon {
+            color: #01579b;
+        }
+
+    }
+
+    #acceptBtn {
+        background-color: #259b24;
+        color: #ffffff;
+        min-width: 10px
+    }
+
+    #deleteBtn {
+        background-color: #d31e02;
+        color: #ffffff;
+        min-width: 10px
+    }
+
+
+    md-dialog {
+        md-input-container {
+            width: 100%;
+        }
+    }
+}
+

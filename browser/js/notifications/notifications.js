@@ -1,23 +1,35 @@
-app.controller('NotificationsCtrl', function($scope, NotificationsFactory, AuthService){
-  console.log($scope)
-  AuthService.getLoggedInUser()
-  .then(function(currentUser){
-    NotificationsFactory.getNotifications(currentUser._id)
-    .then(function(notifications){
-      console.log('found notifications', notifications)
-      $scope.notifications = notifications.data;
+app.config(function($stateProvider) {
+    $stateProvider.state('notifications', {
+        url: '/notifications',
+        templateUrl: '/js/notifications/notifications.html',
+        controller: 'NotificationsCtrl',
+        resolve: {
+            notifications: (AuthService, NotificationsFactory) => {
+                return AuthService.getLoggedInUser()
+                    .then((user) => NotificationsFactory.getNotifications(user._id));
+            }
+        }
     });
-  });
-
-  $scope.acceptNotification = NotificationsFactory.acceptNotification;
-
-  $scope.denyNotification = NotificationsFactory.denyNotification;
 });
 
-app.config(function($stateProvider){
-  $stateProvider.state('notifications', {
-    url: '/notifications',
-    templateUrl: '/js/notifications/notifications.html',
-    controller: 'NotificationsCtrl'
-  });
+app.controller('NotificationsCtrl', function($scope, notifications, NotificationsFactory, $mdDialog, $log) {
+    $scope.notifications = notifications;
+
+    $scope.deleteNotification = (ev, notification) => {
+        let confirm = $mdDialog.confirm()
+            .title('Confirm deletion of invitation')
+            .ariaLabel('Delete invitation')
+            .targetEvent(ev)
+            .ok('Confirm')
+            .cancel('Cancel');
+        $mdDialog.show(confirm).then(() => {
+            NotificationsFactory.deleteNotification(notification._id)
+            .catch($log.error);
+        });
+    };
+
+
+    // $scope.acceptNotification = NotificationsFactory.acceptNotification;
+
+    // $scope.denyNotification = NotificationsFactory.denyNotification;
 });

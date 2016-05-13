@@ -1,12 +1,22 @@
 'use strict';
-var router = require('express').Router();
+const router = require('express').Router();
 module.exports = router;
-var _ = require('lodash');
+const mongoose = require('mongoose');
+const User = mongoose.model('User');
+// const _ = require('lodash');
 
-var ensureAuthenticated = function (req, res, next) {
+const ensureAuthenticated = function(req, res, next) {
     if (req.isAuthenticated()) {
         next();
     } else {
         res.status(401).end();
     }
 };
+
+router.get('/:userId/friends', ensureAuthenticated, function(req, res, next) {
+    User.findById(req.params.userId)
+        .populate('friends')
+        .then(function(user) {
+            res.send(user.friends);
+        });
+});

@@ -11,7 +11,8 @@
 
     <div layout="row" layout-align="center center" layout-padding ng-cloak>
         <div id="existingWorkspaces" flex-gt-sm="60" flex="100">
-            <md-list ng-cloak>
+            <h2 ng-if="!workspaces.length">No existing workspaces - create a new workspace</h2>
+            <md-list ng-cloak ng-if="workspaces.length">
                 <h2>Open an existing workspace</h2>
                 <md-list-item ng-repeat="workspace in workspaces" ui-sref="workspaceMain({workspaceId: workspace._id})">
                     <md-divider></md-divider>
@@ -22,7 +23,7 @@
                         <p class="dates md-caption">Created: {{ workspace.dateCreated | date }} | Modified: {{ workspace.dateLastModified | date }}</p>
                     </div>
                     <span flex></span>
-                    <p class="collaborator" ng-if="workspace.collaborator">Collaborator: {{workspace.collaborator}}</p>
+                    <p class="collaborator" ng-if="workspace.collaborator">Collaborator: {{workspace.collaborator.username}}</p>
                 </md-list-item>
             </md-list>
         </div>
