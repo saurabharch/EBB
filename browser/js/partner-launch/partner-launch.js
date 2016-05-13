@@ -36,22 +36,27 @@ app.controller('PartnerLaunchCtrl', function($scope, LoggedInUsersFactory, curre
       console.log('you made an offer', $scope.loggedInUsers);
       targetUser = $scope.loggedInUsers[targetUser.username];
 
-      console.log('targetUser in partnerLaunch', targetUser)
+      console.log('targetUser in partnerLaunch', targetUser, currentUser)
         if(type === "Interviewee"){
-          // $state.go('interviewee-page', {offeror: true, partnerUser: targetUser});
-          $state.go('programming-page', {offeror: true, partnerUser: targetUser});
+          console.log('interviewee')
+          // $state.go('programming-page', {offeror: currentUser});
+          // $state.go('programming-page', {offeror: true, partnerUser: targetUser});
+          $state.go('workspaceMain', {offeror: true, partnerUser: targetUser});
 
         } else if(type === "Solve"){
-          // $state.go('solve-page', {offeror: true, partnerUser: targetUser});
+          // $state.go('programming-page', {offeror: currentUser});
           $state.go('programming-page', {offeror: true, partnerUser: targetUser});
 
         } else if(type === "Workspace"){
+          // $state.go('programming-page', {offeror: currentUser});
           $state.go('programming-page', {offeror: true, partnerUser: targetUser});
         }
     };
 
     $scope.acceptOffer = function (initiatingUser, notification) {
+      console.log('partner launch acceptOffer')
       if(type === "Interviewer"){
+        console.log('interviewer')
         // $state.go('interviewer-page', {offeror: false, partnerUser: initiatingUser});
         $state.go('programming-page', {offeror: false, partnerUser: initiatingUser});
       } else if(type === "Solve"){

@@ -22,7 +22,8 @@ app.controller('InviteFriendCtrl', ($scope, user, friends, LoggedInUsersFactory,
 
     $scope.goBackToScenario = () => {
         if (scenarioType === 'workspace') $state.go('workspaceMain', { workspaceId: scenarioId });
-    }
+        else $state.go('home');
+    };
 
     $scope.selectFriend = (ev, friend) => {
         let confirm = $mdDialog.confirm()

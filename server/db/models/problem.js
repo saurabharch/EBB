@@ -11,14 +11,14 @@ var problem = new mongoose.Schema({
     },
     problemCode: {
         type: String,
-        required: true
+        // required: true
     },
     difficulty: {
         type: Number // we gotta decide on a ranking system
     },
     tests: {
-        type: String,
-        required: true
+        type: String
+        // required: true
     }
 });
 
