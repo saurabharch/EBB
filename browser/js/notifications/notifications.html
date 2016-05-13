@@ -1,7 +1,26 @@
-<h1>Notifications</h1>
-<h3 ng-show="!notifications">Nothing here!</h3>
-<div ng-repeat="notification in notifications" ng-show="notifications">
-  {{notification.type}} request from {{notification.from.username}}
-  <md-button ng-click="acceptNotification(notification)">Accept</md-button>
-  <md-button ng-click="denyNotification(notification)">Deny</md-button>
-</div>
+<section id="notificationsPage">
+    <div layout="row" layout-align="center center" layout-padding ng-cloak>
+        <div id="notificationsList" flex-gt-sm="60" flex="100">
+            <h2 ng-if="!notifications.length">You have no notifications</h2>
+            <md-list ng-cloak ng-if="notifications.length">
+                <h2>Notifications</h2>
+                <md-list-item ng-repeat="notification in notifications">
+                    <md-divider></md-divider>
+                    <i class="material-icons notificationIcon" ng-if="notification.scenarioType === 'solve'">work</i>
+                    <i class="material-icons notificationIcon" ng-if="notification.scenarioType === 'workspace'">video_label</i>
+                    <i class="material-icons notificationIcon" ng-if="notification.scenarioType === 'interview'">people_outline</i>
+                    <span flex="5"></span>
+                    <p class="md-subhead">{{ notification.scenarioType[0] | uppercase }}{{notification.scenarioType.slice(1)}} request from {{ notification.fromUser.username }}</p>
+                    <span flex></span>
+                    <md-button id="acceptBtn" class="md-raised" aria-label="Accept notification" ng-click="acceptInvitation(notification)">
+                        <i class="material-icons">done</i>
+                        Accept
+                    </md-button>
+                    <md-button id="deleteBtn" class="md-raised" aria-label="Delete notification" ng-click="deleteNotification($event, notification)">
+                        <i class="material-icons">delete</i>
+                    </md-button>
+                </md-list-item>
+            </md-list>
+        </div>
+    </div>
+</section>

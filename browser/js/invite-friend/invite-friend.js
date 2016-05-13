@@ -13,19 +13,15 @@ app.config(function($stateProvider) {
     });
 });
 
-app.controller('InviteFriendCtrl', ($scope, user, friends, LoggedInUsersFactory, $stateParams, $state, $mdDialog) => {
+app.controller('InviteFriendCtrl', ($scope, user, friends, LoggedInUsersFactory, $stateParams, $state, $mdDialog, Socket, NotificationsFactory, $log) => {
     let loggedInUsers = LoggedInUsersFactory.getLoggedInUsers();
     let scenarioType = $stateParams.scenarioType;
     let scenarioId = $stateParams.scenarioId;
 
-    $scope.friends = friends.map((friend) => {
-        friend.online = Boolean(loggedInUsers[friend.username]);
-        friend.disable = !friend.online;
-        return friend;
-    });
+    $scope.friends = friends;
 
     $scope.goBackToScenario = () => {
-        if (scenarioType === 'workspace') $state.go('workspaceMain', {workspaceId: scenarioId});
+        if (scenarioType === 'workspace') $state.go('workspaceMain', { workspaceId: scenarioId });
     }
 
     $scope.selectFriend = (ev, friend) => {
@@ -35,15 +31,21 @@ app.controller('InviteFriendCtrl', ($scope, user, friends, LoggedInUsersFactory,
             .targetEvent(ev)
             .ok('Confirm')
             .cancel('Cancel');
-        $mdDialog.show(confirm).then(function() {
-            // need to send an invite to the friend
+        $mdDialog.show(confirm).then(() => {
+            NotificationsFactory.sendNotification(friend, loggedInUsers[user.username], scenarioType, scenarioId)
+            .then((sentNotification) => {
+                Socket.on('offerAccepted', () => {
+                    if (scenarioType === 'workspace') $state.go('workspaceMain', { workspaceId: scenarioId });
+                    // TODO: need to add for other scenarios
+                });
 
-
-            $scope.friends[$scope.friends.findIndex((aFriend) => aFriend._id === friend._id)].invited = true;
-            $scope.friends = $scope.friends.map((aFriend) => {
-                aFriend.disable = true;
-                return aFriend;
-            });
+                $scope.friends[$scope.friends.findIndex((aFriend) => aFriend._id === friend._id)].invited = true;
+                $scope.friends = $scope.friends.map((aFriend) => {
+                    aFriend.disable = true;
+                    return aFriend;
+                });
+            })
+            .catch($log.error);
         });
     };
 

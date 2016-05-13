@@ -1,4 +1,4 @@
-app.directive('navbar', function($rootScope, AuthService, AUTH_EVENTS, $state, $mdSidenav, $timeout, NotificationsFactory) {
+app.directive('navbar', function($rootScope, AuthService, AUTH_EVENTS, $state, $mdSidenav, $timeout, NotificationsFactory, $log) {
 
     return {
         restrict: 'E',
@@ -28,22 +28,25 @@ app.directive('navbar', function($rootScope, AuthService, AUTH_EVENTS, $state, $
             };
 
             var setUser = function() {
-                AuthService.getLoggedInUser().then(function(user) {
-                    scope.user = user;
-                })
-                .then(function(){
-                  NotificationsFactory.getNotifications(AuthService.getLoggedInUser()._id)
-                  .then(function(notifications){
-                    scope.notifications = notifications;
-                  });
-                });
+                AuthService.getLoggedInUser()
+                    .then((user) => {
+                        scope.user = user;
+                        return user;
+                    })
+                    .then(function(user) {
+                        NotificationsFactory.getNotifications(user._id)
+                            .then(function(notifications) {
+                                scope.notifications = notifications;
+                            });
+                    })
+                    .catch($log.error);
             };
 
             var removeUser = function() {
                 scope.user = null;
             };
 
-            setUser();
+            // setUser();
 
             $rootScope.$on(AUTH_EVENTS.loginSuccess, setUser);
             $rootScope.$on(AUTH_EVENTS.logoutSuccess, removeUser);
