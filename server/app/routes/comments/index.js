@@ -1,8 +1,7 @@
 'use strict';
 
-import mongoose from 'mongoose';
-import express from 'express';
-const router = express.Router();
+const mongoose = require('mongoose');
+const router = require('express').Router();
 const Comment = mongoose.model('Comment');
 
 module.exports = router

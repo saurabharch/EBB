@@ -4,7 +4,7 @@
   </md-button>
   <md-menu-content width="4">
     <md-menu-item>
-      <md-button ng-click="friend()">
+      <md-button ui-sref="invite({ problemId: '{{ problemId }}', type: '{{ intOrSolve }}' })">
         <i class="material-icons">contacts</i> {{ intOrSolve | capitalize }} with a friend
       </md-button>
     </md-menu-item>

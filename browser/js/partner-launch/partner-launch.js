@@ -1,7 +1,7 @@
 app.config(function($stateProvider) {
 
     $stateProvider.state('invite', {
-        url: '/partner-launch',
+        url: '/partner-launch/:problemId/:type',
         templateUrl: 'js/partner-launch/partner-launch.html',
         controller: 'PartnerLaunchCtrl',
         resolve: {
@@ -10,7 +10,10 @@ app.config(function($stateProvider) {
             }
         },
         params: {
-          type: null
+          problemId: {
+            value: null,
+            squash: true
+          }
         }
     });
 });
@@ -20,6 +23,8 @@ app.controller('PartnerLaunchCtrl', function($scope, LoggedInUsersFactory, curre
     $scope.currentUser = currentUser;
 
     $scope.type = $stateParams.type;
+
+    $scope.problemId = $stateParams.problemId;
 
     $scope.loggedInUsers = LoggedInUsersFactory.getLoggedInUsers();
 

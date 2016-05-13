@@ -1,0 +1,31 @@
+<md-content>
+    <md-toolbar id="workspaceToolbar">
+      <div class="md-toolbar-tools">
+        <h2>
+            <span>{{workspace.name}}</span>
+        </h2>
+        <span flex></span>
+        <md-button id="inviteFriend" class="md-raised md-primary" aria-label="Invite a friend" ng-click="inviteFriend()" ng-if="!workspace.collaborator">
+          <i class="material-icons">person_pin</i>
+          <md-tooltip>
+            Invite a friend
+          </md-tooltip>
+        </md-button>
+        <md-button id="requestHelp" class="md-raised md-primary" aria-label="Random assistance" ng-click="requestHelp()" ng-if="!workspace.collaborator">
+          <i class="material-icons">live_help</i>
+          <md-tooltip>
+            Random assistance
+          </md-tooltip>
+        </md-button>
+        <md-button id="saveBtn" class="md-raised" aria-label="Save" ng-click="saveWorkspace()">
+          <i class="material-icons">save</i> Save
+        </md-button>
+        <md-button id="infoBtn" class="md-raised" aria-label="Info" ng-click="showInfo($event)">
+          <i class="material-icons">info</i>
+        </md-button>
+        <md-button id="deleteBtn" class="md-raised" aria-label="Delete" ng-click="deleteWorkspace($event)" ng-show="isCreator">
+          <i class="material-icons">delete</i>
+        </md-button>
+      </div>
+    </md-toolbar>
+</md-content>
