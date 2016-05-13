@@ -13,8 +13,11 @@ app.controller('NotificationsCtrl', function($scope, NotificationsFactory, AuthS
 
   $scope.denyNotification = function(notification){
     NotificationsFactory.denyNotification(notification);
-    $scope.$digest();
-  }
+  };
+
+  $scope.openToast = function($event) {
+    $mdToast.show($mdToast.simple().textContent('Hello!'));
+  };
 });
 
 app.config(function($stateProvider){

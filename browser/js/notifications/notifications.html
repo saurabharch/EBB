@@ -1,7 +1,38 @@
-<h1>Notifications</h1>
+<!-- <h1>Notifications</h1> -->
 <h3 ng-show="!notifications">Nothing here!</h3>
+<md-toolbar class="md-theme-light">
+  <h2 class="md-toolbar-tools">
+    <span>Notifications</span>
+  </h2>
+</md-toolbar>
+<md-content>
+  <md-list>
+    <md-list-item class="md-3-line" ng-repeat="notification in notifications" ng-click="acceptNotification(notification)">
+      <div class="md-list-item-text">
+        <h3>Click to accept {{notification.type}} request</h3>
+        <h4>from {{notification.from.username}}</h4>
+        <md-button class="md-secondary" ng-click="denyNotification(notification)">Deny Request</md-button>
+      <md-divider ng-if="!$last"></md-divider>
+    </md-list-item>
+  </md-list>
+</md-content>
+<!--
 <div ng-repeat="notification in notifications" ng-show="notifications">
-  {{notification.type}} request from {{notification.from.username}}
-  <md-button ng-click="acceptNotification(notification)">Accept</md-button>
-  <md-button ng-click="denyNotification(notification)">Deny</md-button>
-</div>
+  <div flex-xs flex-gt-xs="50" layout="column">
+    <md-card>
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-headline">{{notification.type}} request</span>
+          <span class="md-subhead">from {{notification.from.username}}</span>
+        </md-card-title-text>
+        <md-card-title-media>
+          <div class="md-media-sm card-media"></div>
+        </md-card-title-media>
+      </md-card-title>
+      <md-card-actions layout="row" layout-align="end center">
+        <md-button>Accept</md-button>
+        <md-button>Deny</md-button>
+      </md-card-actions>
+    </md-card>
+  </div>
+</div> -->

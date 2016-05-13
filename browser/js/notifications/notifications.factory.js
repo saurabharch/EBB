@@ -1,4 +1,4 @@
-app.factory('NotificationsFactory', function($http, $state){
+app.factory('NotificationsFactory', function($http, $state, LoggedInUsersFactory){
   let NotificationsFactory = {};
 
   NotificationsFactory.sendNotification = function(toUser, type){
@@ -26,15 +26,14 @@ app.factory('NotificationsFactory', function($http, $state){
   };
 
   let acceptFriendRequest = function(notification){
-    console.log('confirming friend. from this chump: ', notification.from);
     $http.post('/api/users/confirmFriend/' + notification.from._id, notification.to._id);
   };
 
   let acceptInterviewOffer = function(notification){
-    $state.go('programming-page', {offeror: notification.to, partnerUser: notification.from});
-    // state.go to interviewee
-    //
-    // the acceptor will always be the interviewee
+    console.log('accepting interview offer in not. factory, loggedInUsers ', LoggedInUsersFactory.getLoggedInUsers(), notification.from)
+    var partner = LoggedInUsersFactory.getLoggedInUsers()[notification.from.username];
+    console.log('heres partner', partner)
+    $state.go('programming-page', {offeror: false, partnerUser: partner});
   };
 
   return NotificationsFactory;

@@ -3,6 +3,11 @@ app.config(function($stateProvider) {
         url: '/workspace/:workspaceId',
         templateUrl: 'js/workspace/workspace-main.html',
         controller: 'WorkspaceMainCtrl',
+        params: {
+            offeror: null,
+            partnerUser: null,
+            notification: null
+        },
         resolve: {
             workspace: function($stateParams, WorkspaceFactory) {
                 return WorkspaceFactory.getWorkspaceById($stateParams.workspaceId);
