@@ -1,0 +1,32 @@
+#videoSection {
+    .waiting {
+        vertical-align: middle;
+        margin-top: 10px;
+        padding-top: 5px;
+        color: #aaaaaa;
+        font-style: italic;
+    }
+
+    #videoFeed {
+        position: relative;
+
+        #subscriber {
+            height: 35vh;
+            width: 100%;
+        }
+
+        #publisher {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            height: 25%;
+            width: 25%;
+        }
+
+    }
+
+    #stopVideoChat {
+        background-color: #d31e02;
+    }
+
+}

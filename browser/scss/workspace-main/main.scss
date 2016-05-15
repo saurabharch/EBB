@@ -7,45 +7,6 @@
         background-color: transparent;
     }
 
-    #workspaceToolbar {
-        background-color: #01579b;
-        border-radius: 10px;
-
-        #inviteFriend {
-            min-width: 10px
-        }
-
-        #requestHelp {
-            min-width: 10px
-        }
-
-        #saveBtn {
-            background-color: #259b24;
-            color: white;
-        }
-
-        #infoBtn {
-            background-color: #29b6f6;
-            color: white;
-            min-width: 10px
-        }
-
-        #deleteBtn {
-            background-color: #d31e02;
-            color: white;
-            min-width: 10px
-        }
-    }
-
-    #textEditorSection {
-        margin: 10px;
-
-        #textEditor {
-            height: 60vh;
-        }
-
-    }
-
     #runCode {
         background-color: #259b24;
     }
@@ -71,39 +32,6 @@
         .collaboratorInfo {
             color: #aaaaaa;
             font-style: italic;
-        }
-
-        #videoSection {
-            .waiting {
-                vertical-align: middle;
-                margin-top: 10px;
-                padding-top: 5px;
-                color: #aaaaaa;
-                font-style: italic;
-            }
-
-            #videoFeed {
-                position: relative;
-
-                #subscriber {
-                    height: 35vh;
-                    width: 100%;
-                }
-
-                #publisher {
-                    position: absolute;
-                    top: 0px;
-                    left: 0px;
-                    height: 25%;
-                    width: 25%;
-                }
-
-            }
-
-            #stopVideoChat {
-                background-color: #d31e02;
-            }
-
         }
 
     }

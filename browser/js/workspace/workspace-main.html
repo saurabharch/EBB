@@ -1,10 +1,10 @@
 <section id="workspaceMain">
     <div layout="column" layout-padding ng-cloak>
         <div flex>
-            <ebb-workspace-toolbar></ebb-workspace-toolbar>
+            <ebb-workspace-toolbar workspace="workspace" user="user"></ebb-workspace-toolbar>
         </div>
         <div flex layout="row" layout-xs="column" ng-cloak>
-            <ebb-text-editor id="textEditorSection" flex="100" flex-gt-sm="50"></ebb-text-editor>
+            <ebb-text-editor id="textEditorSection" flex="100" flex-gt-sm="50" user="user" partner-user="partnerUser" workspace="workspace"></ebb-text-editor>
             <div flex-gt-sm="50" layout="column">
                 <md-button id="runCode" class="md-raised md-primary">
                     <i class="material-icons">play_arrow</i> Run code
@@ -21,30 +21,10 @@
                             <span class="collaboratorInfo" ng-if="loggedInUsers[partnerUser.username]">(online)</span>
                             <span class="collaboratorInfo" ng-if="!loggedInUsers[partnerUser.username]">(offline)</span>
                         </h4>
-                        <div id="videoSection" flex ng-if="loggedInUsers[partnerUser.username]">
-                            <md-button class="md-raised md-primary" ng-if="!madeOffer" ng-click="startVideo()">
-                                <i class="material-icons">play_arrow</i> Start video chat
-                            </md-button>
-                            <div ng-if="madeOffer && !receivedOffer && !offerAccepted" layout="row">
-                                <md-progress-circular md-mode="indeterminate"></md-progress-circular>
-                                <p class="waiting">Waiting...</p>
-                            </div>
-                            <md-button class="md-raised md-primary" ng-if="receivedOffer && !acceptedOffer" ng-click="acceptVideoRequest()">
-                                <i class="material-icons">play_arrow</i>Accept video chat
-                            </md-button>
-                            <div id="videoFeed">
-                                <div id="subscriber"></div>
-                                <div id="publisher"></div>
-                            </div>
-                            <md-button id="stopVideoChat" class="md-raised md-primary" ng-if="videoChatLive" ng-click="stopVideoChat()">
-                                <i class="material-icons">stop</i>Stop video chat
-                            </md-button>
-                        </div>
+                        <video-chat ng-if="loggedInUsers[partnerUser.username]" user="user" partner-user="partnerUser" workspace="workspace"></video-chat>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-<!-- <button ng-click="submit()">Execute code</button>
-<div class="panel panel-default">STDOUT here</div> -->

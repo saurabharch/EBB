@@ -44,10 +44,6 @@ app.factory('WorkspaceFactory', function($http, Socket) {
             });
     }
 
-    WorkspaceFactory.makeChangeToTextEditor = (toUser, fromUser, workspace) => {
-        Socket.emit('madeEdit', toUser, fromUser, workspace);
-    };
-
     return WorkspaceFactory;
 
 });
