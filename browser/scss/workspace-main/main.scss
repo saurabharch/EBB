@@ -46,11 +46,62 @@
         background-color: #259b24;
     }
 
-    #codeResult {
+    #mainPanel {
         background-color: #dddddd;
         border-radius: 10px;
         margin: 10px;
         padding: 10px;
+
+        .online {
+            color: #259b24;
+        }
+
+        .offline {
+            color: #aaaaaa;
+        }
+
+        h4 {
+            padding-left: 10px;
+        }
+
+        .collaboratorInfo {
+            color: #aaaaaa;
+            font-style: italic;
+        }
+
+        #videoSection {
+            .waiting {
+                vertical-align: middle;
+                margin-top: 10px;
+                padding-top: 5px;
+                color: #aaaaaa;
+                font-style: italic;
+            }
+
+            #videoFeed {
+                position: relative;
+
+                #subscriber {
+                    height: 35vh;
+                    width: 100%;
+                }
+
+                #publisher {
+                    position: absolute;
+                    top: 0px;
+                    left: 0px;
+                    height: 25%;
+                    width: 25%;
+                }
+
+            }
+
+            #stopVideoChat {
+                background-color: #d31e02;
+            }
+
+        }
+
     }
 
     #collaborationSection {

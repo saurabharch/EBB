@@ -1,7 +1,7 @@
 app.factory('LoggedInUsersFactory', function(Socket, AuthService, $rootScope, $http) {
     const LoggedInUsersFactory = {};
     const usersWhoAreLoggedIn = {};
-    console.log('LOGGED IN USERS REGISTERED')
+
     function isEmpty(obj) {
         for(let prop in obj) {
             if(obj.hasOwnProperty(prop))

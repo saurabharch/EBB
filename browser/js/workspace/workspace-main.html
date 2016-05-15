@@ -50,8 +50,38 @@
                 <md-button id="runCode" class="md-raised md-primary">
                     <i class="material-icons">play_arrow</i> Run code
                 </md-button>
-                <div id="codeResult" flex>
-                    <h4>Result</h4>
+                <div id="mainPanel" flex layout-sm="column" layout-xs="column" layout="row" >
+                    <div flex>
+                        <h4>Result</h4>
+                    </div>
+                    <md-divider ng-if="workspace.collaborator"></md-divider>
+                    <div flex ng-if="workspace.collaborator">
+                        <h4>
+                            Collaborator: {{partnerUser.username}}
+                            <i class="material-icons" ng-class="{'online': loggedInUsers[partnerUser.username], 'offline': !loggedInUsers[partnerUser.username]}">account_circle</i>
+                            <span class="collaboratorInfo" ng-if="loggedInUsers[partnerUser.username]">(online)</span>
+                            <span class="collaboratorInfo" ng-if="!loggedInUsers[partnerUser.username]">(offline)</span>
+                        </h4>
+                        <div id="videoSection" flex ng-if="loggedInUsers[partnerUser.username]">
+                            <md-button class="md-raised md-primary" ng-if="!madeOffer" ng-click="startVideo()">
+                                <i class="material-icons">play_arrow</i> Start video chat
+                            </md-button>
+                            <div ng-if="madeOffer && !receivedOffer && !offerAccepted" layout="row">
+                                <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                                <p class="waiting">Waiting...</p>
+                            </div>
+                            <md-button class="md-raised md-primary" ng-if="receivedOffer && !acceptedOffer" ng-click="acceptVideoRequest()">
+                                <i class="material-icons">play_arrow</i>Accept video chat
+                            </md-button>
+                            <div id="videoFeed">
+                                <div id="subscriber"></div>
+                                <div id="publisher"></div>
+                            </div>
+                            <md-button id="stopVideoChat" class="md-raised md-primary" ng-if="videoChatLive" ng-click="stopVideoChat()">
+                                <i class="material-icons">stop</i>Stop video chat
+                            </md-button>
+                        </div>
+                    </div>
                 </div>
                 <!-- <div id="collaborationSection" flex>
                     <h4>Collaborator: [No collaborator]</h4>

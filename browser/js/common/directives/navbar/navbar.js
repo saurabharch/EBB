@@ -34,10 +34,12 @@ app.directive('navbar', function($rootScope, AuthService, AUTH_EVENTS, $state, $
                         return user;
                     })
                     .then(function(user) {
-                        NotificationsFactory.getNotifications(user._id)
-                            .then(function(notifications) {
-                                scope.notifications = notifications;
-                            });
+                        if(user) {
+                            NotificationsFactory.getNotifications(user._id)
+                                .then(function(notifications) {
+                                    scope.notifications = notifications;
+                                });
+                        }
                     })
                     .catch($log.error);
             };
@@ -46,7 +48,7 @@ app.directive('navbar', function($rootScope, AuthService, AUTH_EVENTS, $state, $
                 scope.user = null;
             };
 
-            // setUser();
+            setUser();
 
             $rootScope.$on(AUTH_EVENTS.loginSuccess, setUser);
             $rootScope.$on(AUTH_EVENTS.logoutSuccess, removeUser);

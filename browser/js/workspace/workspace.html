@@ -23,7 +23,8 @@
                         <p class="dates md-caption">Created: {{ workspace.dateCreated | date }} | Modified: {{ workspace.dateLastModified | date }}</p>
                     </div>
                     <span flex></span>
-                    <p class="collaborator" ng-if="workspace.collaborator">Collaborator: {{workspace.collaborator.username}}</p>
+                    <p class="collaborator" ng-if="workspace.collaborator && workspace.creator.username === user.username">Collaborator: {{workspace.collaborator.username}}</p>
+                    <p class="collaborator" ng-if="workspace.collaborator && workspace.collaborator.username === user.username">Creator: {{workspace.creator.username}}</p>
                 </md-list-item>
             </md-list>
         </div>
