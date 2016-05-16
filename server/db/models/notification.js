@@ -12,7 +12,7 @@ var schema = new mongoose.Schema({
     },
     scenarioType: {
         type: String,
-        enum: ['workspace', 'Interviewee', 'Interviewer', 'Solve'] //TODO: add , 'solve', 'interview'
+        enum: ['workspace', 'friend', 'Interviewee', 'Interviewer', 'Solve']
     },
     workspaceId: {
       type: mongoose.Schema.Types.ObjectId,

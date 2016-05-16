@@ -23,7 +23,8 @@ router.get('/:workspaceId', function(req, res, next) {
 router.put('/:workspaceId', function(req, res, next) {
     Workspace.findById(req.params.workspaceId)
         .then(function(workspace) {
-            workspace.text = req.body.text;
+            workspace.text = req.body.text || workspace.text;
+            workspace.collaborator = req.body.collaborator || workspace.collaborator;
             return workspace.save();
         })
         .then(function() {

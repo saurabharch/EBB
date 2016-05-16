@@ -12,12 +12,27 @@ app.config(function($stateProvider) {
     });
 });
 
-app.controller('NotificationsCtrl', function($scope, notifications, NotificationsFactory, $mdDialog, $log) {
+app.controller('NotificationsCtrl', function($scope, notifications, NotificationsFactory, $mdDialog, $log, $mdToast) {
     $scope.notifications = notifications;
 
-  $scope.denyNotification = function(notification){
-    NotificationsFactory.denyNotification(notification);
-  };
+    function showNewFriendToast() {
+        $mdToast.show(
+            $mdToast.simple()
+            .textContent('Added a new friend')
+            .position('top right')
+            .hideDelay(3000)
+        );
+    }
+
+    $scope.acceptInvitation = (notification) => {
+        NotificationsFactory.acceptNotification(notification)
+        .then(() => {
+            if (notification.scenarioType === 'friend') {
+                showNewFriendToast();
+            }
+        })
+        .catch($log.error);
+    };
 
     $scope.deleteNotification = (ev, notification) => {
         let confirm = $mdDialog.confirm()

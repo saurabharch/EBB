@@ -45,6 +45,7 @@ module.exports = function (app) {
 
                 loggedInUsers[req.user.username] = req.user.toObject();
                 loggedInUsers[req.user.username].socketId = req.body.socketId;
+                console.log(loggedInUsers)
                 io.sockets.emit('updateLoggedInUsers', loggedInUsers);
 
                 // We respond with a response object that has user with _id and email.

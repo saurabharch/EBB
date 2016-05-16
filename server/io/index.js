@@ -9,33 +9,47 @@ module.exports = function(server) {
   io = socketio(server);
 
   io.on('connection', (socket) => {
+    if (socket.handshake.session && socket.handshake.session.user) {
+      loggedInUsers[socket.handshake.session.user.username] = socket.handshake.session.user;
+      loggedInUsers[socket.handshake.session.user.username].socketId = socket.id.slice(2);
+      io.sockets.emit('updateLoggedInUsers', loggedInUsers);
+    }
+
     socket.on('disconnect', () => {
       let usernameToDelete;
-      console.log('loggedInUsers', loggedInUsers)
-      console.log('socketId', socket.id)
       for (let key in loggedInUsers) {
         if (('/#' + loggedInUsers[key].socketId) === socket.id) usernameToDelete = key;
       }
-
-      console.log('usernameToDelete', usernameToDelete)
       delete loggedInUsers[usernameToDelete];
       io.sockets.emit('updateLoggedInUsers', loggedInUsers);
+    });
+
+    socket.on('acceptInvitation', (toUser, fromUser, invitation) => {
+      io.to('/#' + toUser.socketId).emit('receiveAcceptance', toUser, fromUser, invitation);
     });
 
     socket.on('inviteFriend', (toUser, fromUser, invitation) => {
       io.to('/#' + toUser.socketId).emit('receiveInvitation', toUser, fromUser, invitation);
     });
 
-    socket.on('sendOffer', (apiKey, sessionId, targetUser, fromUser) => {
-      io.to('/#' + targetUser.socketId).emit('receiveOffer', apiKey, sessionId, fromUser);
+    socket.on('sendVideoChatOffer', (toUser, fromUser, sessionApiKey, sessionId) => {
+      io.to('/#' + toUser.socketId).emit('receiveVideoChatOffer', toUser, fromUser, sessionApiKey, sessionId);
     });
 
-    socket.on('acceptOffer', (initiatingUser) => {
-      io.to('/#' + initiatingUser.socketId).emit('offerAccepted', initiatingUser.tokens);
+    socket.on('acceptVideoChatOffer', (toUser, fromUser) => {
+      io.to('/#' + toUser.socketId).emit('videoChatOfferAccepted', toUser, fromUser);
     });
 
-    socket.on('madeEdit', (targetUser, newCode) => {
-      io.to('/#' + targetUser.socketId).emit('receivedEdit', newCode);
+    socket.on('stoppedVideoChat', (toUser, fromUser) => {
+      io.to('/#' + toUser.socketId).emit('videoChatStopped', toUser, fromUser);
+    });
+
+    socket.on('madeEdit', (toUser, fromUser, workspace) => {
+      io.to('/#' + toUser.socketId).emit('receiveEdit', workspace);
+    });
+
+    socket.on('friendsNoMore', (toUser, fromUser) => {
+      io.to('/#' + toUser.socketId).emit('defriending', toUser, fromUser);
     });
   });
 

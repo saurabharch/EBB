@@ -1,4 +1,4 @@
-app.factory('WorkspaceFactory', function($http) {
+app.factory('WorkspaceFactory', function($http, Socket) {
     const WorkspaceFactory = {};
 
     function getData(res) {
@@ -36,7 +36,6 @@ app.factory('WorkspaceFactory', function($http) {
                 return savedWorkspace;
             });
     }
-
 
     WorkspaceFactory.deleteWorkspace = function (workspaceId) {
         return $http.delete('/api/workspace/' + workspaceId)

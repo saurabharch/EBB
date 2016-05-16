@@ -1,20 +1,30 @@
 <section id="workspaceMain">
     <div layout="column" layout-padding ng-cloak>
         <div flex>
-            <ebb-workspace-toolbar></ebb-workspace-toolbar>
+            <ebb-workspace-toolbar workspace="workspace" user="user"></ebb-workspace-toolbar>
         </div>
         <div flex layout="row" layout-xs="column" ng-cloak>
-            <ebb-text-editor id="textEditorSection" flex="100" flex-gt-sm="50"></ebb-text-editor>
+            <ebb-text-editor id="textEditorSection" flex="100" flex-gt-sm="50" user="user" partner-user="partnerUser" workspace="workspace"></ebb-text-editor>
             <div flex-gt-sm="50" layout="column">
                 <md-button id="runCode" class="md-raised md-primary">
                     <i class="material-icons">play_arrow</i> Run code
                 </md-button>
-                <div id="codeResult" flex>
-                    <h4>Result</h4>
+                <div id="mainPanel" flex layout-sm="column" layout-xs="column" layout="row" >
+                    <div flex>
+                        <h4>Result</h4>
+                    </div>
+                    <md-divider ng-if="workspace.collaborator"></md-divider>
+                    <div flex ng-if="workspace.collaborator">
+                        <h4>
+                            Collaborator: {{partnerUser.username}}
+                            <i class="material-icons" ng-class="{'online': loggedInUsers[partnerUser.username], 'offline': !loggedInUsers[partnerUser.username]}">account_circle</i>
+                            <span class="collaboratorInfo" ng-if="loggedInUsers[partnerUser.username]">(online)</span>
+                            <span class="collaboratorInfo" ng-if="!loggedInUsers[partnerUser.username]">(offline)</span>
+                        </h4>
+                        <video-chat ng-if="loggedInUsers[partnerUser.username]" user="user" partner-user="partnerUser" workspace="workspace"></video-chat>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-<!-- <button ng-click="submit()">Execute code</button>
-<div class="panel panel-default">STDOUT here</div> -->

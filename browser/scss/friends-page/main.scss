@@ -1,0 +1,38 @@
+#friendsPage {
+    #findFriend {
+        background-color: #42bd41;
+        padding: 10px;
+        margin: 10px;
+    }
+
+    #findingFriend {
+        background-color: #ffffff;
+        border-radius: 10px;
+    }
+
+    #friendsList {
+        background-color: #ffffff;
+        border-radius: 10px;
+
+        .onlineFriend {
+            color: #259b24;
+        }
+
+        .offlineFriend {
+            color: #aaaaaa;
+        }
+
+        #deleteBtn {
+            background-color: #d31e02;
+            color: #ffffff;
+            min-width: 10px
+        }
+    }
+
+    md-dialog {
+        md-input-container {
+            width: 100%;
+        }
+    }
+}
+

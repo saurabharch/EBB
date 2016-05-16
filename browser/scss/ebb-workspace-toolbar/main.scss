@@ -1,0 +1,29 @@
+#workspaceToolbar {
+    background-color: #01579b;
+    border-radius: 10px;
+
+    #inviteFriend {
+        min-width: 10px
+    }
+
+    #requestHelp {
+        min-width: 10px
+    }
+
+    #saveBtn {
+        background-color: #259b24;
+        color: white;
+    }
+
+    #infoBtn {
+        background-color: #29b6f6;
+        color: white;
+        min-width: 10px
+    }
+
+    #deleteBtn {
+        background-color: #d31e02;
+        color: white;
+        min-width: 10px
+    }
+}

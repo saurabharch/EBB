@@ -7,6 +7,8 @@ var mongoose = require('mongoose');
 var UserModel = mongoose.model('User');
 var loggedInUsers = require('./logged-in-users.js');
 
+const sharedsession = require("express-socket.io-session");
+
 var ENABLED_AUTH_STRATEGIES = [
     'local',
     //'twitter',
@@ -19,12 +21,14 @@ module.exports = function (app) {
     // First, our session middleware will set/read sessions from the request.
     // Our sessions will get stored in Mongo using the same connection from
     // mongoose. Check out the sessions collection in your MongoCLI.
-    app.use(session({
+    let express_session = session({
         secret: app.getValue('env').SESSION_SECRET,
         store: new MongoStore({mongooseConnection: mongoose.connection}),
         resave: false,
         saveUninitialized: false
-    }));
+    })
+
+    app.use(express_session);
 
     // Initialize passport and also allow it to read
     // the request session information.
@@ -78,5 +82,13 @@ module.exports = function (app) {
     ENABLED_AUTH_STRATEGIES.forEach(function (strategyName) {
         require(path.join(__dirname, strategyName))(app);
     });
+
+    app.use((req, res, next) => {
+        const io = require('../../../io/index.js')();
+        io.use(sharedsession(express_session));
+        req.session.user = req.user;
+        next();
+    });
+
 
 };
