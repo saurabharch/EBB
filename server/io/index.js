@@ -25,6 +25,7 @@ module.exports = function(server) {
     });
 
     socket.on('acceptInvitation', (toUser, fromUser, invitation) => {
+      console.log('accepting invitiation: ', invitation)
       io.to('/#' + toUser.socketId).emit('receiveAcceptance', toUser, fromUser, invitation);
     });
 

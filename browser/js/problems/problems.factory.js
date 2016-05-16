@@ -5,6 +5,10 @@ app.factory('ProblemsFactory', function($http){
     return $http.get('/api/problems');
   };
 
+  ProblemsFactory.getProblemById = function(id){
+    return $http.get('/api/problems/' + id)
+  };
+
   ProblemsFactory.createProblem = function(problem){
     console.log('problem in ProblemsFactory', problem)
     return $http.post('/api/problems', problem);

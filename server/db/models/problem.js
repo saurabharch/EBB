@@ -19,6 +19,9 @@ var problem = new mongoose.Schema({
     tests: {
         type: String
         // required: true
+    },
+    solution: {
+        type: String
     }
 });
 

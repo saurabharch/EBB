@@ -40,7 +40,13 @@ app.controller('InviteFriendCtrl', ($scope, user, friends, LoggedInUsersFactory,
             NotificationsFactory.sendNotification(friend, loggedInUsers[user.username], scenarioType, scenarioId, problemId)
             .then((sentNotification) => {
                 Socket.on('offerAccepted', () => {
+                  console.log('offer accepted, scenarioTYpe', scenarioType)
                     if (scenarioType === 'workspace') $state.go('workspaceMain', { workspaceId: scenarioId });
+                    else if (scenarioType === 'interview') {
+                      console.log('isInterviewer should be true')
+                      $state.go('workspaceMain', { workspaceId: scenarioId, isInterviewer: true});
+                    }
+                    // how can i access the problemObj from here?
                     // TODO: need to add for other scenarios
                 });
 

@@ -40,7 +40,7 @@ app.factory('NotificationsFactory', function($http, $state, Socket, WorkspaceFac
                     Socket.emit('inviteFriend', toUser, fromUser, sentNotification);
                     Socket.on('receiveAcceptance', (toThisUser, fromThisUser, receivedNotification) => {
                         if (notification.scenarioType === 'workspace') $state.go('workspaceMain', { workspaceId: receivedNotification.workspaceId })
-                        if (notification.scenarioType === 'interview') $state.go('workspaceMain', { workspaceId: receivedNotification.workspaceId })
+                        if (notification.scenarioType === 'interview') $state.go('workspaceMain', { workspaceId: receivedNotification.workspaceId, problemObj: receivedNotification.problemId, isInterviewer: true })
                     });
                 }
                 return sentNotification;
@@ -98,7 +98,7 @@ app.factory('NotificationsFactory', function($http, $state, Socket, WorkspaceFac
         }
 
         if (notification.scenarioType === 'interview') {
-            let name = 'Interview of ' + fromUser.username + ' by ' + toUser.username + ' - ' + Date.now();
+            let name = 'Interview of ' + fromUser.username + ' by ' + toUser.username + ' - ' + Date.now() + ': ' + notification.problemId.title;
             const workspaceInfo = {
                 creator: fromUser._id,
                 collaborator: toUser._id,
@@ -115,7 +115,8 @@ app.factory('NotificationsFactory', function($http, $state, Socket, WorkspaceFac
                     if (toUser.socketId && fromUser.socketId) {
                         Socket.emit('acceptInvitation', toUser, fromUser, notification);
                     }
-                    $state.go('workspaceMain', { workspaceId: notification.workspaceId })
+                    console.log('notification in NotificationsFactory', notification)
+                    $state.go('workspaceMain', { workspaceId: notification.workspaceId, problemObj: notification.problemId })
                 });
         }
 

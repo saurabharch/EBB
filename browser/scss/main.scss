@@ -3,7 +3,7 @@
 }
 
 body {
-  background: #80d8ff;
+  background: #666666;
 }
 
 @mixin clearfix {
@@ -13,12 +13,26 @@ body {
     clear: both;
   }
 }
+.submit-problem {
+  display: flex;
+  align-items: center;
+  width: 1000px;
+  justify-content: center;
+  margin: auto;
+  margin-bottom: 20px;
+}
+
+.vertical-divider {
+  border-top-width: 0;
+  border-right-width: 1px;
+  border-right-style: solid;
+  height: 100%;
+}
 
 #main {
   padding-top: 5px;
   margin: 0 auto;
 }
-
 @import 'directives/main';
 @import 'home/main';
 @import 'about/main';
