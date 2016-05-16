@@ -1,6 +1,6 @@
 app.config(function($stateProvider) {
     $stateProvider.state('inviteFriend', {
-        url: '/invite-friend/:scenarioType/:scenarioId',
+        url: '/invite-friend/:scenarioType/:scenarioId/:problemId',
         templateUrl: 'js/invite-friend/invite-friend.html',
         controller: 'InviteFriendCtrl',
         params: {
@@ -11,6 +11,16 @@ app.config(function($stateProvider) {
             friends: (AuthService, FriendFactory) => {
                 return AuthService.getLoggedInUser()
                     .then((user) => FriendFactory.getFriends(user._id));
+            }
+        },
+        params: {
+            scenarioId: {
+                value: null,
+                squash: true
+            },
+            problemId: {
+                value: null,
+                squash: true
             }
         }
     });
@@ -26,7 +36,7 @@ app.controller('InviteFriendCtrl', ($scope, user, friends, LoggedInUsersFactory,
 
     $scope.goBackToScenario = () => {
         if (scenarioType === 'workspace') $state.go('workspaceMain', { workspaceId: scenarioId });
-        else $state.go('home');
+        else $state.go('problems');
     };
 
     $scope.selectFriend = (ev, friend) => {
