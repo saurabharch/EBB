@@ -47,6 +47,10 @@ module.exports = function(server) {
     socket.on('madeEdit', (toUser, fromUser, workspace) => {
       io.to('/#' + toUser.socketId).emit('receiveEdit', workspace);
     });
+
+    socket.on('friendsNoMore', (toUser, fromUser) => {
+      io.to('/#' + toUser.socketId).emit('defriending', toUser, fromUser);
+    });
   });
 
   return io;

@@ -9,6 +9,7 @@
                     <i class="material-icons notificationIcon" ng-if="notification.scenarioType === 'solve'">work</i>
                     <i class="material-icons notificationIcon" ng-if="notification.scenarioType === 'workspace'">video_label</i>
                     <i class="material-icons notificationIcon" ng-if="notification.scenarioType === 'interview'">people_outline</i>
+                    <i class="material-icons notificationIcon" ng-if="notification.scenarioType === 'friend'">face</i>
                     <span flex="5"></span>
                     <p class="md-subhead">{{ notification.scenarioType[0] | uppercase }}{{notification.scenarioType.slice(1)}} request from {{ notification.fromUser.username }}</p>
                     <span flex></span>

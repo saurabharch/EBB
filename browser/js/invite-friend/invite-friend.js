@@ -5,9 +5,9 @@ app.config(function($stateProvider) {
         controller: 'InviteFriendCtrl',
         resolve: {
             user: (AuthService) => AuthService.getLoggedInUser(),
-            friends: (AuthService, InviteFriendFactory) => {
+            friends: (AuthService, FriendFactory) => {
                 return AuthService.getLoggedInUser()
-                    .then((user) => InviteFriendFactory.getFriends(user._id));
+                    .then((user) => FriendFactory.getFriends(user._id));
             }
         }
     });

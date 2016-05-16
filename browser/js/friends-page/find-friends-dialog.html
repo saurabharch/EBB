@@ -1,0 +1,34 @@
+<md-dialog aria-label="Find a friend dialog" ng-cloak>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Find a friend by username or email</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()">
+                <i class="material-icons" aria-label="Close dialog">close</i>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content>
+        <div class="md-dialog-content">
+            <form ng-submit="$event.preventDefault()">
+                <md-autocomplete
+                    md-selected-item="selectedUser"
+                    md-search-text="searchText"
+                    md-items="user in querySearch(searchText)"
+                    md-item-text="user.username"
+                    md-min-length="1"
+                    placeholder="Enter username or email">
+                    <md-item-template>
+                        <span md-highlight-text="searchText" md-highlight-flags="^i">{{user.username}}  ({{user.email}})</span>
+                    </md-item-template>
+                    <md-not-found>
+                        No matches for "{{searchText}}" found
+                    </md-not-found>
+                </md-autocomplete>
+            </form>
+        </div>
+    </md-dialog-content>
+    <md-dialog-actions>
+        <md-button aria-label="Finished" ng-click="finish()">Send friend invite</md-button>
+    </md-dialog-actions>
+</md-dialog>

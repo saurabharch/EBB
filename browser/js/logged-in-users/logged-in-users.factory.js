@@ -21,11 +21,9 @@ app.factory('LoggedInUsersFactory', function(Socket, AuthService, $rootScope, $h
     });
 
     Socket.on('receiveOffer', function(apiKey, sessionId, fromUser) {
-      console.log('receiveOffer', apiKey, sessionId, fromUser)
         $http.get('getToken/' + apiKey + '/' + sessionId)
             .then(getData)
             .then(function(tokens) {
-              console.log('receiving offer, here are loggedInUsers', usersWhoAreLoggedIn)
                 usersWhoAreLoggedIn[fromUser.username].tokens = tokens;
                 localStorage.setItem('usersWhoAreLoggedIn', JSON.stringify(usersWhoAreLoggedIn));
             });

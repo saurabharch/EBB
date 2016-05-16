@@ -1,4 +1,4 @@
-app.factory('NotificationsFactory', function($http, $state, Socket, WorkspaceFactory, $log, $mdToast, LoggedInUsersFactory) {
+app.factory('NotificationsFactory', function($http, $state, Socket, WorkspaceFactory, $log, $mdToast, LoggedInUsersFactory, FriendFactory) {
     const NotificationsFactory = {};
     const notificationsCache = [];
 
@@ -17,9 +17,9 @@ app.factory('NotificationsFactory', function($http, $state, Socket, WorkspaceFac
 
     Socket.on('receiveInvitation', (thisUser) => {
         NotificationsFactory.getNotifications(thisUser._id)
-        .then(() => {
-            showNewNotificationToast();
-        });
+            .then(() => {
+                showNewNotificationToast();
+            });
     });
 
     NotificationsFactory.sendNotification = (toUser, fromUser, scenarioType, scenarioId) => {
@@ -28,15 +28,19 @@ app.factory('NotificationsFactory', function($http, $state, Socket, WorkspaceFac
             fromUser: fromUser._id,
             scenarioType: scenarioType
         };
-        notification[scenarioType + 'Id'] = scenarioId
+        if (scenarioId) notification[scenarioType + 'Id'] = scenarioId;
 
         return $http.post('/api/notifications/', notification)
             .then(getData)
             .then((sentNotification) => {
-                Socket.emit('inviteFriend', toUser, fromUser, sentNotification);
-                Socket.on('receiveAcceptance', (toThisUser, fromThisUser, receivedNotification) => {
-                    if(notification.scenarioType === 'workspace') $state.go('workspaceMain', {workspaceId: receivedNotification.workspaceId})
-                });
+                toUser = LoggedInUsersFactory.getLoggedInUsers()[toUser.username] || toUser;
+                fromUser = LoggedInUsersFactory.getLoggedInUsers()[fromUser.username] || fromUser;
+                if (toUser.socketId && fromUser.socketId) { // only use sockets if both users are online
+                    Socket.emit('inviteFriend', toUser, fromUser, sentNotification);
+                    Socket.on('receiveAcceptance', (toThisUser, fromThisUser, receivedNotification) => {
+                        if (notification.scenarioType === 'workspace') $state.go('workspaceMain', { workspaceId: receivedNotification.workspaceId })
+                    });
+                }
                 return sentNotification;
             });
     };
@@ -59,21 +63,35 @@ app.factory('NotificationsFactory', function($http, $state, Socket, WorkspaceFac
     };
 
     NotificationsFactory.acceptNotification = (notification) => {
-        if(notification.scenarioType === 'workspace') {
+        if (notification.scenarioType === 'workspace') {
             return WorkspaceFactory.getWorkspaceById(notification.workspaceId)
-            .then((workspace) => {
-                workspace.collaborator = notification.toUser;
-                return WorkspaceFactory.saveWorkspace(workspace);
-            })
-            .then(() => {
-                return NotificationsFactory.deleteNotification(notification._id);
-            })
-            .then(() => {
-                const toUser = LoggedInUsersFactory.getLoggedInUsers()[notification.fromUser.username];
-                const fromUser = LoggedInUsersFactory.getLoggedInUsers()[notification.toUser.username];
-                Socket.emit('acceptInvitation', toUser, fromUser, notification);
-                $state.go('workspaceMain', {workspaceId: notification.workspaceId})
-            });
+                .then((workspace) => {
+                    workspace.collaborator = notification.toUser;
+                    return WorkspaceFactory.saveWorkspace(workspace);
+                })
+                .then(() => {
+                    return NotificationsFactory.deleteNotification(notification._id);
+                })
+                .then(() => {
+                    const toUser = LoggedInUsersFactory.getLoggedInUsers()[notification.fromUser.username];
+                    const fromUser = LoggedInUsersFactory.getLoggedInUsers()[notification.toUser.username];
+                    Socket.emit('acceptInvitation', toUser, fromUser, notification);
+                    $state.go('workspaceMain', { workspaceId: notification.workspaceId })
+                });
+        }
+
+        if (notification.scenarioType === 'friend') {
+            return FriendFactory.addNewFriend(notification.toUser, notification.fromUser)
+                .then(() => {
+                    return NotificationsFactory.deleteNotification(notification._id);
+                })
+                .then(() => {
+                    const toUser = LoggedInUsersFactory.getLoggedInUsers()[notification.fromUser.username];
+                    const fromUser = LoggedInUsersFactory.getLoggedInUsers()[notification.toUser.username];
+                    if (toUser.socketId && fromUser.socketId) {
+                        Socket.emit('acceptInvitation', toUser, fromUser, notification);
+                    }
+                });
         }
 
         // if (notification.type === "Friend") {
