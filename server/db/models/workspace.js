@@ -2,6 +2,11 @@
 var mongoose = require('mongoose');
 
 var schema = new mongoose.Schema({
+    scenarioType: {
+        type: String,
+        enum: ['workspace', 'interview'],
+        required: true
+    },
     name: {
         type: String,
         required: true
@@ -26,6 +31,10 @@ var schema = new mongoose.Schema({
     dateLastModified: {
         type: Date,
         default: Date.now
+    },
+    problemId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Problem'
     }
 });
 

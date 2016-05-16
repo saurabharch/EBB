@@ -46,10 +46,12 @@ let problemSeed = [{
 
 let workspaceSeed = [{
     name: 'Workspace number A',
-    text: 'Blah blah blah'
+    text: 'Blah blah blah',
+    scenarioType: 'workspace'
 }, {
     name: 'Workspace number B',
-    text: 'Blah blah blah'
+    text: 'Blah blah blah',
+    scenarioType: 'workspace'
 }];
 
 const wipeCollections = () => {

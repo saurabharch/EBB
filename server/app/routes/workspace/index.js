@@ -13,7 +13,7 @@ router.post('/', function(req, res, next) {
 
 router.get('/:workspaceId', function(req, res, next) {
     Workspace.findById(req.params.workspaceId)
-        .populate('creator collaborator')
+        .populate('creator collaborator problemId')
         .then(function(workspace) {
             res.send(workspace);
         })
@@ -47,7 +47,8 @@ router.delete('/:workspaceId', function(req, res, next) {
 
 router.get('/user/:userId', function(req, res, next) {
     Workspace.find({
-            $or: [{ creator: req.params.userId }, { collaborator: req.params.userId }]
+            $or: [{ creator: req.params.userId }, { collaborator: req.params.userId }],
+            scenarioType: 'workspace'
         })
         .populate('creator collaborator')
         .then(function(workspaces) {

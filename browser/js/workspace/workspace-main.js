@@ -3,11 +3,6 @@ app.config(function($stateProvider) {
         url: '/workspace/:workspaceId',
         templateUrl: 'js/workspace/workspace-main.html',
         controller: 'WorkspaceMainCtrl',
-        params: {
-            offeror: null,
-            partnerUser: null,
-            notification: null
-        },
         resolve: {
             user: (AuthService) => {
                 return AuthService.getLoggedInUser();

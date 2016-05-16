@@ -22,13 +22,14 @@ app.factory('NotificationsFactory', function($http, $state, Socket, WorkspaceFac
             });
     });
 
-    NotificationsFactory.sendNotification = (toUser, fromUser, scenarioType, scenarioId) => {
+    NotificationsFactory.sendNotification = (toUser, fromUser, scenarioType, scenarioId, problemId) => {
         const notification = {
             toUser: toUser._id,
             fromUser: fromUser._id,
             scenarioType: scenarioType
         };
         if (scenarioId) notification[scenarioType + 'Id'] = scenarioId;
+        if (problemId) notification.problemId = problemId;
 
         return $http.post('/api/notifications/', notification)
             .then(getData)
@@ -39,6 +40,7 @@ app.factory('NotificationsFactory', function($http, $state, Socket, WorkspaceFac
                     Socket.emit('inviteFriend', toUser, fromUser, sentNotification);
                     Socket.on('receiveAcceptance', (toThisUser, fromThisUser, receivedNotification) => {
                         if (notification.scenarioType === 'workspace') $state.go('workspaceMain', { workspaceId: receivedNotification.workspaceId })
+                        if (notification.scenarioType === 'interview') $state.go('workspaceMain', { workspaceId: receivedNotification.workspaceId })
                     });
                 }
                 return sentNotification;
@@ -63,6 +65,9 @@ app.factory('NotificationsFactory', function($http, $state, Socket, WorkspaceFac
     };
 
     NotificationsFactory.acceptNotification = (notification) => {
+        const toUser = LoggedInUsersFactory.getLoggedInUsers()[notification.fromUser.username];
+        const fromUser = LoggedInUsersFactory.getLoggedInUsers()[notification.toUser.username];
+
         if (notification.scenarioType === 'workspace') {
             return WorkspaceFactory.getWorkspaceById(notification.workspaceId)
                 .then((workspace) => {
@@ -73,9 +78,9 @@ app.factory('NotificationsFactory', function($http, $state, Socket, WorkspaceFac
                     return NotificationsFactory.deleteNotification(notification._id);
                 })
                 .then(() => {
-                    const toUser = LoggedInUsersFactory.getLoggedInUsers()[notification.fromUser.username];
-                    const fromUser = LoggedInUsersFactory.getLoggedInUsers()[notification.toUser.username];
-                    Socket.emit('acceptInvitation', toUser, fromUser, notification);
+                    if (toUser.socketId && fromUser.socketId) { // only use sockets if both users are online
+                        Socket.emit('acceptInvitation', toUser, fromUser, notification);
+                    }
                     $state.go('workspaceMain', { workspaceId: notification.workspaceId })
                 });
         }
@@ -86,11 +91,31 @@ app.factory('NotificationsFactory', function($http, $state, Socket, WorkspaceFac
                     return NotificationsFactory.deleteNotification(notification._id);
                 })
                 .then(() => {
-                    const toUser = LoggedInUsersFactory.getLoggedInUsers()[notification.fromUser.username];
-                    const fromUser = LoggedInUsersFactory.getLoggedInUsers()[notification.toUser.username];
                     if (toUser.socketId && fromUser.socketId) {
                         Socket.emit('acceptInvitation', toUser, fromUser, notification);
                     }
+                });
+        }
+
+        if (notification.scenarioType === 'interview') {
+            let name = 'Interview of ' + fromUser.username + ' by ' + toUser.username + ' - ' + Date.now();
+            const workspaceInfo = {
+                creator: fromUser._id,
+                collaborator: toUser._id,
+                name: name,
+                scenarioType: 'interview',
+                problemId: notification.problemId
+            };
+            return WorkspaceFactory.createWorkspace(workspaceInfo)
+                .then((workspace) => {
+                    notification.workspaceId = workspace._id;
+                    return NotificationsFactory.deleteNotification(notification._id);
+                })
+                .then(() => {
+                    if (toUser.socketId && fromUser.socketId) {
+                        Socket.emit('acceptInvitation', toUser, fromUser, notification);
+                    }
+                    $state.go('workspaceMain', { workspaceId: notification.workspaceId })
                 });
         }
 
