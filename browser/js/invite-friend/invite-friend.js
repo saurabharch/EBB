@@ -3,6 +3,9 @@ app.config(function($stateProvider) {
         url: '/invite-friend/:scenarioType/:scenarioId',
         templateUrl: 'js/invite-friend/invite-friend.html',
         controller: 'InviteFriendCtrl',
+        params: {
+            problemId: null
+        },
         resolve: {
             user: (AuthService) => AuthService.getLoggedInUser(),
             friends: (AuthService, FriendFactory) => {
@@ -17,6 +20,7 @@ app.controller('InviteFriendCtrl', ($scope, user, friends, LoggedInUsersFactory,
     let loggedInUsers = LoggedInUsersFactory.getLoggedInUsers();
     let scenarioType = $stateParams.scenarioType;
     let scenarioId = $stateParams.scenarioId;
+    let problemId = $stateParams.problemId;
 
     $scope.friends = friends;
 
@@ -33,7 +37,7 @@ app.controller('InviteFriendCtrl', ($scope, user, friends, LoggedInUsersFactory,
             .ok('Confirm')
             .cancel('Cancel');
         $mdDialog.show(confirm).then(() => {
-            NotificationsFactory.sendNotification(friend, loggedInUsers[user.username], scenarioType, scenarioId)
+            NotificationsFactory.sendNotification(friend, loggedInUsers[user.username], scenarioType, scenarioId, problemId)
             .then((sentNotification) => {
                 Socket.on('offerAccepted', () => {
                     if (scenarioType === 'workspace') $state.go('workspaceMain', { workspaceId: scenarioId });

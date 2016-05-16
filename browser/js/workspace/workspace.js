@@ -48,7 +48,8 @@ app.controller('WorkspaceCtrl', function($scope, user, $mdDialog, WorkspaceFacto
         $mdDialog.show(confirm).then(function(result) {
             let workspaceInfo = {
                 name: result,
-                creator: user._id
+                creator: user._id,
+                scenarioType: 'workspace'
             };
             WorkspaceFactory.createWorkspace(workspaceInfo)
                 .then(function(workspace) {

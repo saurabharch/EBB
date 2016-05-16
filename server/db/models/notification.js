@@ -12,11 +12,15 @@ var schema = new mongoose.Schema({
     },
     scenarioType: {
         type: String,
-        enum: ['workspace', 'friend', 'Interviewee', 'Interviewer', 'Solve']
+        enum: ['workspace', 'friend', 'interview', 'solve']
     },
     workspaceId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Workspace'
+    },
+    problemId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Problem'
     }
 });
 

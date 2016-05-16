@@ -1,4 +1,4 @@
-app.factory('WorkspaceFactory', function($http, Socket) {
+app.factory('WorkspaceFactory', function($http) {
     const WorkspaceFactory = {};
 
     function getData(res) {
