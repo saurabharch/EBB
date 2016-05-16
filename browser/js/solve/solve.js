@@ -1,14 +1,14 @@
-'use strict';
+// 'use strict';
 
-app.directive('solveInt', () => {
+// app.directive('solveInt', () => {
 
-    return {
-        restrict: 'E',
-        templateUrl: 'js/solve/solve.html',
-        controller: 'WorkspaceMainCtrl',
-        link: (scope) => {
+//     return {
+//         restrict: 'E',
+//         templateUrl: 'js/solve/solve.html',
+//         controller: 'WorkspaceMainCtrl',
+//         link: (scope) => {
 
-        }
-    };
+//         }
+//     };
 
-});
+// });

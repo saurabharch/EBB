@@ -15,6 +15,10 @@ var schema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
+    problem: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Problem'
+    },
     text: {
         type: String,
         default: ''

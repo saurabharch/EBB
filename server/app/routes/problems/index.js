@@ -11,6 +11,12 @@ router.get('/', function(req, res, next) {
     .catch(next);
 });
 
+router.get('/:id', ({ params }, res, next) => {
+    Problem.findById(params.id)
+    .then((problem) => res.json(problem))
+    .catch(next);
+});
+
 router.post('/', function(req, res, next) {
   console.log('req.body in router.post', req.body)
     Problem.create(req.body)
