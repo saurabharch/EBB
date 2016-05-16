@@ -26,3 +26,13 @@ app.controller('HomeCtrl', function($scope) {
     }];
 
 });
+
+// app.directive('stickyHeader', ($mdSticky, $compile) => {
+//     return {
+//         restrict: 'E',
+//         template: '<span>Switchboard</span>',
+//         link: (scope, element) => {
+//             $mdSticky(scope, element);
+//         }
+//     }
+// });

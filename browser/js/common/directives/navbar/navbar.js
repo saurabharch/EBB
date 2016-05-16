@@ -8,7 +8,6 @@ app.directive('navbar', function($rootScope, AuthService, AUTH_EVENTS, $state, $
 
             scope.items = [
                 { label: 'Ebb', state: 'home', icon: 'home' },
-                { label: 'About', state: 'about', icon: 'pets' },
                 { label: 'Problems', state: 'problems', icon: 'work', auth: true },
                 { label: 'Workspace', state: 'workspace', icon: 'video_label', auth: true },
                 { label: 'Friends', state: 'friendsPage', icon: 'face', auth: true }
@@ -58,6 +57,9 @@ app.directive('navbar', function($rootScope, AuthService, AUTH_EVENTS, $state, $
                 $mdOpenMenu(ev);
             };
 
+            scope.openSidenav = () => {
+                $mdSidenav('left').toggle();
+            };
 
         }
 

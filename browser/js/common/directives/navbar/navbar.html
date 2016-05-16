@@ -3,12 +3,12 @@
         <md-toolbar>
             <div class="md-toolbar-tools">
 
-                <md-button ng-repeat="item in items" ng-show="!item.auth || isLoggedIn()" aria-label="{{item.label}}" ui-sref-active="active" ui-sref="{{ item.state }}">
+                <md-button ng-repeat="item in items" ng-show="!item.auth || isLoggedIn()" aria-label="{{item.label}}" ui-sref-active="active" ui-sref="{{ item.state }}" hide-xs hide-sm>
                     <i class="material-icons">{{item.icon}}</i>
                     {{ item.label }}
                 </md-button>
                 <md-menu md-offset>
-                    <md-button ng-click="openMenu($mdOpenMenu, $event)" ng-show="isLoggedIn()">
+                    <md-button ng-click="openMenu($mdOpenMenu, $event)" ng-show="isLoggedIn()" hide-xs hide-sm>
                         <i class="material-icons">people_outline</i>
                         Interview
                     </md-button>
@@ -28,6 +28,9 @@
                         </md-menu-item>
                     </md-menu-content>
                 </md-menu>
+                <md-button id="menuBtn" ng-click="openSidenav()" hide-gt-sm>
+                    <i class="material-icons">menu</i>
+                </md-button>
 
                 <span flex></span>
 
@@ -67,3 +70,20 @@
         </md-toolbar>
     </md-content>
 </div>
+
+<md-sidenav id="sidenav"
+  class="md-sidenav-left"
+  md-component-id="left"
+  md-whiteframe="0">
+    <md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools">Menu</h1>
+    </md-toolbar>
+    <md-content>
+        <md-list>
+            <md-list-item ng-repeat="item in items" ui-sref-active="active" ui-sref="{{ item.state }}" ng-show="!item.auth || isLoggedIn()" aria-label="{{item.label}}" class="md-list-item-text" layout="row">
+                <i class="material-icons">{{item.icon}}</i>
+                <span>{{ item.label }}</span>
+            </md-list-item>
+        </md-list>
+    </md-content>
+</md-sidenav>

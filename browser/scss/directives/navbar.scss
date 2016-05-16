@@ -15,6 +15,31 @@ navbar {
     width: 40px;
   }
 
+  #menuBtn {
+    min-width: 10px;
+  }
+
+  #sidenav {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 200px;
+
+    md-sidenav {
+        width: 200px;
+    }
+
+    md-list-item {
+        color: #999999;
+
+        .md-button {
+            margin: 0px;
+        }
+
+    }
+  }
+
+
   a {
     color: black;
     font-size: 16px;
