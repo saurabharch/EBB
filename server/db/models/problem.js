@@ -13,6 +13,14 @@ var problem = new mongoose.Schema({
         type: String,
         // required: true
     },
+    solutionCode: {
+        type: String,
+        // required: true
+    },
+    solutionVideo: {
+        type: String,
+        // required: true
+    },
     difficulty: {
         type: Number // we gotta decide on a ranking system
     },
