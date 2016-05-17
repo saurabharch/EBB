@@ -4,8 +4,6 @@ npm-debug.log
 public
 .DS_Store
 coverage
-key.pem
-cert.pem
 .eslintrc.json
 .editorconfig
 .jshintrc
