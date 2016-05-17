@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('SolutionsCtrl', ($scope, $log, theProblem, CommentsFactory, ProblemFactory) => {
+app.controller('SolutionsCtrl', ($scope, $log, theProblem, CommentsFactory) => {
 
     $scope.problem = theProblem;
 

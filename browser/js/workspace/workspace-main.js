@@ -25,10 +25,10 @@ app.controller('WorkspaceMainCtrl', ($scope, $log, RunTests, user, workspace, Wo
         $scope.partnerUser = isCreator ? workspace.collaborator : workspace.creator;
     }
 
-    // $scope.submit = () => {
-    //     RunTests.submitCode({ code: $scope.theCode })
-    //         .then((returnedValue) => console.log(returnedValue))
-    //         .catch($log.error);
-    // };
+    $scope.runCode = () => {
+        RunTests.submitCode({ code: $scope.workspace.text })
+        .then((returnedValue) => $scope.returnVal = returnedValue)
+        .catch($log.error);
+    };
 
 });

@@ -6,12 +6,12 @@
         <div flex layout="row" layout-xs="column" ng-cloak>
             <ebb-text-editor id="textEditorSection" flex="100" flex-gt-sm="50" user="user" partner-user="partnerUser" workspace="workspace"></ebb-text-editor>
             <div flex-gt-sm="50" layout="column">
-                <md-button id="runCode" class="md-raised md-primary">
+                <md-button id="runCode" class="md-raised md-primary" ng-click="runCode()">
                     <i class="material-icons">play_arrow</i> Run code
                 </md-button>
                 <div id="mainPanel" flex layout-sm="column" layout-xs="column" layout="row" >
                     <div flex>
-                        <h4>Result</h4>
+                        <h4>Result: {{ returnVal.stderr ? returnVal.stderr : returnVal.stdout }}</h4>
                     </div>
                     <md-divider ng-if="workspace.collaborator"></md-divider>
                     <div flex ng-if="workspace.collaborator">
