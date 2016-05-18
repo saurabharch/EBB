@@ -10,6 +10,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="/style.css" />
 
+  <script src="/jquery/dist/jquery.min.js"></script>
   <script src="https://static.opentok.com/v2/js/opentok.js"></script>
   <script src="/lodash/index.js"></script>
   <script src="/angular/angular.js"></script>
@@ -22,13 +23,17 @@
   <script src="/angular-messages/angular-messages.min.js"></script>
   <script src="/angular-material/angular-material.min.js"></script>
   <script src="/angular-sanitize/angular-sanitize.min.js"></script>
+  <script src="/angular-route/angular-route.min.js"></script>
+  <script src="/angular-scroll/angular-scroll.min.js"></script>
+  <script src="/assets/ng-parallax/angular-parallax.min.js"></script>
+  <script src="/assets/angular-sticky-master/angular-sticky.min.js"></script>
   <script src="/ace-builds/src-min-noconflict/ace.js"></script>
   <script src="/angular-ui-ace/src/ui-ace.js"></script>
   <script src="/socket.io-client/socket.io.js"></script>
   <script src="/main.js"></script>
 </head>
 
-<body ng-app="FullstackGeneratedApp">
+<body id="body" ng-app="FullstackGeneratedApp">
    <navbar></navbar>
    <div id="main" ui-view></div>
 </body>
