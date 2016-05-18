@@ -136,7 +136,6 @@ app.factory('NotificationsFactory', function($http, $state, Socket, WorkspaceFac
                     if (toUser.socketId && fromUser.socketId) {
                         Socket.emit('acceptInvitation', toUser, fromUser, notification);
                     }
-                    console.log('notification in NotificationsFactory', notification)
                     $state.go('workspaceMain', { workspaceId: notification.workspaceId, problemObj: notification.problemId })
                 });
         }

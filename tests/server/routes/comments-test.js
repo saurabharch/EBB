@@ -13,16 +13,16 @@ const clearDB = require('mocha-mongoose')(dbURI);
 const supertest = require('supertest');
 const app = require('../../../server/app');
 
-describe('Comment route', () => {
+describe('Comment route', function () {
 
-    beforeEach('Establish DB connection', (done) => {
+    beforeEach('Establish DB connection', function (done) {
         if (mongoose.connection.db) return done();
         mongoose.connect(dbURI, done);
     });
 
     let comment1, comment2;
 
-    beforeEach('Create a comment', (done) => {
+    beforeEach('Create a comment', function (done) {
         Comment.create({
             problem: ObjectId("573616b14298a0a11598302e"),
             user: ObjectId("573616b14298a0a115983026"),
@@ -33,15 +33,19 @@ describe('Comment route', () => {
         .then(() => done(), done);
     });
 
-    beforeEach('Create another comment', (done) => {
+    beforeEach('Create another comment', function (done) {
         Comment.create({
             problem: ObjectId("573616b14298a0a11598302e"),
             user: ObjectId("573616b14298a0a115983027"),
             text: 'This is another comment.',
             upvotes: 15
         })
-        .then((comment) => comment2 = comment)
-        .then(() => done(), done);
+        .then(function (comment) {
+            comment2 = comment;
+        })
+        .then(function () {
+            return done();
+        }, done);
     });
 
     afterEach('Clear test database', (done) => {
