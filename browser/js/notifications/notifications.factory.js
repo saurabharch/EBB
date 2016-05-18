@@ -114,6 +114,10 @@ app.factory('NotificationsFactory', function($http, $state, Socket, WorkspaceFac
                 });
         }
 
+// <<<<<<< HEAD
+//         if (notification.scenarioType === 'interview') {
+//             let name = 'Interview of ' + fromUser.username + ' by ' + toUser.username + ' - ' + Date.now() + ': ' + notification.problemId.title;
+// =======
         function acceptInterviewInvite() {
             let name = 'Interview of ' + fromUser.username + ' by ' + toUser.username + ' - ' + Date.now();
             const workspaceInfo = {
@@ -132,7 +136,8 @@ app.factory('NotificationsFactory', function($http, $state, Socket, WorkspaceFac
                     if (toUser.socketId && fromUser.socketId) {
                         Socket.emit('acceptInvitation', toUser, fromUser, notification);
                     }
-                    $state.go('workspaceMain', { workspaceId: notification.workspaceId })
+                    console.log('notification in NotificationsFactory', notification)
+                    $state.go('workspaceMain', { workspaceId: notification.workspaceId, problemObj: notification.problemId })
                 });
         }
 

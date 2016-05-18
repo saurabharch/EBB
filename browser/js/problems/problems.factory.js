@@ -7,9 +7,12 @@ app.factory('ProblemsFactory', function($http){
     return $http.get('/api/problems');
   };
 
-  ProblemsFactory.getProblemById = (id) => {
-    return $http.get('/api/problems/' + id)
-    .then((res) => res.data);
+  ProblemsFactory.getProblemById = function(id){
+    return $http.get('/api/problems/' + id);
+//   ProblemsFactory.getProblemById = (id) => {
+//     return $http.get('/api/problems/' + id)
+//     .then((res) => res.data);
+// >>>>>>> origin
   };
 
   ProblemsFactory.createProblem = function(problem){
