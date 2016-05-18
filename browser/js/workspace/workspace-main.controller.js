@@ -6,9 +6,9 @@ app.controller('WorkspaceMainCtrl', ($scope, $log, RunTests, user, workspace, Wo
     $scope.loggedInUsers = loggedInUsers;
     $scope.user = user;
     $scope.workspace = workspace;
-    const isCreator = user._id === workspace.creator._id;
+    $scope.isCreator = user._id === workspace.creator._id;
     if (workspace.collaborator) {
-        $scope.partnerUser = isCreator ? workspace.collaborator : workspace.creator;
+        $scope.partnerUser = $scope.isCreator ? workspace.collaborator : workspace.creator;
     }
 
     $scope.runCode = () => {
