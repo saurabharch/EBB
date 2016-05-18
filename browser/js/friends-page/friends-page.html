@@ -1,13 +1,5 @@
 <section id="friendsPage">
-    <div layout="row" layout-align="center end" layout-padding ng-cloak>
-        <div flex-gt-sm="60" flex="100">
-            <md-button id="findFriend" class="md-raised md-primary pull-right" ng-click="findFriend($event)">
-                <i class="material-icons">add_circle_outline</i>
-                <span>Find a new friend</span>
-            </md-button>
-        </div>
-    </div>
-
+  <md-content style="margin: 50px; margin-left: 200px; margin-right: 200px;" ng-cloak>
     <div layout="row" layout-align="center center" layout-padding ng-cloak>
         <div id="friendsList" flex-gt-sm="60" flex="100">
             <h2 ng-if="!friends.length">You have no friends :(</h2>
@@ -25,5 +17,12 @@
                 </md-list-item>
             </md-list>
         </div>
+      </div>
+    </md-content>
+    <div flex-gt-sm="60">
+        <md-button id="findFriend" class="md-raised md-primary pull-right" ng-click="findFriend($event)">
+            <i class="material-icons">add_circle_outline</i>
+            <span>Find a new friend</span>
+        </md-button>
     </div>
 </section>
