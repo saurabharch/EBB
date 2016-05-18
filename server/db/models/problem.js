@@ -7,22 +7,21 @@ var problem = new mongoose.Schema({
         required: true
     },
     description: {
-        type: String
-    },
-    problemCode: {
         type: String,
-        // required: true
+        required: true
+    },
+    difficulty: {
+        type: Number,
+        min: 0,
+        max: 5
     },
     solutionCode: {
-        type: String,
-        // required: true
+        type: [String],
+        required: true
     },
     solutionVideo: {
         type: String,
         // required: true
-    },
-    difficulty: {
-        type: Number // we gotta decide on a ranking system
     },
     tests: {
         type: String
