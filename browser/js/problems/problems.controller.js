@@ -1,3 +1,5 @@
+'use strict';
+
 app.controller('ProblemsController', function($scope, ProblemsFactory, $stateParams, $state, user){
   ProblemsFactory.getAllProblems().then(function(problems){
     $scope.problems = problems.data;
@@ -24,23 +26,4 @@ app.controller('ProblemsController', function($scope, ProblemsFactory, $statePar
     console.log('work with friend hit')
     $state.go('programming-page');
   };
-});
-
-app.config(function($stateProvider){
-  $stateProvider.state('problems', {
-    url: '/problems',
-    templateUrl: 'js/problems/views/problems.html',
-    controller: 'ProblemsController',
-    resolve: {
-        user: (AuthService, $log) => {
-            return AuthService.getLoggedInUser()
-            .catch($log.error);
-        }
-    }
-  })
-  .state('createProblem', {
-    url: '/createProblem',
-    templateUrl: 'js/problems/views/createProblem.html',
-    controller: 'ProblemsController'
-  });
 });

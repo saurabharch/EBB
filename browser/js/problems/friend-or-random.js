@@ -4,7 +4,7 @@ app.directive('friendOrRandom', () => {
 
     return {
         restrict: 'E',
-        templateUrl: 'js/problems/views/friendOrRandom.html',
+        templateUrl: 'js/problems/views/friend-or-random.html',
         scope: {
             intOrSolve: '@',
             problemId: '@',

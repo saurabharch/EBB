@@ -1,3 +1,5 @@
+'use strict';
+
 app.factory('WorkspaceFactory', function($http) {
     const WorkspaceFactory = {};
 

@@ -1,64 +1,4 @@
-app.config(function($stateProvider) {
-
-    $stateProvider.state('interviewee-page', {
-        url: '/interviewee-page',
-        templateUrl: 'js/programming-page/interviewee-page.html',
-        controller: 'ProgrammingPageCtrl',
-        params: {
-            offeror: null,
-            partnerUser: null,
-            notification: null
-        },
-        resolve: {
-            currentUser: function(AuthService) {
-                return AuthService.getLoggedInUser();
-            }
-        }
-    })
-    .state('interviewer-page', {
-        url: '/interviewer-page',
-        templateUrl: 'js/programming-page/interviewer-page.html',
-        controller: 'ProgrammingPageCtrl',
-        params: {
-            offeror: null,
-            partnerUser: null,
-            notification: null
-        },
-        resolve: {
-            currentUser: function(AuthService) {
-                return AuthService.getLoggedInUser();
-            }
-        }
-    }).state('solve-page', {
-        url: '/solve-page',
-        templateUrl: 'js/programming-page/solve-page.html',
-        controller: 'ProgrammingPageCtrl',
-        params: {
-            offeror: null,
-            partnerUser: null,
-            notification: null
-        },
-        resolve: {
-            currentUser: function(AuthService) {
-                return AuthService.getLoggedInUser();
-            }
-        }
-    }).state('programming-page', {
-        url: '/programming-page',
-        templateUrl: 'js/programming-page/programming-page.html',
-        controller: 'ProgrammingPageCtrl',
-        params: {
-            offeror: null,
-            partnerUser: null,
-            notification: null
-        },
-        resolve: {
-            currentUser: function(AuthService) {
-                return AuthService.getLoggedInUser();
-            }
-        }
-    });
-});
+'use strict';
 
 app.controller('ProgrammingPageCtrl', function($scope, ProgrammingPageFactory, LoggedInUsersFactory, RunTests, currentUser, Socket, $log, $stateParams) {
     let partnerUser = $stateParams.partnerUser;
@@ -141,19 +81,4 @@ app.controller('ProgrammingPageCtrl', function($scope, ProgrammingPageFactory, L
         $scope.$evalAsync();
     });
 
-});
-
-app.factory('ProgrammingPageFactory', function($http, Socket) {
-    const ProgrammingPageFactory = {};
-
-    function getData(res) {
-        return res.data;
-    }
-
-    ProgrammingPageFactory.getOpenTokCreds = function() {
-        return $http.get('/getSession')
-            .then(getData);
-    };
-
-    return ProgrammingPageFactory;
 });

@@ -1,3 +1,5 @@
+'use strict';
+
 app.factory('UsersFactory', ($http) => {
     const UsersFactory = {};
 

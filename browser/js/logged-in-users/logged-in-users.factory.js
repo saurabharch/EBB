@@ -1,3 +1,5 @@
+'use strict';
+
 app.factory('LoggedInUsersFactory', function(Socket, AuthService, $rootScope, $http) {
     const LoggedInUsersFactory = {};
     const usersWhoAreLoggedIn = {};

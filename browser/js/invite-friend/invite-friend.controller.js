@@ -1,30 +1,4 @@
-app.config(function($stateProvider) {
-    $stateProvider.state('inviteFriend', {
-        url: '/invite-friend/:scenarioType/:scenarioId/:problemId',
-        templateUrl: 'js/invite-friend/invite-friend.html',
-        controller: 'InviteFriendCtrl',
-        params: {
-            problemId: null
-        },
-        resolve: {
-            user: (AuthService) => AuthService.getLoggedInUser(),
-            friends: (AuthService, FriendFactory) => {
-                return AuthService.getLoggedInUser()
-                    .then((user) => FriendFactory.getFriends(user._id));
-            }
-        },
-        params: {
-            scenarioId: {
-                value: null,
-                squash: true
-            },
-            problemId: {
-                value: null,
-                squash: true
-            }
-        }
-    });
-});
+'use strict';
 
 app.controller('InviteFriendCtrl', ($scope, user, friends, LoggedInUsersFactory, $stateParams, $state, $mdDialog, Socket, NotificationsFactory, $log) => {
     let loggedInUsers = LoggedInUsersFactory.getLoggedInUsers();
