@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 var schema = new mongoose.Schema({
     scenarioType: {
         type: String,
-        enum: ['workspace', 'interview'],
+        enum: ['workspace', 'interview', 'solve'],
         required: true
     },
     name: {

@@ -1,7 +1,9 @@
-app.controller('ProblemsController', function($scope, ProblemsFactory, $stateParams, $state, AuthService){
+app.controller('ProblemsController', function($scope, ProblemsFactory, $stateParams, $state, user){
   ProblemsFactory.getAllProblems().then(function(problems){
     $scope.problems = problems.data;
   });
+
+  $scope.user = user;
 
   $scope.problemToSolve = $stateParams.problemToSolve;
 
@@ -28,7 +30,13 @@ app.config(function($stateProvider){
   $stateProvider.state('problems', {
     url: '/problems',
     templateUrl: 'js/problems/views/problems.html',
-    controller: 'ProblemsController'
+    controller: 'ProblemsController',
+    resolve: {
+        user: (AuthService, $log) => {
+            return AuthService.getLoggedInUser()
+            .catch($log.error);
+        }
+    }
   })
   .state('createProblem', {
     url: '/createProblem',
