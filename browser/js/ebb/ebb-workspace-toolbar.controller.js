@@ -1,19 +1,5 @@
 'use strict';
 
-app.directive('ebbWorkspaceToolbar', () => {
-
-    return {
-        restrict: 'E',
-        templateUrl: 'js/ebb/ebb-workspace-toolbar.html',
-        scope: {
-            workspace: '=',
-            user: '='
-        },
-        controller: 'EbbWorkspaceToolbarCtrl'
-    };
-
-});
-
 app.controller('EbbWorkspaceToolbarCtrl', ($scope, $state, WorkspaceFactory, $log, $mdToast, $mdDialog, LoggedInUsersFactory, NotificationsFactory) => {
     $scope.isCreator = $scope.user._id === $scope.workspace.creator._id;
 
