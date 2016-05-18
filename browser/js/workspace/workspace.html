@@ -1,7 +1,7 @@
 <section id="workspace" ng-cloak>
   <div layout="row" layout-align="center end" layout-padding ng-cloak>
     <div flex-gt-sm="10">
-        <md-button id="addWorkspace" class="md-raised md-primary pull-right" ng-click="createWorkspace($event)">
+        <md-button style="left: 40px;" id="addWorkspace" class="md-raised md-primary pull-right" ng-click="createWorkspace($event)">
         <i class="material-icons">add_circle_outline</i>
         <span> New workspace</span>
       </md-button>
@@ -17,12 +17,11 @@
               <h2 class="md-subhead"><i class="material-icons" ng-class="{'createdByUser': user._id === workspace.creator._id, 'createdByAnother': user._id !== workspace.creator._id}">work</i>
                 {{ workspace.name }}
               </h2>
+              <p class="collaborator" ng-if="workspace.collaborator && workspace.creator.username === user.username">Collaborator: {{workspace.collaborator.username}}</p>
+              <p class="collaborator" ng-if="workspace.collaborator && workspace.collaborator.username === user.username">Creator: {{workspace.creator.username}}</p>
               <p class="dates md-caption">Created: {{ workspace.dateCreated | date }} </p>
               <p class="dates md-caption">Modified: {{ workspace.dateLastModified | date }}</p>
             </div>
-            <span flex></span>
-            <p class="collaborator" ng-if="workspace.collaborator && workspace.creator.username === user.username">Collaborator: {{workspace.collaborator.username}}</p>
-            <p class="collaborator" ng-if="workspace.collaborator && workspace.collaborator.username === user.username">Creator: {{workspace.creator.username}}</p>
           </md-list-item>
         </md-list>
       </div>

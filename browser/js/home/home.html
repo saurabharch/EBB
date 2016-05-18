@@ -1,6 +1,83 @@
 <section id="home">
+<!-- <<<<<<< HEAD
     <div layout="column" layout-align="center center" ng-cloak>
         <h1 style="font-family: Andale Mono">Switchboard: Live Programming Workspace</h1>
         <img src="/images/coding.jpg">
+======= -->
+    <div layout="column" ng-cloak>
+        <md-content id="main1" flex layout-padding layout="column" layout-align="start center">
+            <div id="main1a">
+                <div layout="column" flex class="heading" hl-sticky="" container="main1a">
+                    <h1 class="md-display-4">Switchboard</h1>
+                    <h2 class="md-display-2">Collaborative workspaces</h2>
+                </div>
+            </div>
+        </md-content>
+        <md-content id="main2" flex layout="row" layout-xs="column" layout-padding layout-align="center center" du-parallax y="background">
+            <md-card flex="100" flex-gt-sm="20">
+                <img ng-src="/images/pair-programming.jpg" class="md-card-image" alt="pair programming">
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">Pair up and program</span>
+                        <span class="md-subhead">Pair up to solve coding problems together</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content>
+                    <p>
+                        Pair with a friend. Meet new friends at your level to pair with. Live edit your code together. Video chat with your coding partner.
+                    </p>
+                </md-card-content>
+            </md-card>
+            <md-card flex="100" flex-gt-sm="20">
+                <img ng-src="/images/interview.jpg" class="md-card-image" alt="pair programming">
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">Live interview practice</span>
+                        <span class="md-subhead">Practice live interviews with others</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content>
+                    <p>
+                        Be the interviewer or interviewee. Use your own problems or use one of ours. Video chat with your interviewer / interviewee.
+                    </p>
+                </md-card-content>
+            </md-card>
+            <md-card flex="100" flex-gt-sm="20">
+                <img ng-src="/images/help-ticket.jpg" class="md-card-image" alt="pair programming">
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">Collaborative workspaces</span>
+                        <span class="md-subhead">Solve coding issues collaboratively</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content>
+                    <p>
+                        Invite a friend to help you with your code. Request assistance from another user to help you. Share your code and let others edit it live.
+                    </p>
+                </md-card-content>
+            </md-card>
+        </md-content>
+        <md-content id="main3" flex layout="column" layout-align="center center" layout-padding du-parallax y="background">
+            <md-button id="signupBtn" class="md-raised md-primary" ui-sref="signup">Signup today</md-button>
+            <span flex="5"></span>
+            <div id="testimonials" layout="row">
+                <div flex class="testimonial">
+                    <img ng-src="/images/bmphoto.jpg">
+                    <h4>Brian</h4>
+                    <p>"This app changed my life!"</p>
+                </div>
+                <div flex class="testimonial">
+                    <img ng-src="/images/bgphoto.jpg">
+                    <h4>Bryan</h4>
+                    <p>"This app is the #$%@!!!"</p>
+                </div>
+                <div flex class="testimonial">
+                    <img ng-src="/images/elphoto.jpg">
+                    <h4>Edward</h4>
+                    <p>"I don't know how I lived without it"</p>
+                </div>
+            </div>
+
+        </md-content>
     </div>
 </section>
