@@ -23,7 +23,7 @@ router.post('/', ({ body }, res) => {
         method: 'POST',
         path: '/languages/javascript/latest',
         headers: {
-            'Authorization': `Token ${ glotConfig.apiToken }`,
+            'Authorization': `Token ${glotConfig.apiToken}`,
             'Content-type': 'application/json'
         }
     };

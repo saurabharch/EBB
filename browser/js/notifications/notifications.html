@@ -6,10 +6,10 @@
                 <h2 id="notificationsIcon"><img src="/images/mail-icon.png" style="height: 60px; width: 100px; margin: 5 auto;"></h2>
                 <md-list-item ng-repeat="notification in notifications" style="background-color: white;box-shadow: 5px 5px 10px black;">
                     <md-divider></md-divider>
-                    <i class="material-icons notificationIcon" ng-if="notification.scenarioType === 'solve'">work</i>
-                    <i class="material-icons notificationIcon" ng-if="notification.scenarioType === 'workspace'">video_label</i>
-                    <i class="material-icons notificationIcon" ng-if="notification.scenarioType === 'interview'">people_outline</i>
-                    <i class="material-icons notificationIcon" ng-if="notification.scenarioType === 'friend'">face</i>
+                    <i class="material-icons notificationIcon" ng-if="notification.scenarioType === 'solve'" style="margin-left: 10px;">work</i>
+                    <i class="material-icons notificationIcon" ng-if="notification.scenarioType === 'workspace'" style="margin-left: 10px">video_label</i>
+                    <i class="material-icons notificationIcon" ng-if="notification.scenarioType === 'interview'" style="margin-left: 10px">people_outline</i>
+                    <i class="material-icons notificationIcon" ng-if="notification.scenarioType === 'friend'" style="margin-left: 10px">face</i>
                     <span flex="5"></span>
                     <p class="md-subhead">{{ notification.scenarioType[0] | uppercase }}{{notification.scenarioType.slice(1)}} request from {{ notification.fromUser.username }}</p>
                     <span flex></span>

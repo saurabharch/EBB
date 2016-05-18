@@ -1,3 +1,5 @@
+'use strict';
+
 app.factory('SignupFactory', function($http){
   var SignupFactory = {};
 

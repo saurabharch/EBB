@@ -1,3 +1,5 @@
+'use strict';
+
 app.directive('navbar', function($rootScope, AuthService, AUTH_EVENTS, $state, $mdSidenav, $timeout, NotificationsFactory, $log) {
 
     return {

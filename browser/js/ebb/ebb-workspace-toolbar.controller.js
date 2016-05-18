@@ -1,20 +1,6 @@
 'use strict';
 
-app.directive('ebbWorkspaceToolbar', () => {
-
-    return {
-        restrict: 'E',
-        templateUrl: 'js/ebb/ebb-workspace-toolbar.html',
-        scope: {
-            workspace: '=',
-            user: '='
-        },
-        controller: 'EbbWorkspaceToolbarCtrl'
-    };
-
-});
-
-app.controller('EbbWorkspaceToolbarCtrl', ($scope, $state, WorkspaceFactory, $log, $mdToast, $mdDialog) => {
+app.controller('EbbWorkspaceToolbarCtrl', ($scope, $state, WorkspaceFactory, $log, $mdToast, $mdDialog, LoggedInUsersFactory, NotificationsFactory) => {
     $scope.isCreator = $scope.user._id === $scope.workspace.creator._id;
 
     function showSavedWorkspaceToast() {
@@ -44,8 +30,34 @@ app.controller('EbbWorkspaceToolbarCtrl', ($scope, $state, WorkspaceFactory, $lo
         );
     }
 
+    function showWaitingAlertDialog() {
+        $mdDialog.show(
+            $mdDialog.alert()
+            .parent(angular.element(document.querySelector('#popupContainer')))
+            .clickOutsideToClose(true)
+            .title('Please wait for a random user to accept your request')
+            .textContent('Once a random user accepts your request, your workspace will show your collaborator.')
+            .ariaLabel('Please wait')
+            .ok('Okay')
+        );
+    }
+
     $scope.inviteFriend = () => {
-        $state.go('inviteFriend', {scenarioType: 'workspace', scenarioId: $scope.workspace._id});
+        $state.go('inviteFriend', { scenarioType: 'workspace', scenarioId: $scope.workspace._id });
+    };
+
+    $scope.requestHelp = () => {
+        const loggedInUsers = LoggedInUsersFactory.getLoggedInUsers();
+        const potentialUsersToInvite = {};
+        angular.copy(loggedInUsers, potentialUsersToInvite);
+        delete potentialUsersToInvite[$scope.user.username];
+        const randomUser = _.sample(potentialUsersToInvite);
+
+        NotificationsFactory.sendNotification(randomUser, loggedInUsers[$scope.user.username], 'workspace', $scope.workspace._id)
+            .then(() => {
+                showWaitingAlertDialog();
+            })
+            .catch($log.error);
     };
 
     $scope.saveWorkspace = () => {

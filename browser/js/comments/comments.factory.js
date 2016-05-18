@@ -8,12 +8,12 @@ app.factory('CommentsFactory', ($http) => {
     const getData = (res) => res.data;
 
     Comments.fetchByProblem = (problemId) => {
-        return $http.get(commentUrl + '/problem/' + problemId)
+        return $http.get(`${commentUrl}/problem/${problemId}`)
         .then(getData);
     };
 
     Comments.fetchByUser = (userId) => {
-        return $http.get(commentUrl + '/user/' + userId)
+        return $http.get(`${commentUrl}/user/${userId}`)
         .then(getData);
     };
 
@@ -22,8 +22,8 @@ app.factory('CommentsFactory', ($http) => {
         .then(getData);
     };
 
-    Comments.edit = (id) => {
-        return $http.put(commentUrl + id)
+    Comments.edit = (id, editsToMake) => {
+        return $http.put(commentUrl + id, editsToMake)
         .then(getData);
     };
 

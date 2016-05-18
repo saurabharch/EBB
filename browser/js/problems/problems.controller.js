@@ -1,7 +1,11 @@
-app.controller('ProblemsController', function($scope, ProblemsFactory, $stateParams, $state, AuthService){
+'use strict';
+
+app.controller('ProblemsController', function($scope, ProblemsFactory, $stateParams, $state, user){
   ProblemsFactory.getAllProblems().then(function(problems){
     $scope.problems = problems.data;
   });
+
+  $scope.user = user;
 
   $scope.problemToSolve = $stateParams.problemToSolve;
 
@@ -22,17 +26,4 @@ app.controller('ProblemsController', function($scope, ProblemsFactory, $statePar
     console.log('work with friend hit')
     $state.go('programming-page');
   };
-});
-
-app.config(function($stateProvider){
-  $stateProvider.state('problems', {
-    url: '/problems',
-    templateUrl: 'js/problems/views/problems.html',
-    controller: 'ProblemsController'
-  })
-  .state('createProblem', {
-    url: '/createProblem',
-    templateUrl: 'js/problems/views/createProblem.html',
-    controller: 'ProblemsController'
-  });
 });

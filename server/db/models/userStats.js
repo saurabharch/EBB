@@ -13,9 +13,14 @@ const userStatsSchema = new mongoose.Schema({
         ref: 'Problem',
         progress: {
             type: String,
-            enum: ['completed', 'attempted', 'not attempted']
+            enum: ['completed', 'attempted', 'not attempted'],
+            default: 'not attempted'
         },
         required: true
+    },
+    comments: {
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: 'Comment'
     },
     skillLevel: {
         type: Number,

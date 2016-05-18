@@ -1,3 +1,5 @@
+'use strict';
+
 app.factory('ProblemsFactory', function($http){
   let ProblemsFactory = {};
 
