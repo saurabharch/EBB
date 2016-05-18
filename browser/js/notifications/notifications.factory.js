@@ -1,3 +1,5 @@
+'use strict';
+
 app.factory('NotificationsFactory', function($http, $state, Socket, WorkspaceFactory, $log, $mdToast, LoggedInUsersFactory, FriendFactory) {
     const NotificationsFactory = {};
     const notificationsCache = [];

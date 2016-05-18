@@ -8,12 +8,14 @@ module.exports = router
 
 .get('/problem/:problemId', ({ params }, res, next) => {
     Comment.find({ problem: params.problemId })
+    .populate('user')
     .then((commentsByProblem) => res.json(commentsByProblem))
     .catch(next);
 })
 
 .get('/user/:userId', ({ params }, res, next) => {
     Comment.find({ user: params.userId })
+    .populate('problem')
     .then((commentsByUser) => res.json(commentsByUser))
     .catch(next);
 })

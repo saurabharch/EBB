@@ -7,7 +7,7 @@ router.use('/runcode', require('./run-code'));
 router.use('/users', require('./users'));
 router.use('/problems', require('./problems'));
 router.use('/comments', require('./comments'));
-// router.use('/userstats', require('./userStats'));
+router.use('/userstats', require('./userStats'));
 router.use('/workspace', require('./workspace'));
 router.use('/notifications', require('./notifications'));
 

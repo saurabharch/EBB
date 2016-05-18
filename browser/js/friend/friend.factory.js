@@ -1,3 +1,5 @@
+'use strict';
+
 app.factory('FriendFactory', function($http, $rootScope, Socket, LoggedInUsersFactory) {
     const FriendFactory = {};
     const friendsCache = [];

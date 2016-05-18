@@ -1,3 +1,5 @@
+'use strict';
+
 app.factory('VideoChatFactory', function($http, Socket) {
     const VideoChatFactory = {};
     let session;

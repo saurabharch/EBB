@@ -17,6 +17,10 @@ var schema = new mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User'
     }],
+    stats: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'UserStats'
+    },
     salt: {
         type: String
     },

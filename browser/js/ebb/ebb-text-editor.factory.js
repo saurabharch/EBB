@@ -1,3 +1,5 @@
+'use strict';
+
 app.factory('EbbTextEditorFactory', function(Socket) {
 
     const EbbTextEditorFactory = {};
