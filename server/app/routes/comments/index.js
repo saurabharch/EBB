@@ -40,6 +40,14 @@ module.exports = router
     .catch(next);
 })
 
+.put('/:id/upvote', (req, res, next) => {
+  Comment.findByIdAndUpdate(req.params.id, { $inc: { upvotes: 1 }}).exec();
+})
+
+.put('/:id/downvote', (req, res, next) => {
+  Comment.findByIdAndUpdate(req.params.id, { $inc: { upvotes: -1 }}).exec();
+})
+
 .delete('/:id', ({ comment, user }, res, next) => {
     if (user._id !== comment.user) return next();
     Comment.remove(comment)

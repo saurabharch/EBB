@@ -1,9 +1,9 @@
 'use strict';
 
-app.factory('ProblemsFactory', function($http){
+app.factory('ProblemsFactory', ($http) => {
   let ProblemsFactory = {};
 
-  ProblemsFactory.getAllProblems = function(){
+  ProblemsFactory.getAllProblems = () => {
     return $http.get('/api/problems');
   };
 
@@ -12,7 +12,7 @@ app.factory('ProblemsFactory', function($http){
     .then((res) => res.data);
   };
 
-  ProblemsFactory.createProblem = function(problem){
+  ProblemsFactory.createProblem = (problem) => {
     console.log('problem in ProblemsFactory', problem)
     return $http.post('/api/problems', problem);
   };
