@@ -9,6 +9,9 @@
           <h4>Difficulty: {{problem.difficulty}}/5</h4>
         </div>
     </div>
+    <friend-or-random int-or-solve="interview" problem-id="{{problem._id}}"></friend-or-random>
+    <friend-or-random int-or-solve="solve" problem-id="{{problem._id}}"></friend-or-random>
+    <md-divider ng-if="!$last"></md-divider>
 </md-list>
 </md-content>
 </section>
