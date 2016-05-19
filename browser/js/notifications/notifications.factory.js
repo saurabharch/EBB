@@ -13,6 +13,7 @@ app.factory('NotificationsFactory', function($http, $state, Socket, WorkspaceFac
             $mdToast.simple()
             .textContent('You have new notifications')
             .position('top right')
+            .action('OK')
             .hideDelay(3000)
         );
     }

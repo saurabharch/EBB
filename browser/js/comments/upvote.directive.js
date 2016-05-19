@@ -10,7 +10,12 @@ app.directive('upvote', function(CommentsFactory){
       scope.hasUpvoted = false;
       scope.hasDownvoted = false;
       scope.upvoteById = (id) => {
-        if(!scope.hasUpvoted){
+        if (!scope.hasUpvoted && scope.hasDownvoted) {
+          CommentsFactory.upvoteById(id);
+          scope.hasUpvoted = false;
+          scope.hasDownvoted = false;
+          scope.upvotes++;
+        } else if (!scope.hasUpvoted){
           CommentsFactory.upvoteById(id);
           scope.hasUpvoted = true;
           scope.hasDownvoted = false;
@@ -18,7 +23,12 @@ app.directive('upvote', function(CommentsFactory){
         }
       };
       scope.downvoteById = (id) => {
-        if(!scope.hasDownvoted){
+        if(scope.hasUpvoted && !scope.hasDownvoted){
+          CommentsFactory.downvoteById(id);
+          scope.hasUpvoted = false;
+          scope.hasDownvoted = false;
+          scope.upvotes--;
+        } else if (!scope.hasDownvoted) {
           CommentsFactory.downvoteById(id);
           scope.hasUpvoted = false;
           scope.hasDownvoted = true;
