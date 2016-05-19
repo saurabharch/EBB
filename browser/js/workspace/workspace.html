@@ -1,33 +1,30 @@
-<section id="workspace">
-    <div layout="row" layout-align="center end" layout-padding ng-cloak>
-
-        <div flex-gt-sm="60" flex="100">
-            <md-button id="addWorkspace" class="md-raised md-primary pull-right" ng-click="createWorkspace($event)">
-                <i class="material-icons">add_circle_outline</i>
-                <span> New workspace</span>
-            </md-button>
-        </div>
+<section id="workspace" ng-cloak>
+  <div layout="row" layout-align="center end" layout-padding ng-cloak>
+    <div flex-gt-sm="10">
+        <md-button style="left: 40px;" id="addWorkspace" class="md-raised md-primary pull-right" ng-click="createWorkspace($event)">
+        <i class="material-icons">add_circle_outline</i>
+        <span> New workspace</span>
+      </md-button>
     </div>
-
+  </div>
+  <md-content style="margin-left: 200px; margin-right: 200px; background-color: transparent;">
     <div layout="row" layout-align="center center" layout-padding ng-cloak>
-        <div id="existingWorkspaces" flex-gt-sm="60" flex="100">
-            <h2 ng-if="!workspaces.length">No existing workspaces - create a new workspace</h2>
-            <md-list ng-cloak ng-if="workspaces.length">
-                <h2>Open an existing workspace</h2>
-                <md-list-item ng-repeat="workspace in workspaces" ui-sref="workspaceMain({workspaceId: workspace._id})">
-                    <md-divider></md-divider>
-                    <i class="material-icons" ng-class="{'createdByUser': user._id === workspace.creator._id, 'createdByAnother': user._id !== workspace.creator._id}">work</i>
-                    <span flex="5"></span>
-                    <div class="md-list-item-text" layout="column">
-                        <p class="md-subhead">{{ workspace.name }}</p>
-                        <p class="dates md-caption">Created: {{ workspace.dateCreated | date }} | Modified: {{ workspace.dateLastModified | date }}</p>
-                    </div>
-                    <span flex></span>
-                    <p class="collaborator" ng-if="workspace.collaborator && workspace.creator.username === user.username">Collaborator: {{workspace.collaborator.username}}</p>
-                    <p class="collaborator" ng-if="workspace.collaborator && workspace.collaborator.username === user.username">Creator: {{workspace.creator.username}}</p>
-                </md-list-item>
-            </md-list>
-        </div>
+      <div id="existingWorkspaces" flex-gt-sm="60" flex="100" style="background-color: transparent;">
+        <h2 ng-if="!workspaces.length">No existing workspaces - create a new workspace</h2>
+        <md-list ng-cloak ng-if="workspaces.length" style="text-align: center;">
+          <md-list-item style="border: 1px solid #d9d9d9; background-color: white;" class="col-1-3" ng-repeat="workspace in workspaces" ui-sref="workspaceMain({workspaceId: workspace._id})">
+            <div class="md-list-item-text" layout="column">
+              <h2 class="md-subhead"><i class="material-icons" ng-class="{'createdByUser': user._id === workspace.creator._id, 'createdByAnother': user._id !== workspace.creator._id}">work</i>
+                {{ workspace.name }}
+              </h2>
+              <p class="collaborator" ng-if="workspace.collaborator && workspace.creator.username === user.username">Collaborator: {{workspace.collaborator.username}}</p>
+              <p class="collaborator" ng-if="workspace.collaborator && workspace.collaborator.username === user.username">Creator: {{workspace.creator.username}}</p>
+              <p class="dates md-caption">Created: {{ workspace.dateCreated | date }} </p>
+              <p class="dates md-caption">Modified: {{ workspace.dateLastModified | date }}</p>
+            </div>
+          </md-list-item>
+        </md-list>
+      </div>
     </div>
+  </md-content>
 </section>
-
