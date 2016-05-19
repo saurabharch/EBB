@@ -9,11 +9,11 @@
   }
   #existingWorkspaces {
     max-width: 100%;
-    background-color: #ffffff;
     border-radius: 10px;
     display: flex;
     justify-content: center;
-    
+    background-color: transparent;
+
     .createdByUser {
       color: #259b24;
     }

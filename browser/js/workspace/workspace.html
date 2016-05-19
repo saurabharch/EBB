@@ -9,7 +9,7 @@
   </div>
   <md-content style="margin-left: 200px; margin-right: 200px; background-color: transparent;">
     <div layout="row" layout-align="center center" layout-padding ng-cloak>
-      <div id="existingWorkspaces" flex-gt-sm="60" flex="100" style="background-color: transparent;">
+      <div id="existingWorkspaces" flex-gt-sm="60" flex="100">
         <h2 ng-if="!workspaces.length">No existing workspaces - create a new workspace</h2>
         <md-list ng-cloak ng-if="workspaces.length" style="text-align: center;">
           <md-list-item style="border: 1px solid #d9d9d9; background-color: white;" class="col-1-3" ng-repeat="workspace in workspaces" ui-sref="workspaceMain({workspaceId: workspace._id})">

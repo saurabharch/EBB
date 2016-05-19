@@ -3,7 +3,7 @@
 app.factory('CommentsFactory', ($http) => {
 
     const Comments = {};
-    const commentUrl = '/api/comments/';
+    const commentUrl = '/api/comments';
 
     const getData = (res) => res.data;
 
@@ -25,6 +25,16 @@ app.factory('CommentsFactory', ($http) => {
     Comments.edit = (id, editsToMake) => {
         return $http.put(commentUrl + id, editsToMake)
         .then(getData);
+    };
+
+    Comments.upvoteById = (commentId) => {
+      console.log('upvoteById', commentId);
+      return $http.put(`${commentUrl}/${commentId}/upvote`);
+    };
+
+    Comments.downvoteById = (commentId) => {
+      console.log('downvoteById', commentId);
+      return $http.put(`${commentUrl}/${commentId}/downvote`);
     };
 
     Comments.destroy = (id) => $http.delete(commentUrl + id);

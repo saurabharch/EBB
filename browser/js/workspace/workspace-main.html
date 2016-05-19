@@ -4,7 +4,12 @@
             <ebb-workspace-toolbar workspace="workspace" user="user"></ebb-workspace-toolbar>
         </div>
         <div flex layout="row" layout-xs="column" ng-cloak>
-            <ebb-text-editor id="textEditorSection" flex="100" flex-gt-sm="50" user="user" partner-user="partnerUser" workspace="workspace"></ebb-text-editor>
+          <div flex-gt-sm="50" layout="column">
+            <ebb-text-editor id="textEditorSection" flex="100" user="user" partner-user="partnerUser" workspace="workspace"></ebb-text-editor>
+            <md-button ui-sref="solution({problemId: workspace.problemId._id, hasSolved: false})" id="giveUp" class="md-raised md-warn" ng-if="workspace.scenarioType !== 'workspace'">
+              <i class="material-icons">clear</i> Give up
+            </md-button>
+          </div>
             <div flex-gt-sm="50" layout="column">
                 <md-button id="runCode" class="md-raised md-primary" ng-click="runCode()">
                     <i class="material-icons">play_arrow</i> Run code

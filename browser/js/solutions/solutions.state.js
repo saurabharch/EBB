@@ -3,11 +3,14 @@
 app.config(($stateProvider) => {
     $stateProvider.state('solution', {
         url: '/solution/:problemId',
-        urlTemplate: 'js/solutions/solutions.html',
+        templateUrl: 'js/solutions/solutions.html',
         controller: 'SolutionsCtrl',
+        params: {
+          hasSolved: false
+        },
         resolve: {
-            theProblem: ($stateParams, ProblemFactory) => {
-                return ProblemFactory.fetchById($stateParams.problemId);
+            theProblem: ($stateParams, ProblemsFactory) => {
+                return ProblemsFactory.getProblemById($stateParams.problemId);
             }
         }
     });
