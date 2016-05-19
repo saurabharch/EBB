@@ -30,6 +30,7 @@ app.directive('friendOrRandom', () => {
                 const loggedInUsers = LoggedInUsersFactory.getLoggedInUsers();
                 const potentialUsersToInvite = {};
                 angular.copy(loggedInUsers, potentialUsersToInvite);
+                console.log('hey', $scope.user)
                 delete potentialUsersToInvite[$scope.user.username];
                 const randomUser = _.sample(potentialUsersToInvite);
 

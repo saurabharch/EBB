@@ -1,4 +1,8 @@
 #friendsPage {
+  height: 100%;
+  width: 100%;
+  background-color: #eee;
+
     #findFriend {
         background-color: #42bd41;
         padding: 10px;
@@ -11,7 +15,7 @@
     }
 
     #friendsList {
-        background-color: #ffffff;
+        background-color: transparent;
         border-radius: 10px;
 
         .onlineFriend {
@@ -35,4 +39,3 @@
         }
     }
 }
-

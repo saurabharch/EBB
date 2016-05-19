@@ -1,14 +1,19 @@
-<div ng-repeat="problem in problems">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h2>{{problem.title}}</h2></div>
-        <div class="panel-body">
-            <p>{{problem.description}}</p>
-            <p>Difficulty: {{problem.difficulty}}/5</p>
-            <friend-or-random int-or-solve="interview" problem-id="{{problem._id}}" user="user"></friend-or-random>
-            <friend-or-random int-or-solve="solve" problem-id="{{problem._id}}" user="user"></friend-or-random>
+<section id="problem-list" ng-cloak>
+  <md-content id="problems" style="margin-left: 200px; margin-right: 200px; background-color: transparent;" ng-cloak>
+  <md-list ng-repeat="problem in problems">
+    <div>
+      <md-subheader style="background-color: transparent;"><h2>{{problem.title}}</h2></md-subheader>
+      <md-list-item>
+        <div class="md-list-item-text" layout="column">
+          <h3>{{problem.description}}</h3>
+          <h4>Difficulty: {{problem.difficulty}}/5</h4>
         </div>
     </div>
-</div>
+    <friend-or-random int-or-solve="interview" problem-id="{{problem._id}}" user="user"></friend-or-random>
+    <friend-or-random int-or-solve="solve" problem-id="{{problem._id}}" user="user"></friend-or-random>
+    <md-divider ng-if="!$last"></md-divider>
+</md-list>
+</md-content>
+</section>
 <br>
-<button ui-sref="createProblem">Submit a new problem</button>
+<md-button class="md-raised md-primary submit-problem" ui-sref="createProblem">Submit a new problem</md-button>
