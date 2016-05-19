@@ -6,8 +6,6 @@ app.controller('InviteFriendCtrl', ($scope, user, friends, LoggedInUsersFactory,
     let scenarioId = $stateParams.scenarioId;
     let problemId = $stateParams.problemId;
 
-    console.log('This is the problemId:', problemId);
-
     $scope.friends = friends;
 
     $scope.goBackToScenario = () => {
