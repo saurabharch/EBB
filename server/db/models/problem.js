@@ -23,9 +23,13 @@ var problem = new mongoose.Schema({
         type: String,
         // required: true
     },
-    tests: {
-        type: String
-        // required: true
+    test: {
+        type: String,
+        required: true
+    },
+    testAnswer: {
+        type: String,
+        required: true
     }
 });
 
