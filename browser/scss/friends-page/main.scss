@@ -1,10 +1,4 @@
 #friendsPage {
-  background-image: url("/images/connections.jpg");
-  height: 100%;
-  width: 100%;
-  background-size: 1000px;
-
-
     #findFriend {
         background-color: #42bd41;
         padding: 10px;
@@ -17,7 +11,7 @@
     }
 
     #friendsList {
-        background-color: transparent;
+        background-color: #ffffff;
         border-radius: 10px;
 
         .onlineFriend {
@@ -41,3 +35,4 @@
         }
     }
 }
+

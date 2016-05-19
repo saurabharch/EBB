@@ -1,28 +1,12 @@
 #notificationsPage {
-  background-image: url("/images/mailbox.jpg");
-  height: 100%;
-  width: 100%;
-  background-size: 1300px;
-  background-position: 0% 20%;
-
     #notificationsList {
-        background-color: transparent;
+        background-color: #ffffff;
         border-radius: 10px;
 
         .notificationIcon {
             color: #01579b;
         }
 
-    }
-
-    #notificationsIcon {
-      background-color: white;
-      box-shadow: 5px 5px 10px black;
-      height: 60px;
-      width: 100px;
-      margin: 0 auto;
-      margin-bottom: 10px;
-      text-align: center;
     }
 
     #acceptBtn {
@@ -44,3 +28,4 @@
         }
     }
 }
+
