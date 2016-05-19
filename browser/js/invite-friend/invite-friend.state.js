@@ -16,10 +16,6 @@ app.config(function($stateProvider) {
             scenarioId: {
                 value: null,
                 squash: true
-            },
-            problemId: {
-                value: null,
-                squash: true
             }
         }
     });

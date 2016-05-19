@@ -1,13 +1,14 @@
 <div ng-repeat="problem in problems">
-  <div class="panel panel-default">
-    <div class="panel-heading"><h2>{{problem.title}}</h2></div>
-    <div class="panel-body">
-      <p>{{problem.description}}</p>
-      <p>Difficulty: {{problem.difficulty}}/5</p>
-        <friend-or-random int-or-solve="interview" problem-id="{{problem._id}}" user="user"></friend-or-random>
-        <friend-or-random int-or-solve="solve" problem-id="{{problem._id}}" user="user"></friend-or-random>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h2>{{problem.title}}</h2></div>
+        <div class="panel-body">
+            <p>{{problem.description}}</p>
+            <p>Difficulty: {{problem.difficulty}}/5</p>
+            <friend-or-random int-or-solve="interview" problem-id="{{problem._id}}" user="user"></friend-or-random>
+            <friend-or-random int-or-solve="solve" problem-id="{{problem._id}}" user="user"></friend-or-random>
+        </div>
     </div>
-  </div>
 </div>
 <br>
 <button ui-sref="createProblem">Submit a new problem</button>

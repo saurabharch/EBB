@@ -9,9 +9,33 @@
                 <md-button id="runCode" class="md-raised md-primary" ng-click="runCode()">
                     <i class="material-icons">play_arrow</i> Run code
                 </md-button>
-                <div id="mainPanel" flex layout-sm="column" layout-xs="column" layout="row" >
-                    <div flex>
-                        <h4>Result: {{ returnVal.stderr ? returnVal.stderr : returnVal.stdout }}</h4>
+                <div id="mainPanel" flex layout-sm="column" layout-xs="column" layout="row">
+                    <div id="mainPanel" flex layout-sm="column" layout-xs="column" layout="row">
+                        <div flex>
+                            <div ng-cloak>
+                                <md-content>
+                                    <md-tabs md-dynamic-height md-border-bottom >
+                                        <md-tab label="Problem" ng-if="workspace.scenarioType !== 'workspace'">
+                                            <md-content class="md-padding">
+                                                {{workspace.problemId.description}}
+                                            </md-content>
+                                        </md-tab>
+                                        <md-tab label="Solution" ng-if="!isCreator && workspace.scenarioType === 'interview'">
+                                            <md-content class="md-padding">
+                                                <p ng-repeat="line in workspace.problemId.solutionCode track by $index">
+                                                    {{ line }}
+                                                </p>
+                                            </md-content>
+                                        </md-tab>
+                                        <md-tab label="Result">
+                                            <md-content class="md-padding">
+                                                <p>{{ returnVal.stderr ? returnVal.stderr : returnVal.stdout }}</p>
+                                            </md-content>
+                                        </md-tab>
+                                    </md-tabs>
+                                </md-content>
+                            </div>
+                        </div>
                     </div>
                     <md-divider ng-if="workspace.collaborator"></md-divider>
                     <div flex ng-if="workspace.collaborator">
