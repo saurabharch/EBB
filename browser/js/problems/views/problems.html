@@ -8,13 +8,19 @@
         <div class="md-list-item-text" layout="column">
           <h3>{{problem.description}}</h3>
           <h4>Difficulty: {{problem.difficulty}}/5</h4>
+<!-- =======
+<div ng-repeat="problem in problems">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h2>{{problem.title}}</h2></div>
+        <div class="panel-body">
+            <p>{{problem.description}}</p>
+            <p>Difficulty: {{problem.difficulty}}/5</p>
+            <friend-or-random int-or-solve="interview" problem-id="{{problem._id}}" user="user"></friend-or-random>
+            <friend-or-random int-or-solve="solve" problem-id="{{problem._id}}" user="user"></friend-or-random>
+>>>>>>> master -->
         </div>
-        <friend-or-random int-or-solve="interview" problem-id="{{problem._id}}"></friend-or-random>
-        <friend-or-random int-or-solve="solve" problem-id="{{problem._id}}"></friend-or-random>
-        <md-divider ng-if="!$last"></md-divider>
-      </div>
-    </md-list-item>
-  </md-list>
-</md-content>
-<md-button class="md-raised md-primary submit-problem" ui-sref="createProblem">Submit a new problem</md-button>
-</section>
+    </div>
+</div>
+<br>
+<button ui-sref="createProblem">Submit a new problem</button>

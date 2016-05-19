@@ -14,7 +14,7 @@ app.config(function($stateProvider){
   })
   .state('createProblem', {
     url: '/createProblem',
-    templateUrl: 'js/problems/views/createProblem.html',
+    templateUrl: 'js/problems/views/create-problem.html',
     controller: 'ProblemsController'
   });
 });
