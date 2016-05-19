@@ -11,22 +11,6 @@
                 </md-button>
                 <div id="mainPanel" flex layout-sm="column" layout-xs="column" layout="row" >
                     <div flex>
-                      <div ng-cloak>
-                        <md-content>
-                          <md-tabs md-dynamic-height md-border-bottom>
-                            <md-tab label="Problem">
-                              <md-content class="md-padding">
-                                {{ problem.description }}
-                              </md-content>
-                            </md-tab>
-                            <md-tab label="Solution" ng-if="isInterviewer">
-                              <md-content class="md-padding">
-                                <code> {{ problem.solution }} </code>
-                              </md-content>
-                            </md-tab>
-                          </md-tabs>
-                        </md-content>
-                      </div>                    </div>
                         <h4>Result: {{ returnVal.stderr ? returnVal.stderr : returnVal.stdout }}</h4>
                     </div>
                     <md-divider ng-if="workspace.collaborator"></md-divider>

@@ -1,10 +1,4 @@
 #workspace {
-  background-image: url("/images/workspace.png");
-  height: 100%;
-  width: 100%;
-  background-position: -1% 0%;
-  // background-size: 4000px;
-
     #addWorkspace {
         background-color: #42bd41;
         padding: 10px;
@@ -12,12 +6,8 @@
     }
 
     #existingWorkspaces {
-        max-width: 100%;
         background-color: #ffffff;
         border-radius: 10px;
-        display: flex;
-        justify-content: center;
-
         .createdByUser {
             color: #259b24;
         }
@@ -37,6 +27,7 @@
         }
     }
 
+
     md-dialog {
         md-input-container {
             width: 100%;
@@ -44,7 +35,3 @@
     }
 }
 
-.workspaceList {
-  display: flex;
-  flex-direction: row;
-}
