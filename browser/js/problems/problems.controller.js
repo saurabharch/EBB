@@ -17,13 +17,13 @@ app.controller('ProblemsController', function($scope, ProblemsFactory, $statePar
     $mdOpenMenu(ev);
   };
 
-  $scope.randomlyPair = function(){
-    console.log('randomly pair hit')
-    $state.go('programming-page');
-  };
+  // $scope.randomlyPair = function(){
+  //   console.log('randomly pair hit')
+  //   $state.go('programming-page');
+  // };
 
-  $scope.workWithFriend = function(){
-    console.log('work with friend hit')
-    $state.go('programming-page');
-  };
+  // $scope.workWithFriend = function(){
+  //   console.log('work with friend hit')
+  //   $state.go('programming-page');
+  // };
 });

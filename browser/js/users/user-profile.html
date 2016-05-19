@@ -1,0 +1,50 @@
+<md-content id="userProfile" ng-cloak style="background-color: transparent">
+    <div layout="row" layout-align="center center" layout-padding ng-cloak>
+        <h1>My user profile</h1>
+    </div>
+    <div layout="row" layout-align="center center" layout-padding ng-cloak>
+        <div id="pastInterviews" flex-gt-sm="60" flex="100">
+            <h2 ng-if="!pastInterviews.length">You haven't participated in any interviews</h2>
+            <md-list ng-cloak ng-if="pastInterviews.length" style="background-color: transparent;">
+                <h2>Past interviews</h2>
+                <md-list-item ng-repeat="interview in pastInterviews">
+                    <md-divider></md-divider>
+                    <i class="material-icons">people_outline</i>
+                    <span flex="5"></span>
+                    <p class="md-subhead" flex="70">{{ interview.name }}</p>
+                    <p class="dates md-caption">Date: {{ interview.dateCreated | date }} </p>
+                </md-list-item>
+            </md-list>
+        </div>
+    </div>
+    <div layout="row" layout-align="center center" layout-padding ng-cloak>
+        <div id="solvedProblems" flex-gt-sm="60" flex="100">
+            <h2 ng-if="!solvedProblems.length">You have not solved any problems</h2>
+            <md-list ng-cloak ng-if="solvedProblems.length" style="background-color: transparent;">
+                <h2>Solved problems</h2>
+                <md-list-item ng-repeat="solved in solvedProblems" ui-sref="workspaceMain({workspaceId: solved._id})">
+                    <md-divider></md-divider>
+                    <i class="material-icons">work</i>
+                    <span flex="5"></span>
+                    <p class="md-subhead" flex="70">{{ solved.problemId.title }}</p>
+                    <p class="dates md-caption">Date: {{ solved.dateLastModified | date }} </p>
+                </md-list-item>
+            </md-list>
+        </div>
+    </div>
+    <div layout="row" layout-align="center center" layout-padding ng-cloak>
+        <div id="unsolvedProblems" flex-gt-sm="60" flex="100">
+            <h2 ng-if="!unsolvedProblems.length">You have not started any new problems</h2>
+            <md-list ng-cloak ng-if="unsolvedProblems.length" style="background-color: transparent;">
+                <h2>Unsolved problems</h2>
+                <md-list-item ng-repeat="unsolved in unsolvedProblems" ui-sref="workspaceMain({workspaceId: unsolved._id})">
+                    <md-divider></md-divider>
+                    <i class="material-icons">work</i>
+                    <span flex="5"></span>
+                    <p class="md-subhead" flex="70">{{ unsolved.problemId.title }}</p>
+                    <p class="dates md-caption">Date: {{ unsolved.dateLastModified | date }} </p>
+                </md-list-item>
+            </md-list>
+        </div>
+    </div>
+</md-content>

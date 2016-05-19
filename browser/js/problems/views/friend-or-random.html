@@ -1,11 +1,11 @@
-<md-menu style="border: 1px solid white; margin: 5px;">
-  <md-button id="matching-selector" ui-sref-active="active" ng-click="openMenu($mdOpenMenu, $event)" class="btn btn-primary btn-md" aria-label="Open user interactions menu">
+<md-menu>
+  <md-button id="matching-selector" ui-sref-active="active" ng-click="openMenu($mdOpenMenu, $event)" class="md-raised md-primary intOrSolveBtn" aria-label="Open user interactions menu">
     {{ intOrSolve }}
   </md-button>
   <md-menu-content width="4">
     <md-menu-item>
       <md-button ui-sref="inviteFriend({ problemId: '{{ problemId }}', scenarioType: '{{ intOrSolve }}' })">
-        <i class="material-icons">contacts</i> {{ intOrSolve | capitalize }} with a friend
+        <span><i class="material-icons">contacts</i> {{ intOrSolve | capitalize }} with a friend</span>
       </md-button>
     </md-menu-item>
     <md-menu-divider></md-menu-divider>

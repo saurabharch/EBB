@@ -8,30 +8,49 @@
     margin: 10px;
   }
   #existingWorkspaces {
-    max-width: 100%;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
     background-color: transparent;
 
+    figcaption {
+      width: 100%;
+    }
+    h2, p {
+      margin: 0;
+      text-align: center;
+    }
+
+    i {
+      font-size: 100px;
+      color: #ffffff;
+    }
+
+    .dates {
+      color: #ffffff;
+    }
+
     .createdByUser {
-      color: #259b24;
+      background: #01579b;
     }
     .createdByAnother {
-      color: #01579b;
+      background: #006064;
     }
-    .dates {
-      color: #aaaaaa;
-      font-style: italic;
+
+    md-grid-list {
+      margin: 20px;
+      margin-left: 10%;
+      margin-right: 10%;
+      background-color: transparent;
+      text-align: center;
+
     }
-    .collaborator {
-      color: #aaaaaa;
-      font-style: italic;
+
+    md-grid-tile {
+      transition: all 400ms ease-out 50ms;
     }
-    p {
-      height: 18px;
-    }
+
+
   }
+
+
   md-dialog {
     md-input-container {
       width: 100%;

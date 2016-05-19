@@ -45,4 +45,8 @@ app.controller('WorkspaceCtrl', function($scope, user, $mdDialog, WorkspaceFacto
         });
     };
 
+    $scope.goToWorkspace = (workspace) => {
+        $state.go('workspaceMain', {workspaceId: workspace._id});
+    }
+
 });

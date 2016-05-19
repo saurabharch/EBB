@@ -12,7 +12,7 @@ app.config(function ($urlRouterProvider, $locationProvider, $mdThemingProvider) 
     });
 
     $mdThemingProvider.theme('default')
-    .primaryPalette('blue')
+    .primaryPalette('blue',{'default': '900'})
     .accentPalette('indigo');
 });
 
