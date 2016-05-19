@@ -11,14 +11,13 @@ app.controller('WorkspaceMainCtrl', ($scope, $log, RunTests, user, workspace, Wo
         $scope.partnerUser = $scope.isCreator ? workspace.collaborator : workspace.creator;
     }
 
-    function showYouAreCorrectDialog() {
+    function showYouAreCorrectDialog(problemId) {
         let confirm = $mdDialog.confirm()
             .title('You are correct!!!')
             .ariaLabel('Correct')
-            .ok('Okay');
+            .ok('Go to solution page');
         $mdDialog.show(confirm).then(() => {
-            // Do stuff
-            // .catch($log.error);
+          $state.go('solution', {hasSolved: true, problemId: problemId});
         });
     }
 
@@ -40,7 +39,7 @@ app.controller('WorkspaceMainCtrl', ($scope, $log, RunTests, user, workspace, Wo
             .then((returnedValue) => {
                 $scope.returnVal = returnedValue;
                 if ($scope.returnVal.stdout.slice(0,-1) === workspace.problemId.testAnswer && workspace.scenarioType === 'solve') {
-                    showYouAreCorrectDialog();
+                    showYouAreCorrectDialog(workspace.problemId._id);
                     $scope.returnVal.stdout = 'You passed'
                 } else if (workspace.scenarioType === 'solve'){
                     showYouAreWrongDialog();

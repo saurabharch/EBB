@@ -1,3 +1,23 @@
-<pre>
-    <p ng-repeat="line in problem.solutionCode track by $index">{{line}}</p>
-</pre>
+<h1>Solution page for {{problem.title}}</h1>
+
+<h3 ng-if="!comments.length">No solutions yet, be the first to add yours!</h3>
+
+<h3 ng-if="!hasSolved">Solve the problem to contribute a solution!</h3>
+
+<md-input-container class="md-block" ng-if="hasSolved">
+  <label>Great solve! Add your solution!</label>
+  <textarea ng-model="newComment.text" md-maxlength="1000" rows="5" md-select-on-focus></textarea>
+  <md-button ng-click="addComment(newComment)">Submit Comment</md-button>
+</md-input-container>
+
+<div ng-repeat="comment in comments | orderBy: '!upvotes'">
+  <md-list-item class="md-3-line md-long-text">
+    <upvote the-comment="comment._id" upvotes="comment.upvotes"></upvote>
+    <div class="md-list-item-text">
+      <h3>{{ comment.user.username }}</h3>
+      <p>
+        {{ comment.text }}
+      </p>
+    </div>
+  </md-list-item>
+</div>
