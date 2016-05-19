@@ -19,7 +19,7 @@ router.post('/', ensureAuthenticated, (req, res, next) => {
 
 router.get('/user/:userId', ensureAuthenticated, (req, res, next) => {
     Notification.find({toUser: req.params.userId})
-    .populate('toUser fromUser problemId')
+    .populate('toUser fromUser')
     .then((notifications) => {
         res.send(notifications);
     });
