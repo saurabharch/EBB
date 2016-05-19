@@ -3,12 +3,12 @@
       <div id="friendsList" flex-gt-sm="60" flex="100">
           <h2 ng-if="!friends.length">You have no friends :(</h2>
           <md-list ng-cloak ng-if="friends.length">
-              <h2 style="color: white;">Your friends</h2>
+              <h2 style="color: black;">Your friends</h2>
               <md-list-item ng-repeat="friend in friends">
                   <md-divider></md-divider>
                   <i class="material-icons" ng-class="{'onlineFriend': friend.online, 'offlineFriend': !friend.online}">account_circle</i>
                   <span flex="5"></span>
-                  <p class="md-subhead" style="color: white;">{{ friend.username }}</p>
+                  <p class="md-subhead" style="color: black;">{{ friend.username }}</p>
                   <span flex></span>
                   <md-button id="deleteBtn" class="md-raised" aria-label="Delete notification" ng-click="deleteFriend($event, friend)">
                       <i class="material-icons">delete</i>
