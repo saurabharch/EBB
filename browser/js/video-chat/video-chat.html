@@ -1,12 +1,12 @@
 <section id="videoSection">
-    <md-button class="md-raised md-primary" ng-if="!madeOffer" ng-click="startVideo()">
+    <md-button class="videoBtn md-raised md-primary" ng-if="!madeOffer" ng-click="startVideo()">
         <i class="material-icons">play_arrow</i> Start video chat
     </md-button>
     <div ng-if="madeOffer && !receivedOffer && !offerAccepted" layout="row">
         <md-progress-circular md-mode="indeterminate"></md-progress-circular>
         <p class="waiting">Waiting...</p>
     </div>
-    <md-button class="md-raised md-primary" ng-if="receivedOffer && !acceptedOffer" ng-click="acceptVideoRequest()">
+    <md-button class="videoBtn md-raised md-primary" ng-if="receivedOffer && !acceptedOffer" ng-click="acceptVideoRequest()">
         <i class="material-icons">play_arrow</i>Accept video chat
     </md-button>
     <div id="videoFeed">

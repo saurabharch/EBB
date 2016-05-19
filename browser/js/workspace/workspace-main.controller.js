@@ -39,9 +39,14 @@ app.controller('WorkspaceMainCtrl', ($scope, $log, RunTests, user, workspace, Wo
         RunTests.submitCode({ code: codeToRun })
             .then((returnedValue) => {
                 $scope.returnVal = returnedValue;
-                if ($scope.returnVal.stdout.slice(0,-1) === workspace.problemId.testAnswer && workspace.scenarioType === 'solve') {
-                    showYouAreCorrectDialog();
-                    $scope.returnVal.stdout = 'You passed'
+                if (workspace.problemId && $scope.returnVal.stdout.slice(0,-1) === workspace.problemId.testAnswer && workspace.scenarioType === 'solve') {
+                    $scope.workspace.solved = true;
+                    WorkspaceFactory.saveWorkspace($scope.workspace).
+                    then(() => {
+                        showYouAreCorrectDialog();
+                        $scope.returnVal.stdout = 'You passed'
+                    })
+                    .catch($log.error);
                 } else if (workspace.scenarioType === 'solve'){
                     showYouAreWrongDialog();
                     $scope.returnVal.stdout = 'Incorrect - please try again'
@@ -51,5 +56,8 @@ app.controller('WorkspaceMainCtrl', ($scope, $log, RunTests, user, workspace, Wo
             .catch($log.error);
     };
 
+    // TODO: sanitize user console.logs
+    // TODO: use process.stdout instead of console.log for the tests
+    // TODO: be able to show user's console.logs (need to run code twice if solve)
 
 });

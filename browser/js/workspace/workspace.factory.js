@@ -31,6 +31,22 @@ app.factory('WorkspaceFactory', function($http) {
             });
     };
 
+    WorkspaceFactory.getUserInterviews = function(userId) {
+    return $http.get('/api/workspace/user/' + userId + '/interviews')
+        .then(getData)
+        .then(function(interviews) {
+            return interviews;
+        });
+    };
+
+    WorkspaceFactory.getUserSolves = function(userId) {
+    return $http.get('/api/workspace/user/' + userId + '/solves')
+        .then(getData)
+        .then(function(solves) {
+            return solves;
+        });
+    };
+
     WorkspaceFactory.saveWorkspace = function(workspace) {
         return $http.put('/api/workspace/' + workspace._id, workspace)
             .then(getData)
