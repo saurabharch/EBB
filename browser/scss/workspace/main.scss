@@ -1,37 +1,40 @@
 #workspace {
-    #addWorkspace {
-        background-color: #42bd41;
-        padding: 10px;
-        margin: 10px;
+  height: 100%;
+  width: 100%;
+  background-color: #eee;
+  #addWorkspace {
+    background-color: #42bd41;
+    padding: 10px;
+    margin: 10px;
+  }
+  #existingWorkspaces {
+    max-width: 100%;
+    background-color: #ffffff;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    
+    .createdByUser {
+      color: #259b24;
     }
-
-    #existingWorkspaces {
-        background-color: #ffffff;
-        border-radius: 10px;
-        .createdByUser {
-            color: #259b24;
-        }
-        .createdByAnother {
-            color: #01579b;
-        }
-        .dates {
-            color: #aaaaaa;
-            font-style: italic;
-        }
-        .collaborator {
-            color: #aaaaaa;
-            font-style: italic;
-        }
-        p {
-            height: 18px;
-        }
+    .createdByAnother {
+      color: #01579b;
     }
-
-
-    md-dialog {
-        md-input-container {
-            width: 100%;
-        }
+    .dates {
+      color: #aaaaaa;
+      font-style: italic;
     }
+    .collaborator {
+      color: #aaaaaa;
+      font-style: italic;
+    }
+    p {
+      height: 18px;
+    }
+  }
+  md-dialog {
+    md-input-container {
+      width: 100%;
+    }
+  }
 }
-
