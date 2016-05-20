@@ -39,6 +39,9 @@ var schema = new mongoose.Schema({
     problemId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Problem'
+    },
+    solved: {
+        type: Boolean
     }
 });
 

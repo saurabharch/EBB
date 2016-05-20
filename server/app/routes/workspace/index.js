@@ -27,11 +27,12 @@ router.put('/:workspaceId', function(req, res, next) {
         .then(function(workspace) {
             workspace.text = req.body.text || workspace.text;
             workspace.collaborator = req.body.collaborator || workspace.collaborator;
+            workspace.solved = req.body.solved || workspace.solved;
             return workspace.save();
         })
         .then(function() {
             return Workspace.findById(req.params.workspaceId)
-                .populate('creator collaborator');
+                .populate('creator collaborator problemId');
         })
         .then(function(workspace) {
             res.send(workspace);
@@ -52,7 +53,31 @@ router.get('/user/:userId', function(req, res, next) {
             $or: [{ creator: req.params.userId }, { collaborator: req.params.userId }],
             scenarioType: 'workspace'
         })
-        .populate('creator collaborator')
+        .populate('creator collaborator problemId')
+        .then(function(workspaces) {
+            res.send(workspaces);
+        })
+        .catch(next);
+});
+
+router.get('/user/:userId/interviews', function(req, res, next) {
+    Workspace.find({
+            $or: [{ creator: req.params.userId }, { collaborator: req.params.userId }],
+            scenarioType: 'interview'
+        })
+        .populate('creator collaborator problemId')
+        .then(function(workspaces) {
+            res.send(workspaces);
+        })
+        .catch(next);
+});
+
+router.get('/user/:userId/solves', function(req, res, next) {
+    Workspace.find({
+            $or: [{ creator: req.params.userId }, { collaborator: req.params.userId }],
+            scenarioType: 'solve'
+        })
+        .populate('creator collaborator problemId')
         .then(function(workspaces) {
             res.send(workspaces);
         })
