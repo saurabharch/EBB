@@ -43,7 +43,7 @@ app.controller('WorkspaceMainCtrl', ($scope, $log, RunTests, user, workspace, Wo
                     $scope.workspace.solved = true;
                     WorkspaceFactory.saveWorkspace($scope.workspace).
                     then(() => {
-                        showYouAreCorrectDialog();
+                        showYouAreCorrectDialog(workspace.problemId._id);
                         $scope.returnVal.stdout = 'You passed'
                     })
                     .catch($log.error);
