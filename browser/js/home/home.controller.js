@@ -1,7 +1,6 @@
 'use strict';
 
-app.controller('HomeCtrl', function($scope, parallaxHelper) {
+app.controller('HomeCtrl', function($scope) {
 
-    $scope.background = parallaxHelper.createAnimator(-0.7, 130, -130);
 
 });
