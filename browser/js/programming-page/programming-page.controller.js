@@ -37,6 +37,7 @@ app.controller('ProgrammingPageCtrl', function($scope, ProgrammingPageFactory, L
         });
 
         session.on('sessionDisconnected', function(event) {
+            session.off('streamCreated');
             console.log('You were disconnected from the session.', event.reason);
         });
 

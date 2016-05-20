@@ -52,6 +52,7 @@ app.factory('VideoChatFactory', function($http, Socket) {
         });
 
         session.on('sessionDisconnected', (event) => {
+            session.off('streamCreated');
             console.log('You were disconnected from the session.', event.reason);
         });
 

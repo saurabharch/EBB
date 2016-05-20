@@ -15,7 +15,8 @@ app.controller('WorkspaceMainCtrl', ($scope, $log, RunTests, user, workspace, Wo
         let confirm = $mdDialog.confirm()
             .title('You are correct!!!')
             .ariaLabel('Correct')
-            .ok('Go to solution page');
+            .ok('Go to solution page')
+            .cancel('Cancel');
         $mdDialog.show(confirm).then(() => {
           $state.go('solution', {hasSolved: true, problemId: problemId});
         });
