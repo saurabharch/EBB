@@ -1,0 +1,23 @@
+#solutionsPage {
+    #thisSolutionText {
+        overflow: auto;
+        height: 20vh;
+        width: 100%;
+    }
+
+    .otherSolutions {
+        width: 100%;
+
+        .otherSolutionCode {
+            overflow: auto;
+            height: 20vh;
+            width: 100%;
+        }
+
+    }
+
+    h2, h3 {
+        text-align: center;
+    }
+
+}

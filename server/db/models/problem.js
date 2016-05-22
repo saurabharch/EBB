@@ -16,7 +16,7 @@ var problem = new mongoose.Schema({
         max: 5
     },
     solutionCode: {
-        type: [String],
+        type: String,
         required: true
     },
     solutionVideo: {

@@ -24,7 +24,7 @@
                       <i class="material-icons">priority_high</i>
                     {{notifications.length}}
                   </md-button>
-                <md-menu ng-show="user">
+                <md-menu ng-show="user" id="userInteractionMenu">
                     <md-button aria-label="Open user interactions menu" ng-click="openMenu($mdOpenMenu, $event)">
                         <i class="material-icons" >account_box</i>
                         {{user.username}}
@@ -32,8 +32,7 @@
                     <md-menu-content width="4">
                         <md-menu-item>
                             <md-button ui-sref="userProfile">
-                                <i class="material-icons">account_circle</i>
-                                Profile page
+                                <span><i class="material-icons">account_circle</i> Profile page</span>
                             </md-button>
                         </md-menu-item>
                         <md-menu-divider></md-menu-divider>

@@ -1,6 +1,6 @@
 'use strict';
 
-app.factory('WorkspaceFactory', function($http) {
+app.factory('WorkspaceFactory', function($http, Socket) {
     const WorkspaceFactory = {};
 
     function getData(res) {
@@ -53,14 +53,14 @@ app.factory('WorkspaceFactory', function($http) {
             .then(function(savedWorkspace) {
                 return savedWorkspace;
             });
-    }
+    };
 
     WorkspaceFactory.deleteWorkspace = function (workspaceId) {
         return $http.delete('/api/workspace/' + workspaceId)
             .then(function(res) {
                 return res.status;
             });
-    }
+    };
 
     return WorkspaceFactory;
 

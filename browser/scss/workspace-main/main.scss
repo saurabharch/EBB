@@ -17,6 +17,25 @@
         margin: 10px;
         padding: 10px;
 
+        #solutionCode {
+            overflow: auto;
+            height: 40vh;
+
+            #solutionText {
+                height: 100%;
+            }
+        }
+
+        #problemDescription {
+            overflow-y: auto;
+            height: 40vh;
+        }
+
+        #resultReturned {
+            overflow-y: auto;
+            height: 40vh;
+        }
+
         .online {
             color: #259b24;
         }
