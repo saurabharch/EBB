@@ -35,7 +35,6 @@ app.controller('WorkspaceMainCtrl', ($scope, $log, RunTests, user, workspace, Wo
     }
 
     $scope.runCode = () => {
-
         const userCode = $scope.workspace.text;
         const testCode = $scope.workspace.problemId.test;
 
