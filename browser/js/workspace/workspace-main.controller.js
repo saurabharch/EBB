@@ -35,26 +35,39 @@ app.controller('WorkspaceMainCtrl', ($scope, $log, RunTests, user, workspace, Wo
     }
 
     $scope.runCode = () => {
-        let codeToRun = $scope.workspace.text + (workspace.scenarioType === 'solve' ? workspace.problemId.test : '')
-        RunTests.submitCode({ code: codeToRun })
-            .then((returnedValue) => {
-                $scope.returnVal = returnedValue;
-                if (workspace.problemId && $scope.returnVal.stdout.slice(0,-1) === workspace.problemId.testAnswer && workspace.scenarioType === 'solve') {
-                    $scope.workspace.solved = true;
-                    WorkspaceFactory.saveWorkspace($scope.workspace).
-                    then(() => {
-                        showYouAreCorrectDialog(workspace.problemId._id);
-                        $scope.returnVal.stdout = 'You passed'
-                    })
-                    .catch($log.error);
-                } else if (workspace.scenarioType === 'solve'){
-                    showYouAreWrongDialog();
-                    $scope.returnVal.stdout = 'Incorrect - please try again'
-                }
 
-            })
-            .catch($log.error);
+        const userCode = $scope.workspace.text;
+        const testCode = $scope.workspace.problemId.test;
+
+        RunTests.submitCode({ userCode, testCode })
+        .then((returnedValue) => {
+            $scope.returnVal = returnedValue;
+            console.log('ReturnVal: ', $scope.returnVal);
+        })
+        .catch($log.error);
     };
+
+    // $scope.runCode = () => {
+    //     let codeToRun = $scope.workspace.text + (workspace.scenarioType === 'solve' ? workspace.problemId.test : '')
+    //     RunTests.submitCode({ code: codeToRun })
+    //         .then((returnedValue) => {
+    //             $scope.returnVal = returnedValue;
+    //             if (workspace.problemId && $scope.returnVal.stdout.slice(0,-1) === workspace.problemId.testAnswer && workspace.scenarioType === 'solve') {
+    //                 $scope.workspace.solved = true;
+    //                 WorkspaceFactory.saveWorkspace($scope.workspace).
+    //                 then(() => {
+    //                     showYouAreCorrectDialog(workspace.problemId._id);
+    //                     $scope.returnVal.stdout = 'You passed'
+    //                 })
+    //                 .catch($log.error);
+    //             } else if (workspace.scenarioType === 'solve'){
+    //                 showYouAreWrongDialog();
+    //                 $scope.returnVal.stdout = 'Incorrect - please try again'
+    //             }
+
+    //         })
+    //         .catch($log.error);
+    // };
 
     // TODO: sanitize user console.logs
     // TODO: use process.stdout instead of console.log for the tests

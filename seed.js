@@ -40,7 +40,8 @@ let problemSeed = [
         description: 'Write the "paths2Bottom" function which takes a starting x coordinate, starting y coordinate and the length of the grid. Given a square grid, how could you determine the number of possible paths from the top left of the grid to the bottom right, assuming you can only move to the right and down? Example: a 2 by 2 grid has 6 possible paths.',
         difficulty: 4,
         solutionCode: ["var paths = {};", "function memoizer(x, y, max){", "    if(paths[[x,y,max]]){", "        return paths[[x,y,max]];", "    }", "    else{", "        return paths[[x,y,max]] = paths2Bottom(x, y, max);", "    }", "}", "function paths2Bottom(x, y, max){", "    if (x == max || y == max){", "        return 1;", "    }", "    return memoizer(x+1, y, max) + memoizer(x, y+1, max);", "}"],
-        test: 'console.log(paths2Bottom(0,0,20));',
+        // test: 'console.log(paths2Bottom(0,0,20));',
+        test: `describe('the paths2Bottom function', function () { it('returns the number of possible paths', function () { assert.equal(userWrittenFunction(0,0,20), 137846528820); }); });`,
         testAnswer: '137846528820'
     },
     {
