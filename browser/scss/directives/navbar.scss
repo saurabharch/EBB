@@ -9,14 +9,15 @@ navbar {
     padding-top: 20px;
   }
 
-  fullstack-logo {
-    margin-top: 5px;
-    margin-right: 20px;
-    width: 40px;
-  }
-
   #menuBtn {
     min-width: 10px;
+  }
+
+  #userInteractionMenu {
+    .userBtns {
+      color: #999999;
+    }
+
   }
 
   #sidenav {
@@ -32,7 +33,7 @@ navbar {
     md-list-item {
         color: #999999;
 
-        .md-button {
+        md-button {
             margin: 0px;
         }
 

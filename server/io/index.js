@@ -51,6 +51,7 @@ module.exports = function(server) {
     socket.on('friendsNoMore', (toUser, fromUser) => {
       io.to('/#' + toUser.socketId).emit('defriending', toUser, fromUser);
     });
+
   });
 
   return io;

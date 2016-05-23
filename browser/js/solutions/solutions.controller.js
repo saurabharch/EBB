@@ -9,6 +9,7 @@ app.controller('SolutionsCtrl', ($scope, $log, theProblem, CommentsFactory, Auth
     .then((user) => {
       $scope.user = user;
       $scope.newComment = {user: $scope.user, problem: theProblem};
+      $scope.newComment.text = $stateParams.solutionCode;
     });
 
     $scope.problem = theProblem;

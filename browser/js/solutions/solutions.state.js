@@ -6,7 +6,8 @@ app.config(($stateProvider) => {
         templateUrl: 'js/solutions/solutions.html',
         controller: 'SolutionsCtrl',
         params: {
-          hasSolved: false
+          hasSolved: false,
+          solutionCode: null
         },
         resolve: {
             theProblem: ($stateParams, ProblemsFactory) => {
