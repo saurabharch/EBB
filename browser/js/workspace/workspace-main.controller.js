@@ -36,9 +36,10 @@ app.controller('WorkspaceMainCtrl', ($scope, $log, RunTests, user, workspace, Wo
 
     $scope.runCode = () => {
         const userCode = $scope.workspace.text;
-        const testCode = $scope.workspace.problemId.test;
+        const testCode = $scope.workspace.problemId ? $scope.workspace.problemId.test : null;
+        const scenario = $scope.workspace.scenarioType;
 
-        RunTests.submitCode({ userCode, testCode })
+        RunTests.submitCode({ userCode, testCode, scenario })
         .then((returnedValue) => {
             $scope.returnVal = returnedValue;
             console.log('ReturnVal: ', $scope.returnVal);

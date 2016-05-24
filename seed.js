@@ -41,7 +41,7 @@ let problemSeed = [
         difficulty: 4,
         solutionCode: ["var paths = {};", "function memoizer(x, y, max){", "    if(paths[[x,y,max]]){", "        return paths[[x,y,max]];", "    }", "    else{", "        return paths[[x,y,max]] = paths2Bottom(x, y, max);", "    }", "}", "function paths2Bottom(x, y, max){", "    if (x == max || y == max){", "        return 1;", "    }", "    return memoizer(x+1, y, max) + memoizer(x, y+1, max);", "}"],
         // test: 'console.log(paths2Bottom(0,0,20));',
-        test: `describe('the paths2Bottom function', function () { it('returns the number of possible paths', function () { assert.equal(userWrittenFunction(0,0,20), 137846528820); }); });`,
+        test: `describe('the paths2Bottom function', function () { it('test1', function () { assert.equal(paths2Bottom(0,0,5), 252); }); it('test2', function () { assert.equal(paths2Bottom(0,0,10), 184756); }); it('test3', function () { assert.equal(paths2Bottom(0,0,20), 137846528820); }); });`,
         testAnswer: '137846528820'
     },
     {
