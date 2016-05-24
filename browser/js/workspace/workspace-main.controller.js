@@ -7,6 +7,7 @@ app.controller('WorkspaceMainCtrl', ($scope, $log, RunTests, user, workspace, Wo
     $scope.user = user;
     $scope.workspace = workspace;
     $scope.isCreator = user._id === workspace.creator._id;
+    $scope.hasRunCode = false;
     if (workspace.collaborator) {
         $scope.partnerUser = $scope.isCreator ? workspace.collaborator : workspace.creator;
     }
@@ -41,9 +42,13 @@ app.controller('WorkspaceMainCtrl', ($scope, $log, RunTests, user, workspace, Wo
         const scenario = $scope.workspace.scenarioType;
 
         RunTests.submitCode({ userCode, testCode, scenario })
-        .then((returnedValue) => {
-            $scope.returnVal = returnedValue;
-            console.log('ReturnVal: ', $scope.returnVal);
+        .then((testResults) => {
+            $scope.testResults = JSON.parse(testResults);
+            $scope.test1Error = $scope.testResults.tests[0].err;
+            $scope.test2Error = $scope.testResults.tests[1].err;
+            $scope.test3Error = $scope.testResults.tests[2].err;
+            $scope.hasRunCode = true;
+            if (!$scope.testResults.failures.length) showYouAreCorrectDialog($scope.workspace.problemId._id);
         })
         .catch($log.error);
     };

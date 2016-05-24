@@ -39,8 +39,9 @@
                                         </md-tab>
                                         <md-tab label="Result">
                                             <md-content class="md-padding">
-                                                <p>{{ returnVal }}</p>
-                                                <!-- <p>{{ returnVal.stderr ? returnVal.stderr : returnVal.stdout }}</p> -->
+                                                <p>{{ testResults.tests[0].title }}  <span style="color:{{ !test1Error.name ? 'green' : 'red' }};font-weight:bold" ng-if="hasRunCode">{{ !test1Error.name ? 'Passed!' : test1Error.name + '\nActual: ' + test1Error.actual + '\nExpected: ' + test1Error.expected }}</span></p>
+                                                <p>{{ testResults.tests[1].title }}  <span style="color:{{ !test2Error.name ? 'green' : 'red' }};font-weight:bold" ng-if="hasRunCode">{{ !test2Error.name ? 'Passed!' : test2Error.name + '\nActual: ' + test2Error.actual + '\nExpected: ' + test2Error.expected }}</span></p>
+                                                <p>{{ testResults.tests[2].title }}  <span style="color:{{ !test3Error.name ? 'green' : 'red' }};font-weight:bold" ng-if="hasRunCode">{{ !test3Error.name ? 'Passed!' : test3Error.name + '\nActual: ' + test3Error.actual + '\nExpected: ' + test3Error.expected }}</span></p>
                                             </md-content>
                                         </md-tab>
                                     </md-tabs>

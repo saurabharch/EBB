@@ -40,7 +40,7 @@ let problemSeed = [
         description: 'Write the "paths2Bottom" function which takes a starting x coordinate, starting y coordinate and the length of the grid. Given a square grid, how could you determine the number of possible paths from the top left of the grid to the bottom right, assuming you can only move to the right and down? Example: a 2 by 2 grid has 6 possible paths.',
         difficulty: 4,
         solutionCode: `var paths = {};\nfunction memoizer(x, y, max){\n\tif(paths[[x,y,max]]){\n\t\treturn paths[[x,y,max]];\n\t}\n\telse{\n\t\treturn paths[[x,y,max]] = paths2Bottom(x, y, max);\n\t}\n}\nfunction paths2Bottom(x, y, max){\n\tif (x == max || y == max){\n\t\treturn 1;\n\t}\n\treturn memoizer(x+1, y, max) + memoizer(x, y+1, max);\n}`,
-        test: `describe('the paths2Bottom function', function () { it('test1', function () { assert.equal(paths2Bottom(0,0,5), 252); }); it('test2', function () { assert.equal(paths2Bottom(0,0,10), 184756); }); it('test3', function () { assert.equal(paths2Bottom(0,0,20), 137846528820); }); });`,
+        test: `describe('the paths2Bottom function', function () { it('Test 1: paths2Bottom(0,0,5)', function () { assert.equal(paths2Bottom(0,0,5), 252); }); it('Test 2: paths2Bottom(0,0,10)', function () { assert.equal(paths2Bottom(0,0,10), 184756); }); it('Test 3: paths2Bottom(0,0,20)', function () { assert.equal(paths2Bottom(0,0,20), 137846528820); }); });`,
         testAnswer: '137846528820'
     },
     {
