@@ -21,15 +21,20 @@
                                 <md-content>
                                     <md-tabs md-dynamic-height md-border-bottom >
                                         <md-tab label="Problem" ng-if="workspace.scenarioType !== 'workspace'">
-                                            <md-content class="md-padding">
-                                                {{workspace.problemId.description}}
+                                            <md-content class="md-padding" id="problemDescription">
+                                                <p class="md-subhead">{{workspace.problemId.title}}</p>
+                                                <p>{{workspace.problemId.description}}</p>
                                             </md-content>
                                         </md-tab>
                                         <md-tab label="Solution" ng-if="!isCreator && workspace.scenarioType === 'interview'">
-                                            <md-content class="md-padding">
-                                                <p ng-repeat="line in workspace.problemId.solutionCode track by $index">
-                                                    {{ line }}
-                                                </p>
+                                            <md-content class="md-padding" id="solutionCode">
+                                                <div id="solutionText" ui-ace="{
+                                                    useWrapMode : false,
+                                                    showGutter: false,
+                                                    mode: 'javascript',
+                                                    firstLineNumber: 1,
+                                                    }" readonly ng-model="workspace.problemId.solutionCode">
+                                                </div>
                                             </md-content>
                                         </md-tab>
                                         <md-tab label="Result">

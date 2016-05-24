@@ -4,7 +4,7 @@
             <md-list ng-cloak>
                 <h2 class="title">Problems</h2>
                 <md-list-item ng-repeat="problem in problems">
-                    <div layout="column">
+                    <div layout="column" id="problemContainer">
                         <h3 class="problemTitle">
                             <i class="material-icons">work</i>
                             {{problem.title}}
@@ -24,7 +24,4 @@
             <md-button class="md-raised md-primary submit-problem" ui-sref="createProblem">Submit a new problem</md-button>
         </div>
     </div>
-
-
 </section>
-<br>

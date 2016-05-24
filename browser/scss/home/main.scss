@@ -1,86 +1,28 @@
 #home {
-    h1 {
-        text-align: center;
-    }
+    text-align: center;
 
-    #main1 {
-        background-image: url("/images/coding.jpg");
+
+    #header {
         width: 100%;
+        background-color: #006064;
+        color: white;
+        font-size: 5vw;
+        margin-top: 0;
+        font-weight: bold;
 
-        #main1a {
-            margin-bottom: 100px;
-            height: 100vh;
-        }
-
-        .heading {
-            color: #ffffff;
-            vertical-align: middle;
-            text-align: center;
-        }
-    }
-
-    #main2 {
-        background-color: #eeeeee;
-        background-size: cover;
-        width: 100%;
-        padding-top: 100px;
-        padding-bottom: 250px;
-
-        md-card {
-            margin-left: 20px;
-            margin-right: 20px;
-            height: 400px;
-
-            img {
-                height: 100px;
-                width: 100%;
-            }
-
-            .md-subhead {
-                font-style: italic;
-            }
-
-            md-card-title-text {
-                text-align: center;
-            }
-        }
-    }
-
-    #main3 {
-        background-image: url("/images/coding.jpg");
-        background-size: cover;
-        height: 110vh;
-        width: 100%;
-
-        #signupBtn {
-            border-color: #ffffff;
-            border-width: 5px;
-            border-style: solid;
-            background-color: transparent;
-            padding: 20px;
-            font-size: 50px;
-            width: 40%;
+        i {
+            font-size: 5vw;
             vertical-align: middle;
         }
+    }
 
-        #testimonials {
-            width: 100%;
-
-            .testimonial {
-                text-align: center;
-                color: #ffffff;
-
-                img {
-                    border-radius: 50%;
-                    height: 50%;
-                    width: 50%;
-                }
-            }
-
-        }
-
+    img {
+        width: 60%;
+        height: auto;
+        margin-top: 20px;
 
     }
+
 
 
 }

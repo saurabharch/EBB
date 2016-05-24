@@ -1,23 +1,40 @@
-<h1>Solution page for {{problem.title}}</h1>
-
-<h3 ng-if="!comments.length">No solutions yet, be the first to add yours!</h3>
-
-<h3 ng-if="!hasSolved">Solve the problem to contribute a solution!</h3>
-
-<md-input-container class="md-block" ng-if="hasSolved">
-  <label>Great solve! Add your solution!</label>
-  <textarea ng-model="newComment.text" md-maxlength="1000" rows="5" md-select-on-focus></textarea>
-  <md-button ng-click="addComment(newComment)">Submit Comment</md-button>
-</md-input-container>
-
-<div ng-repeat="comment in comments | orderBy: '!upvotes'">
-  <md-list-item class="md-3-line md-long-text">
-    <upvote the-comment="comment._id" upvotes="comment.upvotes"></upvote>
-    <div class="md-list-item-text">
-      <h3>{{ comment.user.username }}</h3>
-      <p>
-        {{ comment.text }}
-      </p>
+<md-content id="solutionsPage" ng-cloak style="background-color: transparent;">
+    <div layout="row" layout-align="center center" layout-padding ng-cloak>
+        <div id="friendsList" flex-gt-sm="60" flex="100">
+            <h2>Solution page for {{problem.title}}</h2>
+            <h3 ng-if="!comments.length">No solutions yet, be the first to add yours!</h3>
+            <h3 ng-if="!hasSolved">Solve the problem to contribute a solution!</h3>
+            <div ng-if="hasSolved">
+                <h3>Great solve! Add your solution!</h3>
+                <div id="thisSolutionText" ui-ace="{
+                    useWrapMode : false,
+                    showGutter: false,
+                    mode: 'javascript',
+                    firstLineNumber: 1,
+                    }" readonly ng-model="newComment.text">
+                </div>
+                <md-button class="md-raised md-primary" ng-click="addComment(newComment)">Add your solution</md-button>
+            </div>
+            <md-list ng-cloak ng-if="comments.length" style="background-color: transparent;">
+                <h2>Other solutions</h2>
+                <md-list-item ng-repeat="comment in comments | orderBy: '!upvotes'">
+                    <upvote the-comment="comment._id" upvotes="comment.upvotes"></upvote>
+                    <span flex="5"></span>
+                    <div class="md-list-item-text otherSolutions">
+                        <h3>{{ comment.user.username }}</h3>
+                        <div class="otherSolutionCode" ui-ace="{
+                            useWrapMode : false,
+                            showGutter: false,
+                            mode: 'javascript',
+                            theme: 'monokai',
+                            firstLineNumber: 1,
+                            }" readonly ng-model="comment.text">
+                        </div>
+                    </div>
+                    <span flex="5"></span>
+                    <p class="md-subhead">{{ friend.username }}</p>
+                </md-list-item>
+            </md-list>
+        </div>
     </div>
-  </md-list-item>
-</div>
+</md-content>

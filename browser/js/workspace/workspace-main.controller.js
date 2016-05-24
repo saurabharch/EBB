@@ -11,6 +11,7 @@ app.controller('WorkspaceMainCtrl', ($scope, $log, RunTests, user, workspace, Wo
         $scope.partnerUser = $scope.isCreator ? workspace.collaborator : workspace.creator;
     }
 
+
     function showYouAreCorrectDialog(problemId) {
         let confirm = $mdDialog.confirm()
             .title('You are correct!!!')
@@ -18,7 +19,7 @@ app.controller('WorkspaceMainCtrl', ($scope, $log, RunTests, user, workspace, Wo
             .ok('Go to solution page')
             .cancel('Cancel');
         $mdDialog.show(confirm).then(() => {
-          $state.go('solution', {hasSolved: true, problemId: problemId});
+          $state.go('solution', {hasSolved: true, problemId: problemId, solutionCode: $scope.workspace.text});
         });
     }
 
