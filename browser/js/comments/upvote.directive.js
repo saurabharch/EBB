@@ -6,35 +6,53 @@ app.directive('upvote', function(CommentsFactory){
       theComment: "=",
       upvotes: "="
     },
-    link: function(scope){
+    link: function(scope, $log){
       scope.hasUpvoted = false;
       scope.hasDownvoted = false;
-      scope.upvoteById = (id) => {
-        if (!scope.hasUpvoted && scope.hasDownvoted) {
-          CommentsFactory.upvoteById(id);
-          scope.hasUpvoted = false;
-          scope.hasDownvoted = false;
+      scope.addUpvote = (id) => {
+        if (!scope.hasUpvoted) {
+          CommentsFactory.edit(id, { $inc: { upvotes: 1 } })
+          .catch($log.error);
           scope.upvotes++;
-        } else if (!scope.hasUpvoted){
-          CommentsFactory.upvoteById(id);
-          scope.hasUpvoted = true;
           scope.hasDownvoted = false;
-          scope.upvotes++;
+          scope.hasUpvoted = scope.hasDownvoted ? false : true;
         }
       };
-      scope.downvoteById = (id) => {
-        if(scope.hasUpvoted && !scope.hasDownvoted){
-          CommentsFactory.downvoteById(id);
-          scope.hasUpvoted = false;
-          scope.hasDownvoted = false;
+      scope.addDownvote = (id) => {
+        if (!scope.hasDownvoted) {
+          CommentsFactory.edit(id, { $inc: { upvotes: -1 } })
+          .catch($log.error);
           scope.upvotes--;
-        } else if (!scope.hasDownvoted) {
-          CommentsFactory.downvoteById(id);
           scope.hasUpvoted = false;
-          scope.hasDownvoted = true;
-          scope.upvotes--;
+          scope.hasDownvoted = scope.hasUpvoted ? false : true;
         }
       };
+      // scope.upvoteById = (id) => {
+      //   if (!scope.hasUpvoted && scope.hasDownvoted) {
+      //     CommentsFactory.upvoteById(id);
+      //     scope.hasUpvoted = false;
+      //     scope.hasDownvoted = false;
+      //     scope.upvotes++;
+      //   } else if (!scope.hasUpvoted){
+      //     CommentsFactory.upvoteById(id);
+      //     scope.hasUpvoted = true;
+      //     scope.hasDownvoted = false;
+      //     scope.upvotes++;
+      //   }
+      // };
+      // scope.downvoteById = (id) => {
+      //   if(scope.hasUpvoted && !scope.hasDownvoted){
+      //     CommentsFactory.downvoteById(id);
+      //     scope.hasUpvoted = false;
+      //     scope.hasDownvoted = false;
+      //     scope.upvotes--;
+      //   } else if (!scope.hasDownvoted) {
+      //     CommentsFactory.downvoteById(id);
+      //     scope.hasUpvoted = false;
+      //     scope.hasDownvoted = true;
+      //     scope.upvotes--;
+      //   }
+      // };
     }
   };
 });

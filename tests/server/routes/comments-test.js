@@ -13,9 +13,9 @@ const clearDB = require('mocha-mongoose')(dbURI);
 const supertest = require('supertest');
 const app = require('../../../server/app');
 
-describe('Comment route', () => {
+describe('Comment route', function () {
 
-    beforeEach('Establish DB connection', (done) => {
+    beforeEach('Establish DB connection', function (done) {
         if (mongoose.connection.db) return done();
         mongoose.connect(dbURI, done);
     });

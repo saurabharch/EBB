@@ -27,15 +27,15 @@ app.factory('CommentsFactory', ($http) => {
         .then(getData);
     };
 
-    Comments.upvoteById = (commentId) => {
-      console.log('upvoteById', commentId);
-      return $http.put(`${commentUrl}/${commentId}/upvote`);
-    };
+    // Comments.upvoteById = (commentId) => {
+    //   console.log('upvoteById', commentId);
+    //   return $http.put(`${commentUrl}/${commentId}/upvote`);
+    // };
 
-    Comments.downvoteById = (commentId) => {
-      console.log('downvoteById', commentId);
-      return $http.put(`${commentUrl}/${commentId}/downvote`);
-    };
+    // Comments.downvoteById = (commentId) => {
+    //   console.log('downvoteById', commentId);
+    //   return $http.put(`${commentUrl}/${commentId}/downvote`);
+    // };
 
     Comments.destroy = (id) => $http.delete(commentUrl + id);
 

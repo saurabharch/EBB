@@ -1,38 +1,15 @@
 'use strict';
 
 const router = require('express').Router();
-const https = require('https');
-const enviro = require('../../../env');
+const DockerRunner = require('../../dockerrunner.js');
 module.exports = router;
 
-router.post('/', ({ body }, res) => {
-    const glotConfig = enviro.GLOT;
+router.post('/', ({ body }, res, next) => {
 
-    const postData = JSON.stringify({
-        'files': [
-            {
-                'name': 'main.js',
-                'content': body.code
-            }
-        ]
-    });
+    const docker = new DockerRunner();
 
-    const options = {
-        protocol: 'https:',
-        host: 'run.glot.io',
-        method: 'POST',
-        path: '/languages/javascript/latest',
-        headers: {
-            'Authorization': `Token ${glotConfig.apiToken}`,
-            'Content-type': 'application/json'
-        }
-    };
+    docker.runCommand(body.userCode, body.testCode, body.scenario)
+    .then((results) => res.json(results))
+    .catch(next);
 
-    const req = https.request(options, (resBack) => {
-        resBack.on('data', (chunk) => {
-            res.send(chunk);
-        });
-    });
-
-    req.end(postData);
 });
