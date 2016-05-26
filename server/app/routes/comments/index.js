@@ -22,7 +22,7 @@ module.exports = router
 
 .post('/', ({ body }, res, next) => {
     Comment.create(body)
-    .then((newComment) => res.json(newComment))
+    .then((newComment) => res.status(201).json(newComment))
     .catch(next);
 })
 
@@ -36,7 +36,7 @@ module.exports = router
     if (user._id !== comment.user) return next();
     comment.set(body);
     comment.save()
-    .then((editedComment) => res.json(editedComment))
+    .then((editedComment) => res.status(201).json(editedComment))
     .catch(next);
 })
 
