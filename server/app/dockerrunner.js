@@ -2,7 +2,7 @@
 
 const Docker = require('dockerode');
 const streamBuffers = require('stream-buffers');
-const Promise = require('bluebird');
+const Bluebird = require('bluebird');
 
 function DockerRunner () {
     this.docker = new Docker();
@@ -21,7 +21,7 @@ DockerRunner.prototype.runCommand = function (userCode, testCode, scenario) {
 
     const stdoutStream = new streamBuffers.WritableStreamBuffer();
 
-    const finishedPromise = new Promise((resolve, reject) => {
+    const finishedPromise = new Bluebird((resolve, reject) => {
         this.docker.run('bgergen/ebb:test2', ['bash', '-c', commands], stdoutStream, function(err, data, container) {
             if (err) return reject(err);
 
